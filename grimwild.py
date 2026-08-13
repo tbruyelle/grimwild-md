@@ -147,6 +147,11 @@ def parse(text):
         mod["blocks"].append({"kind": "paragraph", "text": " ".join(para)})
     return mod
 
+REPEAT_SVG = """<svg fill='#000000' version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 94.073 94.072' xml:space='preserve'><g><path d='M91.465,5.491c-0.748-0.311-1.609-0.139-2.18,0.434l-8.316,8.316C72.046,5.057,60.125,0,47.399,0c-2.692,0-5.407,0.235-8.068,0.697C21.218,3.845,6.542,17.405,1.944,35.244c-0.155,0.599-0.023,1.235,0.355,1.724c0.379,0.489,0.962,0.775,1.581,0.775h12.738c0.839,0,1.59-0.524,1.878-1.313c3.729-10.193,12.992-17.971,23.598-19.814c1.747-0.303,3.525-0.456,5.288-0.456c8.428,0,16.299,3.374,22.168,9.5l-8.445,8.444c-0.571,0.572-0.742,1.432-0.434,2.179c0.311,0.748,1.039,1.235,1.848,1.235h28.181c1.104,0,2-0.896,2-2V7.338C92.7,6.53,92.211,5.801,91.465,5.491z'/><path d='M90.192,56.328H77.455c-0.839,0-1.59,0.523-1.878,1.312c-3.729,10.193-12.992,17.972-23.598,19.814c-1.748,0.303-3.525,0.456-5.288,0.456c-8.428,0-16.3-3.374-22.168-9.5l8.444-8.444c0.572-0.572,0.743-1.432,0.434-2.179c-0.31-0.748-1.039-1.235-1.848-1.235H3.374c-1.104,0-2,0.896-2,2v28.181c0,0.809,0.487,1.538,1.235,1.848c0.746,0.31,1.607,0.138,2.179-0.435l8.316-8.315c8.922,9.183,20.843,14.241,33.569,14.241c2.693,0,5.408-0.235,8.069-0.697c18.112-3.146,32.789-16.708,37.387-34.547c0.155-0.6,0.023-1.234-0.354-1.725C91.395,56.615,90.811,56.328,90.192,56.328z'/></g></svg>"""
+
+END_SVG = """<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="si-glyph si-glyph-circle-star" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>1047</title> <defs> </defs> <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <path d="M8,0.062 C3.581,0.062 0,3.621 0,8.009 C0,12.399 3.581,15.958 8,15.958 C12.418,15.958 16,12.398 16,8.009 C16,3.621 12.418,0.062 8,0.062 L8,0.062 Z M11.108,12.025 L8.021,9.902 L4.933,12.025 L6.112,8.59 L3.024,6.465 L6.841,6.465 L8.021,3.03 L9.201,6.465 L13.017,6.465 L9.93,8.59 L11.108,12.025 L11.108,12.025 Z" fill="#434343" class="si-glyph-fill"> </path> </g> </g></svg>
+"""
+
 # ------------------------------------------------------------------ icons ---
 
 # Item markers are Unicode glyphs rendered with DejaVu Sans (the font that
@@ -172,14 +177,9 @@ def icon_svg(kind, color="#8e877f"):
                 f"<path d='M3.9 2.9 L6.1 5 L3.9 7.1' fill='none' stroke='{color}' "
                 f"stroke-width='1.2' stroke-linecap='round'/></svg>")
     if kind == "repeat":
-        return (f"<svg viewBox='0 0 10 10'><path d='M8.8 3.4 A3.7 3.7 0 1 0 9.2 5.6' "
-                f"fill='none' stroke='{color}' stroke-width='1.3' stroke-linecap='round'/>"
-                f"<path d='M8.9 0.9 L8.8 3.5 L6.6 2.2 Z' fill='{color}'/></svg>")
+        return REPEAT_SVG.replace("#000000", color)
     if kind == "end":
-        return (f"<svg viewBox='0 0 10 10'><circle cx='5' cy='5' r='4' fill='#f4eee0' "
-                f"stroke='{color}' stroke-width='1.2'/>"
-                f"<path d='M5 1.6 L5.85 3.75 L8.1 3.8 L6.35 5.3 L7.1 7.6 L5 6.3 L2.9 7.6 "
-                f"L3.65 5.3 L1.9 3.8 L4.15 3.75 Z' fill='{color}'/></svg>")
+        return END_SVG.replace("#000000", color).replace("#434343", color)
     return ""
 
 
@@ -387,7 +387,7 @@ li::before {
   margin: 0; font-size: 9pt; font-variant: small-caps; font-weight: 700;
   letter-spacing: 0.025em; color: #221e15; white-space: nowrap;
 }
-.pool .prop { margin-left: auto; width: 4mm; height: 4mm; }
+.pool .prop { margin-left: auto; width: 2.8mm; height: 2.8mm; }
 .pool .prop svg { width: 100%; height: 100%; display: block; }
 .pool ul { padding: 1.1mm 1.5mm 1.3mm; }
 .pool-link {
