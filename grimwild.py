@@ -300,7 +300,7 @@ def render(mod):
 
 def build_css():
     sizes = {"dot": "0.95em", "triangle": "0.95em", "box": "0.95em",
-             "star": "0.82em", "cross": "1.05em"}
+             "star": "0.82em", "cross": "1.2em"}
     markers_css = ""
     for sel, key in [("ul.m-dot li", "dot"), ("ul.m-triangle li", "triangle"),
                      ("ul.m-box li", "box"), ("ul.m-star li", "star"),
@@ -462,7 +462,7 @@ li::before {
 }
 .challenge .fail::before {
   position: absolute; left: 0.2mm; top: 0.08em;
-  font-family: "DejaVu Sans", sans-serif; font-size: 0.95em; line-height: 1;
+  font-family: "DejaVu Sans", sans-serif; line-height: 1;
 }
 
 /* ---- mix it up ---- */
