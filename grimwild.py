@@ -436,6 +436,7 @@ h1 {
 .intro strong { font-variant: small-caps; letter-spacing: 0.02em; }
 
 /* ---- generic lists with Unicode markers ---- */
+strong { font-weight: 700; }
 ul { margin: 0; padding: 0; list-style: none; }
 li { position: relative; padding-left: 3.4mm; margin: 0.35mm 0; }
 li::before {
