@@ -232,9 +232,7 @@ def render_challenges(challenges):
         moves = "".join(f"<li>{inline(m)}</li>" for m in c["moves"])
         fail = ""
         if c["fail"]:
-            fail_text = re.sub(r"^(\dD)\s+", r"<span class='dice-text'>\1</span> ",
-                               c["fail"])
-            fail = f"<p class='fail'>{inline(fail_text)}</p>"
+            fail = f"<p class='fail'>{c["fail"]}</p>"
         out.append(
             f"<div class='challenge'>"
             f"<header><span class='dice'>{c['dice']}</span>"
@@ -455,10 +453,7 @@ li::before {
 .moves { font-variant: small-caps; font-weight: 600; letter-spacing: 0.02em; }
 .challenge .fail {
   margin: 0.9mm 1.2mm 1.2mm; padding-left: 3.2mm; position: relative;
-  font-style: italic; font-size: 7.7pt;
-}
-.challenge .fail .dice-text {
-  font-style: normal; font-weight: 700; text-transform: lowercase;
+  font-style: italic; font-size: 7.5pt; font-weight: 700;
 }
 .challenge .fail::before {
   position: absolute; left: 0.2mm; top: 0.08em;

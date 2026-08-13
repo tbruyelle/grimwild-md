@@ -107,7 +107,7 @@ strikes them with irrational dread.
 - Change Subjects
 - Ignore Reason
 
-x 4D Anger Villagers
+x 4d Anger Villagers
 
 ## 4D | Falsely Accused
 
@@ -118,7 +118,7 @@ x 4D Anger Villagers
 - Misjudged Evidence
 - False Witnesses
 
-x 4D Found Guilty
+x 4d Found Guilty
 
 ## 8D | Chase 'Em Down
 
