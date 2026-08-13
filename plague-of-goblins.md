@@ -68,7 +68,7 @@ village has to a leader, she is *well-trusted* by all.
 that's ultimately a false trail.
 
 - Villagers started eating exotic roots.
-- A **Hag** (pg. 106) in the forest.
+- A **Hag** (*pg. 106*) in the forest.
 - Dead goblin in the well.
 - Goblin relics from a mine.
 - Farmer acting really suspicious.

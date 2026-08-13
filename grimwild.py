@@ -399,7 +399,7 @@ html, body { margin: 0; padding: 0; }
 body {
   font-family: "Capito TRIAL 04", "Noto Serif", serif;
   font-weight: 300;
-  font-size: 8pt; line-height: 1.22; color: #211d15;
+  font-size: 8.6pt; line-height: 1.24; color: #211d15;
   background:
     radial-gradient(115% 85% at 50% 42%, rgba(0,0,0,0) 52%, rgba(84,70,48,0.27) 100%),
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.38 0 0 0 0 0.30 0 0 0 0.05 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>"),
@@ -422,16 +422,17 @@ body {
 .module-art svg { display: block; width: 100%; height: 100%; }
 h1 {
   font-family: "Tiller", "Noto Sans", sans-serif; font-weight: 900; text-transform: uppercase;
-  text-align: center; font-size: 17pt; letter-spacing: 0.015em;
-  margin: 0.4mm 0 2mm; color: #16130d;
+  text-align: center; font-size: 22pt; letter-spacing: 0.01em;
+  margin: 0.2mm 0 2mm; padding-bottom: 1mm; color: #16130d;
+  border-bottom: 0.25mm solid rgba(80,70,52,0.22);
 }
 .hooks { display: flex; margin: 0 2mm 1.8mm; }
 .hook {
-  flex: 1; margin: 0; padding: 0 3mm; font-style: italic; font-size: 7.6pt;
+  flex: 1; margin: 0; padding: 0 3mm; font-style: italic; font-size: 8pt;
   color: #6d675a; text-align: center;
 }
-.hook + .hook { border-left: 0.25mm solid rgba(60,50,35,0.30); }
-.intro { margin: 0; text-align: justify; font-size: 8.2pt; }
+.hook + .hook { border-left: 0.25mm solid rgba(60,50,35,0.18); }
+.intro { margin: 1.8mm 0 0; text-align: justify; font-size: 8.6pt; }
 .intro strong { font-variant: small-caps; letter-spacing: 0.02em; }
 
 /* ---- generic lists with Unicode markers ---- */
@@ -446,7 +447,7 @@ li::before {
 /* ---- pressure pools ---- */
 .pools {
   display: flex; align-items: stretch;
-  gap: 6.5mm; margin: 3.5mm 0 0;
+  gap: 6.5mm; margin: 4.5mm 0 0;
 }
 .pool {
   flex: 1; background: rgba(247,242,231,0.72); border-radius: 1.4mm;
@@ -464,8 +465,8 @@ li::before {
   padding: 0.15mm 1.1mm; letter-spacing: 0.02em;
 }
 .pool h2 {
-  margin: 0; font-size: 9pt; font-variant: small-caps; font-weight: 700;
-  letter-spacing: 0.025em; color: #221e15; white-space: nowrap;
+  margin: 0; font-size: 10pt; font-variant: small-caps; font-weight: 800;
+  color: #221e15; white-space: nowrap;
 }
 .pool .prop { margin-left: auto; width: 2.8mm; height: 2.8mm; }
 .pool .prop svg { width: 100%; height: 100%; display: block; }
@@ -485,12 +486,12 @@ li::before {
 
 /* ---- banded sections (Useful Pieces / Set It Up) ---- */
 .banded {
-  margin-top: 3.5mm; border-radius: 1.6mm; overflow: hidden;
+  margin-top: 4.5mm; border-radius: 1.6mm; overflow: hidden;
   box-shadow: 0 0 0 0.3mm rgba(80,70,52,0.45);
 }
 .banner {
-  margin: 0; text-align: center; font-size: 9.5pt; font-variant: small-caps;
-  font-weight: 700; letter-spacing: 0.07em; color: #231f16;
+  margin: 0; text-align: center; font-size: 9.5pt; text-transform: uppercase;
+  font-weight: 800; color: #231f16;
   background: linear-gradient(180deg, #b3a897, #9d927f);
   padding: 0.9mm 0 1.1mm;
 }
@@ -498,12 +499,12 @@ li::before {
 .group { flex: 1; padding: 1.5mm 2mm 1.7mm; }
 .group + .group { border-left: 0.25mm solid rgba(60,50,35,0.22); }
 .lead { margin: 0 0 0.8mm; text-align: left; }
-.lead strong { font-variant: small-caps; letter-spacing: 0.02em; }
+.lead strong { font-variant: small-caps; font-weight: 800; letter-spacing: 0.02em; }
 .two-col { columns: 2; column-gap: 4mm; }
 .two-col li { break-inside: avoid; }
 
 /* ---- challenges ---- */
-.challenges { display: flex; gap: 2.5mm; margin-top: 3.5mm; }
+.challenges { display: flex; gap: 2.5mm; margin-top: 4.5mm; }
 .challenge {
   flex: 1; background: rgba(247,242,231,0.72); border-radius: 1.3mm;
   box-shadow: 0 0 0 0.25mm rgba(80,70,52,0.25); overflow: hidden;
@@ -527,13 +528,14 @@ li::before {
   background: #e6e0d2; box-shadow: -2.9mm 0 0 #e6e0d2,
   inset -0.2mm -0.2mm 0.4mm rgba(60,50,35,0.4);
 }
-.challenge ul { margin: 1mm 1.2mm 0; font-size: 7.7pt; }
+.challenge ul { margin: 1mm 1.2mm 0; font-size: 8.2pt; padding-bottom: 0.8mm;
+  border-bottom: 0.25mm solid rgba(80,70,52,0.15); }
 .challenge li { padding-left: 3.2mm; }
 .traits { font-style: italic; }
 .moves { font-variant: small-caps; font-weight: 600; letter-spacing: 0.02em; }
 .challenge .fail {
   margin: 0.9mm 1.2mm 1.2mm; padding-left: 3.2mm; position: relative;
-  font-style: italic; font-size: 7.5pt; font-weight: 700;
+  font-style: italic; font-size: 8pt; font-weight: 700;
 }
 .challenge .fail::before {
   position: absolute; left: 0.2mm; top: 0.08em;
@@ -542,7 +544,7 @@ li::before {
 
 /* ---- mix it up ---- */
 .mix-it-up {
-  display: flex; align-items: center; gap: 2.4mm; margin: 3.5mm 0 0;
+  display: flex; align-items: center; gap: 2.4mm; margin: 4.5mm 0 0;
   background: rgba(247,242,231,0.72); border-radius: 1.2mm; padding: 1mm 1.6mm;
   box-shadow: 0 0 0 0.25mm rgba(80,70,52,0.25);
 }
