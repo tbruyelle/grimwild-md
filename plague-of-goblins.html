@@ -4,7 +4,8 @@
 * { box-sizing: border-box; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 html, body { margin: 0; padding: 0; }
 body {
-  font-family: "Noto Serif", serif;
+  font-family: "Capito TRIAL 04", "Noto Serif", serif;
+  font-weight: 300;
   font-size: 8pt; line-height: 1.22; color: #211d15;
   background:
     radial-gradient(115% 85% at 50% 42%, rgba(0,0,0,0) 52%, rgba(84,70,48,0.27) 100%),
@@ -25,14 +26,9 @@ body {
   background: linear-gradient(160deg, #3a352c, #232019);
   border-radius: 1.6mm; box-shadow: 0.4mm 0.4mm 0.8mm rgba(30,25,15,0.35);
 }
-.module-art::after {  /* placeholder glyph for module art */
-  content: ""; position: absolute; inset: 3mm;
-  background: #efe9d8; border-radius: 50% 50% 46% 46%;
-  clip-path: polygon(50% 0, 100% 22%, 86% 100%, 14% 100%, 0 22%);
-  opacity: 0.9;
-}
+.module-art svg { display: block; width: 100%; height: 100%; }
 h1 {
-  font-family: "Noto Sans", sans-serif; font-weight: 800; text-transform: uppercase;
+  font-family: "Tiller", "Noto Sans", sans-serif; font-weight: 900; text-transform: uppercase;
   text-align: center; font-size: 17pt; letter-spacing: 0.015em;
   margin: 0.4mm 0 2mm; color: #16130d;
 }
@@ -92,7 +88,7 @@ ul.m-star li::before { content: "✱"; font-size: 0.82em; }
 }
 .pool-link::before {  /* line at header middle, spanning the gap only */
   content: ""; position: absolute; left: 0; right: 0; top: 2.6mm;
-  border-top: 0.3mm solid #9a9078;
+  border-top: 0.35mm dashed #9a9078;
 }
 .pool-link svg {  /* centered on the line, backing hides the line crossing */
   position: relative; display: block; width: 3.5mm; height: 3.5mm;
@@ -126,15 +122,15 @@ ul.m-star li::before { content: "✱"; font-size: 0.82em; }
 }
 .challenge header {
   position: relative; display: flex; align-items: baseline; gap: 1mm;
-  background: linear-gradient(180deg, #ada292, #998e7a);
-  color: #f6f1e4; padding: 1.1mm 1.6mm 1.2mm;
+  background: linear-gradient(180deg, #8f8372, #7a6f5e);
+  color: #f4eee0; padding: 1.1mm 1.6mm 1.2mm;
 }
 .challenge .dice {
   font-family: "Noto Sans", sans-serif; font-weight: 800; font-size: 7.6pt;
 }
-.challenge .sep { opacity: 0.75; font-weight: 300; }
+.challenge .sep { opacity: 0.8; font-weight: 300; }
 .challenge h2 {
-  margin: 0; font-size: 8.3pt; font-variant: small-caps; font-weight: 700;
+  margin: 0; font-size: 8.3pt; font-variant: small-caps; font-weight: 800;
   letter-spacing: 0.03em; white-space: nowrap;
 }
 .challenge header::after {  /* rivets */
@@ -168,10 +164,35 @@ ul.m-star li::before { content: "✱"; font-size: 0.82em; }
   white-space: nowrap;
 }
 .mix-it-up em { font-size: 9pt; }
-</style></head>
+
+@font-face { font-family: 'Tiller'; src: url('file:///home/tom/rpgs/grimwild/grimwild-md/fonts/fonnts.com-Tiller-Heavy.otf') format('opentype'); font-weight: 900; font-style: normal; }
+@font-face { font-family: 'Capito TRIAL 04'; src: url('file:///home/tom/rpgs/grimwild/grimwild-md/fonts/CapitoTRIAL04-Light.otf') format('opentype'); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'Capito TRIAL 04'; src: url('file:///home/tom/rpgs/grimwild/grimwild-md/fonts/CapitoTRIAL04-LightItalic.otf') format('opentype'); font-weight: 300; font-style: italic; }
+@font-face { font-family: 'Capito TRIAL 04'; src: url('file:///home/tom/rpgs/grimwild/grimwild-md/fonts/CapitoTRIAL04-Bold.otf') format('opentype'); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'Capito TRIAL 04'; src: url('file:///home/tom/rpgs/grimwild/grimwild-md/fonts/CapitoTRIAL04-BoldItalic.otf') format('opentype'); font-weight: 700; font-style: italic; }
+@font-face { font-family: 'Capito TRIAL 04'; src: url('file:///home/tom/rpgs/grimwild/grimwild-md/fonts/CapitoTRIAL04-Heavy.otf') format('opentype'); font-weight: 800; font-style: normal; }</style></head>
 <body><div class="page">
 <header class="module-head">
-  <div class="module-art"></div>
+  <div class="module-art"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100%' height='100%'>
+  <rect width='100' height='100' rx='14' fill='#232019'/>
+  <!-- head + pointed ears -->
+  <path fill='#efe9d8' d='M14 42 L22 26 Q28 16 36 28 Q42 24 50 24 Q58 24 64 28 Q72 16 78 26 L86 42 Q88 48 82 50 Q84 60 78 70 Q70 84 50 84 Q30 84 22 70 Q16 60 18 50 Q12 48 14 42 Z'/>
+  <!-- eyes -->
+  <ellipse cx='37' cy='46' rx='6.5' ry='8' fill='#232019'/>
+  <ellipse cx='63' cy='46' rx='6.5' ry='8' fill='#232019'/>
+  <!-- brows -->
+  <path fill='none' stroke='#efe9d8' stroke-width='1.6' stroke-linecap='round' d='M29 38 Q36 34 43 38'/>
+  <path fill='none' stroke='#efe9d8' stroke-width='1.6' stroke-linecap='round' d='M57 38 Q64 34 71 38'/>
+  <!-- nose -->
+  <path fill='#232019' d='M45 54 Q50 51 55 54 L51 62 Q50 64 49 62 Z'/>
+  <!-- mouth -->
+  <path fill='#232019' d='M32 66 Q50 76 68 66 Q66 72 58 75 Q50 78 42 75 Q34 72 32 66 Z'/>
+  <!-- fangs -->
+  <path fill='#efe9d8' d='M39 70 L42 78 L45 70 Z'/>
+  <path fill='#efe9d8' d='M55 70 L58 78 L61 70 Z'/>
+  <!-- chin -->
+  <path fill='#efe9d8' d='M47 79 Q50 81 53 79 L50 84 Z'/>
+</svg></div>
   <h1>A Plague of Goblins</h1>
   <div class='hooks'><p class='hook'><em>A note nailed to a sign reads, &quot;Dreghill at night—keep walking.&quot;</em></p><p class='hook'><em>A shoe lies abandoned in the square, bloody and torn.</em></p><p class='hook'><em>Arriving just after sunset, things are quiet—far too quiet, really.</em></p></div>
   <p class='intro'>Each night, doors lock, windows shut, and <strong>Dreghill Village</strong> holds its breath as the goblins come. Fighting back only led to disappearances, so now they stay inside and refuse to speak on what happens at night. It keeps their sanity, and keeps self and neighbor alike safe from the goblin plague that transforms them all.</p>

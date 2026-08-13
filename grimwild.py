@@ -18,6 +18,28 @@ from markdown_it import MarkdownIt
 
 MD = MarkdownIt("commonmark")
 
+
+def font_faces():
+    """Generate @font-face rules for the local project fonts."""
+    root = Path(__file__).parent / "fonts"
+    faces = [
+        ("Tiller", "fonnts.com-Tiller-Heavy.otf", 900, "normal"),
+        ("Capito TRIAL 04", "CapitoTRIAL04-Light.otf", 300, "normal"),
+        ("Capito TRIAL 04", "CapitoTRIAL04-LightItalic.otf", 300, "italic"),
+        ("Capito TRIAL 04", "CapitoTRIAL04-Bold.otf", 700, "normal"),
+        ("Capito TRIAL 04", "CapitoTRIAL04-BoldItalic.otf", 700, "italic"),
+        ("Capito TRIAL 04", "CapitoTRIAL04-Heavy.otf", 800, "normal"),
+    ]
+    rules = []
+    for family, rel, weight, style in faces:
+        url = "file://" + str((root / rel).resolve())
+        rules.append(
+            f"@font-face {{ font-family: '{family}'; src: url('{url}') format('opentype'); "
+            f"font-weight: {weight}; font-style: {style}; }}"
+        )
+    return "\n".join(rules)
+
+
 # ---------------------------------------------------------------- parsing ---
 
 DIV_OPEN = re.compile(r"^:::\s*\{([^}]*)\}\s*$")
@@ -51,8 +73,9 @@ def parse_pool(lines):
                     "type": "trigger" if "*" in m.group(2) else "lock",
                 }
             else:
-                print(f"warning: unparsed line in pressure pool: {s!r}",
-                      file=sys.stderr)
+                print(
+                    f"warning: unparsed line in pressure pool: {s!r}", file=sys.stderr
+                )
     return pool
 
 
@@ -88,8 +111,13 @@ def parse_challenges(lines):
             m = DICE_CHAL.match(s[3:])
             if m:
                 challenges.append(
-                    {"dice": m.group(1), "title": m.group(2),
-                     "traits": [], "moves": [], "fail": None}
+                    {
+                        "dice": m.group(1),
+                        "title": m.group(2),
+                        "traits": [],
+                        "moves": [],
+                        "fail": None,
+                    }
                 )
         elif s.startswith("* "):
             challenges[-1]["traits"].append(s[2:])
@@ -140,42 +168,73 @@ def parse(text):
             continue
         para = [line.strip()]
         i += 1
-        while (i < len(lines) and lines[i].strip()
-               and not DIV_OPEN.match(lines[i]) and not lines[i].startswith("# ")):
+        while (
+            i < len(lines)
+            and lines[i].strip()
+            and not DIV_OPEN.match(lines[i])
+            and not lines[i].startswith("# ")
+        ):
             para.append(lines[i].strip())
             i += 1
         mod["blocks"].append({"kind": "paragraph", "text": " ".join(para)})
     return mod
+
 
 REPEAT_SVG = """<svg fill='#000000' version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 94.073 94.072' xml:space='preserve'><g><path d='M91.465,5.491c-0.748-0.311-1.609-0.139-2.18,0.434l-8.316,8.316C72.046,5.057,60.125,0,47.399,0c-2.692,0-5.407,0.235-8.068,0.697C21.218,3.845,6.542,17.405,1.944,35.244c-0.155,0.599-0.023,1.235,0.355,1.724c0.379,0.489,0.962,0.775,1.581,0.775h12.738c0.839,0,1.59-0.524,1.878-1.313c3.729-10.193,12.992-17.971,23.598-19.814c1.747-0.303,3.525-0.456,5.288-0.456c8.428,0,16.299,3.374,22.168,9.5l-8.445,8.444c-0.571,0.572-0.742,1.432-0.434,2.179c0.311,0.748,1.039,1.235,1.848,1.235h28.181c1.104,0,2-0.896,2-2V7.338C92.7,6.53,92.211,5.801,91.465,5.491z'/><path d='M90.192,56.328H77.455c-0.839,0-1.59,0.523-1.878,1.312c-3.729,10.193-12.992,17.972-23.598,19.814c-1.748,0.303-3.525,0.456-5.288,0.456c-8.428,0-16.3-3.374-22.168-9.5l8.444-8.444c0.572-0.572,0.743-1.432,0.434-2.179c-0.31-0.748-1.039-1.235-1.848-1.235H3.374c-1.104,0-2,0.896-2,2v28.181c0,0.809,0.487,1.538,1.235,1.848c0.746,0.31,1.607,0.138,2.179-0.435l8.316-8.315c8.922,9.183,20.843,14.241,33.569,14.241c2.693,0,5.408-0.235,8.069-0.697c18.112-3.146,32.789-16.708,37.387-34.547c0.155-0.6,0.023-1.234-0.354-1.725C91.395,56.615,90.811,56.328,90.192,56.328z'/></g></svg>"""
 
 END_SVG = """<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="si-glyph si-glyph-circle-star" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>1047</title> <defs> </defs> <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <path d="M8,0.062 C3.581,0.062 0,3.621 0,8.009 C0,12.399 3.581,15.958 8,15.958 C12.418,15.958 16,12.398 16,8.009 C16,3.621 12.418,0.062 8,0.062 L8,0.062 Z M11.108,12.025 L8.021,9.902 L4.933,12.025 L6.112,8.59 L3.024,6.465 L6.841,6.465 L8.021,3.03 L9.201,6.465 L13.017,6.465 L9.93,8.59 L11.108,12.025 L11.108,12.025 Z" fill="#434343" class="si-glyph-fill"> </path> </g> </g></svg>
 """
 
+# Module icon: stylised goblin mask matching the golden example.
+GOBLIN_ICON_SVG = """<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100%' height='100%'>
+  <rect width='100' height='100' rx='14' fill='#232019'/>
+  <!-- head + pointed ears -->
+  <path fill='#efe9d8' d='M14 42 L22 26 Q28 16 36 28 Q42 24 50 24 Q58 24 64 28 Q72 16 78 26 L86 42 Q88 48 82 50 Q84 60 78 70 Q70 84 50 84 Q30 84 22 70 Q16 60 18 50 Q12 48 14 42 Z'/>
+  <!-- eyes -->
+  <ellipse cx='37' cy='46' rx='6.5' ry='8' fill='#232019'/>
+  <ellipse cx='63' cy='46' rx='6.5' ry='8' fill='#232019'/>
+  <!-- brows -->
+  <path fill='none' stroke='#efe9d8' stroke-width='1.6' stroke-linecap='round' d='M29 38 Q36 34 43 38'/>
+  <path fill='none' stroke='#efe9d8' stroke-width='1.6' stroke-linecap='round' d='M57 38 Q64 34 71 38'/>
+  <!-- nose -->
+  <path fill='#232019' d='M45 54 Q50 51 55 54 L51 62 Q50 64 49 62 Z'/>
+  <!-- mouth -->
+  <path fill='#232019' d='M32 66 Q50 76 68 66 Q66 72 58 75 Q50 78 42 75 Q34 72 32 66 Z'/>
+  <!-- fangs -->
+  <path fill='#efe9d8' d='M39 70 L42 78 L45 70 Z'/>
+  <path fill='#efe9d8' d='M55 70 L58 78 L61 70 Z'/>
+  <!-- chin -->
+  <path fill='#efe9d8' d='M47 79 Q50 81 53 79 L50 84 Z'/>
+</svg>"""
+
 # ------------------------------------------------------------------ icons ---
 
 # Item markers are Unicode glyphs rendered with DejaVu Sans (the font that
 # covers them all, so they share metrics and print at a uniform size).
 MARKER_CHARS = {
-    "dot": "\u25c9",      # ◉ fisheye (pools, moves)
-    "triangle": "\u25b8", # ▸ (useful pieces)
-    "box": "\u25a2",      # ▢ (set it up)
-    "star": "\u2731",     # ✱ (traits)
-    "cross": "\u2718",    # ✘ (fail state)
+    "dot": "\u25c9",  # ◉ fisheye (pools, moves)
+    "triangle": "\u25b8",  # ▸ (useful pieces)
+    "box": "\u25a2",  # ▢ (set it up)
+    "star": "\u2731",  # ✱ (traits)
+    "cross": "\u2718",  # ✘ (fail state)
 }
 
 
 def icon_svg(kind, color="#8e877f"):
     """Inline SVG icons for pool properties and links."""
     if kind == "lock":
-        return (f"<svg viewBox='0 0 10 10'><rect x='2' y='4.4' width='6' height='4.4' rx='1' fill='{color}'/>"
-                f"<path d='M3.2 4.4 V3.1 a1.8 1.8 0 0 1 3.6 0 V4.4' fill='none' "
-                f"stroke='{color}' stroke-width='1.2'/></svg>")
+        return (
+            f"<svg viewBox='0 0 10 10'><rect x='2' y='4.4' width='6' height='4.4' rx='1' fill='{color}'/>"
+            f"<path d='M3.2 4.4 V3.1 a1.8 1.8 0 0 1 3.6 0 V4.4' fill='none' "
+            f"stroke='{color}' stroke-width='1.2'/></svg>"
+        )
     if kind == "trigger":
-        return (f"<svg viewBox='0 0 10 10'><circle cx='5' cy='5' r='3.9' fill='#f4eee0' "
-                f"stroke='{color}' stroke-width='1.2'/>"
-                f"<path d='M3.9 2.9 L6.1 5 L3.9 7.1' fill='none' stroke='{color}' "
-                f"stroke-width='1.2' stroke-linecap='round'/></svg>")
+        return (
+            f"<svg viewBox='0 0 10 10'><circle cx='5' cy='5' r='3.9' fill='#f4eee0' "
+            f"stroke='{color}' stroke-width='1.2'/>"
+            f"<path d='M3.9 2.9 L6.1 5 L3.9 7.1' fill='none' stroke='{color}' "
+            f"stroke-width='1.2' stroke-linecap='round'/></svg>"
+        )
     if kind == "repeat":
         return REPEAT_SVG.replace("#000000", color)
     if kind == "end":
@@ -184,6 +243,7 @@ def icon_svg(kind, color="#8e877f"):
 
 
 # --------------------------------------------------------------- rendering ---
+
 
 def inline(text):
     return MD.renderInline(text.strip())
@@ -204,8 +264,10 @@ def render_pool(pool):
         f"<ul class='m-dot'>{items}</ul></div>"
     )
     if pool["link"]:
-        html += (f"<div class='pool-link {pool['link']['type']}'>"
-                 f"{icon_svg(pool['link']['type'])}</div>")
+        html += (
+            f"<div class='pool-link {pool['link']['type']}'>"
+            f"{icon_svg(pool['link']['type'])}</div>"
+        )
     return html
 
 
@@ -220,9 +282,13 @@ def render_banded(kind, title, groups, marker):
         lead = f"<p class='lead'>{inline(g['lead'])}</p>" if g["lead"] else ""
         cls = "two-col" if len(g["items"]) > 6 else ""
         items = "".join(f"<li>{inline(i)}</li>" for i in g["items"])
-        out.append(f"<div class='group'>{lead}<ul class='{marker} {cls}'>{items}</ul></div>")
-    return (f"<section class='banded {kind}'><h2 class='banner'>{title}</h2>"
-            f"<div class='cols'>{''.join(out)}</div></section>")
+        out.append(
+            f"<div class='group'>{lead}<ul class='{marker} {cls}'>{items}</ul></div>"
+        )
+    return (
+        f"<section class='banded {kind}'><h2 class='banner'>{title}</h2>"
+        f"<div class='cols'>{''.join(out)}</div></section>"
+    )
 
 
 def render_challenges(challenges):
@@ -243,7 +309,10 @@ def render_challenges(challenges):
     return f"<section class='challenges'>{''.join(out)}</section>"
 
 
-def render(mod):
+def render(mod, css=None):
+    if css is None:
+        css = BASE_CSS + "\n" + font_faces()
+    css = build_css(css)
     head_parts, body_parts, pool_run = [], [], []
 
     def flush_pools():
@@ -272,12 +341,16 @@ def render(mod):
                 body_parts.append(f"<p>{inline(text)}</p>")
         elif b["kind"] == "pieces":
             seen_section = True
-            body_parts.append(render_banded("useful-pieces", "Useful Pieces",
-                                            b["groups"], "m-triangle"))
+            body_parts.append(
+                render_banded(
+                    "useful-pieces", "Useful Pieces", b["groups"], "m-triangle"
+                )
+            )
         elif b["kind"] == "setup":
             seen_section = True
-            body_parts.append(render_banded("set-it-up", "Set It Up",
-                                            b["groups"], "m-box"))
+            body_parts.append(
+                render_banded("set-it-up", "Set It Up", b["groups"], "m-box")
+            )
         elif b["kind"] == "challenges":
             seen_section = True
             body_parts.append(render_challenges(b["challenges"]))
@@ -287,25 +360,36 @@ def render(mod):
     intros = "".join(h for h in head_parts if "class='intro'" in h)
     return TEMPLATE.format(
         title=inline(mod["title"] or ""),
+        goblin_icon=GOBLIN_ICON_SVG,
         hooks=f"<div class='hooks'>{hooks}</div>" if hooks else "",
         intros=intros,
         body="\n".join(body_parts),
-        css=build_css(),
+        css=css,
     )
 
 
 # -------------------------------------------------------------------- CSS ---
 
-def build_css():
-    sizes = {"dot": "0.95em", "triangle": "0.95em", "box": "0.95em",
-             "star": "0.82em", "cross": "1.2em"}
+
+def build_css(css):
+    sizes = {
+        "dot": "0.95em",
+        "triangle": "0.95em",
+        "box": "0.95em",
+        "star": "0.82em",
+        "cross": "1.2em",
+    }
     markers_css = ""
-    for sel, key in [("ul.m-dot li", "dot"), ("ul.m-triangle li", "triangle"),
-                     ("ul.m-box li", "box"), ("ul.m-star li", "star"),
-                     (".challenge .fail", "cross")]:
+    for sel, key in [
+        ("ul.m-dot li", "dot"),
+        ("ul.m-triangle li", "triangle"),
+        ("ul.m-box li", "box"),
+        ("ul.m-star li", "star"),
+        (".challenge .fail", "cross"),
+    ]:
         markers_css += f"""
 {sel}::before {{ content: "{MARKER_CHARS[key]}"; font-size: {sizes[key]}; }}"""
-    return BASE_CSS.replace("/*MARKERS*/", markers_css)
+    return css.replace("/*MARKERS*/", markers_css)
 
 
 BASE_CSS = """
@@ -313,7 +397,8 @@ BASE_CSS = """
 * { box-sizing: border-box; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 html, body { margin: 0; padding: 0; }
 body {
-  font-family: "Noto Serif", serif;
+  font-family: "Capito TRIAL 04", "Noto Serif", serif;
+  font-weight: 300;
   font-size: 8pt; line-height: 1.22; color: #211d15;
   background:
     radial-gradient(115% 85% at 50% 42%, rgba(0,0,0,0) 52%, rgba(84,70,48,0.27) 100%),
@@ -334,14 +419,9 @@ body {
   background: linear-gradient(160deg, #3a352c, #232019);
   border-radius: 1.6mm; box-shadow: 0.4mm 0.4mm 0.8mm rgba(30,25,15,0.35);
 }
-.module-art::after {  /* placeholder glyph for module art */
-  content: ""; position: absolute; inset: 3mm;
-  background: #efe9d8; border-radius: 50% 50% 46% 46%;
-  clip-path: polygon(50% 0, 100% 22%, 86% 100%, 14% 100%, 0 22%);
-  opacity: 0.9;
-}
+.module-art svg { display: block; width: 100%; height: 100%; }
 h1 {
-  font-family: "Noto Sans", sans-serif; font-weight: 800; text-transform: uppercase;
+  font-family: "Tiller", "Noto Sans", sans-serif; font-weight: 900; text-transform: uppercase;
   text-align: center; font-size: 17pt; letter-spacing: 0.015em;
   margin: 0.4mm 0 2mm; color: #16130d;
 }
@@ -396,7 +476,7 @@ li::before {
 }
 .pool-link::before {  /* line at header middle, spanning the gap only */
   content: ""; position: absolute; left: 0; right: 0; top: 2.6mm;
-  border-top: 0.3mm solid #9a9078;
+  border-top: 0.35mm dashed #9a9078;
 }
 .pool-link svg {  /* centered on the line, backing hides the line crossing */
   position: relative; display: block; width: 3.5mm; height: 3.5mm;
@@ -430,15 +510,15 @@ li::before {
 }
 .challenge header {
   position: relative; display: flex; align-items: baseline; gap: 1mm;
-  background: linear-gradient(180deg, #ada292, #998e7a);
-  color: #f6f1e4; padding: 1.1mm 1.6mm 1.2mm;
+  background: linear-gradient(180deg, #8f8372, #7a6f5e);
+  color: #f4eee0; padding: 1.1mm 1.6mm 1.2mm;
 }
 .challenge .dice {
   font-family: "Noto Sans", sans-serif; font-weight: 800; font-size: 7.6pt;
 }
-.challenge .sep { opacity: 0.75; font-weight: 300; }
+.challenge .sep { opacity: 0.8; font-weight: 300; }
 .challenge h2 {
-  margin: 0; font-size: 8.3pt; font-variant: small-caps; font-weight: 700;
+  margin: 0; font-size: 8.3pt; font-variant: small-caps; font-weight: 800;
   letter-spacing: 0.03em; white-space: nowrap;
 }
 .challenge header::after {  /* rivets */
@@ -480,7 +560,7 @@ TEMPLATE = """<!DOCTYPE html>
 <html><head><meta charset="utf-8"><style>{css}</style></head>
 <body><div class="page">
 <header class="module-head">
-  <div class="module-art"></div>
+  <div class="module-art">{goblin_icon}</div>
   <h1>{title}</h1>
   {hooks}
   {intros}
@@ -494,9 +574,14 @@ TEMPLATE = """<!DOCTYPE html>
 
 def to_pdf(html_path, pdf_path):
     cmd = [
-        "chromium", "--headless", "--disable-gpu", "--no-sandbox",
-        "--no-pdf-header-footer", "--force-color-profile=srgb",
-        f"--print-to-pdf={pdf_path}", f"file://{Path(html_path).resolve()}",
+        "chromium",
+        "--headless",
+        "--disable-gpu",
+        "--no-sandbox",
+        "--no-pdf-header-footer",
+        "--force-color-profile=srgb",
+        f"--print-to-pdf={pdf_path}",
+        f"file://{Path(html_path).resolve()}",
     ]
     res = subprocess.run(cmd, capture_output=True, text=True)
     if res.returncode != 0:
@@ -517,8 +602,9 @@ def main():
         html_path = args.source.with_suffix(".html")
         html_path.write_text(html, encoding="utf-8")
     else:
-        tmp = tempfile.NamedTemporaryFile("w", suffix=".html", delete=False,
-                                          encoding="utf-8")
+        tmp = tempfile.NamedTemporaryFile(
+            "w", suffix=".html", delete=False, encoding="utf-8"
+        )
         tmp.write(html)
         tmp.close()
         html_path = Path(tmp.name)
