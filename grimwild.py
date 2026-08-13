@@ -149,28 +149,15 @@ def parse(text):
 
 # ------------------------------------------------------------------ icons ---
 
-INK = "%232b2723"  # dark warm ink, url-encoded
-
-MARKERS = {
-    "dot": f"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'>"
-           f"<circle cx='5' cy='5' r='3.6' fill='none' stroke='{INK}' stroke-width='1.7'/>"
-           f"<circle cx='5' cy='5' r='1.5' fill='{INK}'/></svg>",
-    "triangle": f"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'>"
-                f"<path d='M2.5 1.3 L8.3 5 L2.5 8.7 Z' fill='{INK}'/></svg>",
-    "box": f"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'>"
-           f"<rect x='1.4' y='1.4' width='7.2' height='7.2' rx='1.6' fill='none' "
-           f"stroke='{INK}' stroke-width='1.3'/></svg>",
-    "star": f"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'>"
-            f"<path d='M5 1.1 V8.9 M1.7 2.9 L8.3 7.1 M8.3 2.9 L1.7 7.1' fill='none' "
-            f"stroke='{INK}' stroke-width='1.5' stroke-linecap='round'/></svg>",
-    "cross": f"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'>"
-             f"<path d='M2.1 2.1 L7.9 7.9 M7.9 2.1 L2.1 7.9' fill='none' "
-             f"stroke='{INK}' stroke-width='1.8' stroke-linecap='round'/></svg>",
+# Item markers are Unicode glyphs rendered with DejaVu Sans (the font that
+# covers them all, so they share metrics and print at a uniform size).
+MARKER_CHARS = {
+    "dot": "\u25c9",      # ◉ fisheye (pools, moves)
+    "triangle": "\u25b8", # ▸ (useful pieces)
+    "box": "\u25a2",      # ▢ (set it up)
+    "star": "\u2731",     # ✱ (traits)
+    "cross": "\u2718",    # ✘ (fail state)
 }
-
-
-def marker_url(kind):
-    return f'url("data:image/svg+xml;utf8,{MARKERS[kind]}")'
 
 
 def icon_svg(kind, color="#8e877f"):
@@ -312,11 +299,14 @@ def render(mod):
 # -------------------------------------------------------------------- CSS ---
 
 def build_css():
+    sizes = {"dot": "0.95em", "triangle": "0.95em", "box": "0.95em",
+             "star": "0.82em", "cross": "1.05em"}
     markers_css = ""
-    for cls, key in [("m-dot", "dot"), ("m-triangle", "triangle"),
-                     ("m-box", "box"), ("m-star", "star")]:
+    for sel, key in [("ul.m-dot li", "dot"), ("ul.m-triangle li", "triangle"),
+                     ("ul.m-box li", "box"), ("ul.m-star li", "star"),
+                     (".challenge .fail", "cross")]:
         markers_css += f"""
-ul.{cls} li::before {{ background-image: {marker_url(key)}; }}"""
+{sel}::before {{ content: "{MARKER_CHARS[key]}"; font-size: {sizes[key]}; }}"""
     return BASE_CSS.replace("/*MARKERS*/", markers_css)
 
 
@@ -366,12 +356,12 @@ h1 {
 .intro { margin: 0; text-align: justify; font-size: 8.2pt; }
 .intro strong { font-variant: small-caps; letter-spacing: 0.02em; }
 
-/* ---- generic lists with svg markers ---- */
+/* ---- generic lists with Unicode markers ---- */
 ul { margin: 0; padding: 0; list-style: none; }
 li { position: relative; padding-left: 3.4mm; margin: 0.35mm 0; }
 li::before {
-  content: ""; position: absolute; left: 0.2mm; top: 0.24em;
-  width: 2.3mm; height: 2.3mm; background-size: contain; background-repeat: no-repeat;
+  position: absolute; left: 0.2mm; top: 0.08em;
+  font-family: "DejaVu Sans", sans-serif; font-size: 0.95em; line-height: 1;
 }
 /*MARKERS*/
 
@@ -460,20 +450,19 @@ li::before {
   inset -0.2mm -0.2mm 0.4mm rgba(60,50,35,0.4);
 }
 .challenge ul { margin: 1mm 1.2mm 0; font-size: 7.7pt; }
-.challenge li { padding-left: 3mm; }
+.challenge li { padding-left: 3.2mm; }
 .traits { font-style: italic; }
 .moves { font-variant: small-caps; font-weight: 600; letter-spacing: 0.02em; }
 .challenge .fail {
-  margin: 0.9mm 1.2mm 1.2mm; padding-left: 3mm; position: relative;
+  margin: 0.9mm 1.2mm 1.2mm; padding-left: 3.2mm; position: relative;
   font-style: italic; font-size: 7.7pt;
 }
 .challenge .fail .dice-text {
   font-style: normal; font-weight: 700; text-transform: lowercase;
 }
 .challenge .fail::before {
-  content: ""; position: absolute; left: 0.2mm; top: 0.2em;
-  width: 2.3mm; height: 2.3mm; background-size: contain;
-  background-repeat: no-repeat; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M2.1 2.1 L7.9 7.9 M7.9 2.1 L2.1 7.9" fill="none" stroke="%232b2723" stroke-width="1.8" stroke-linecap="round"/></svg>');
+  position: absolute; left: 0.2mm; top: 0.08em;
+  font-family: "DejaVu Sans", sans-serif; font-size: 0.95em; line-height: 1;
 }
 
 /* ---- mix it up ---- */
