@@ -512,8 +512,8 @@ li::before {
 }
 .challenge header {
   position: relative; display: flex; align-items: baseline; gap: 1mm;
-  background: linear-gradient(180deg, #8f8372, #7a6f5e);
-  color: #f4eee0; padding: 1.1mm 1.6mm 1.2mm;
+  background: linear-gradient(180deg, #b3a897, #9d927f);
+  color: #231f16; padding: 1.1mm 1.6mm 1.2mm;
 }
 .challenge .dice {
   font-family: "Noto Sans", sans-serif; font-weight: 800; font-size: 7.6pt;
@@ -523,20 +523,26 @@ li::before {
   margin: 0; font-size: 8.3pt; font-variant: small-caps; font-weight: 800;
   letter-spacing: 0.03em; white-space: nowrap;
 }
-.challenge header::after {  /* rivets */
-  content: ""; position: absolute; right: 1.4mm; bottom: -0.9mm;
-  width: 2mm; height: 2mm; border-radius: 50%;
-  background: #e6e0d2; box-shadow: -2.9mm 0 0 #e6e0d2,
-  inset -0.2mm -0.2mm 0.4mm rgba(60,50,35,0.4);
+.challenge header::before {  /* left rivet */
+  content: ""; position: absolute; right: 2.4mm; bottom: -0.9mm;
+  width: 1.8mm; height: 1.8mm; border-radius: 50%;
+  background: rgba(247,242,231,1);
+  border: 0.25mm solid #b3a897;
 }
-.challenge ul { margin: 1mm 1.2mm 0; font-size: 8.2pt; padding-bottom: 0.8mm;
+.challenge header::after {  /* right rivet */
+  content: ""; position: absolute; right: 0.1mm; bottom: -0.9mm;
+  width: 1.8mm; height: 1.8mm; border-radius: 50%;
+  background: rgba(247,242,231,1);
+  border: 0.25mm solid #b3a897;
+}
+.challenge ul { margin: 1mm 1.2mm 0; font-size: 8.8pt; padding-bottom: 0.8mm;
   border-bottom: 0.25mm solid rgba(80,70,52,0.15); }
 .challenge li { padding-left: 3.2mm; }
 .traits { font-style: italic; }
 .moves { font-variant: small-caps; font-weight: 600; letter-spacing: 0.02em; }
 .challenge .fail {
   margin: 0.9mm 1.2mm 1.2mm; padding-left: 3.2mm; position: relative;
-  font-style: italic; font-size: 8pt; font-weight: 700;
+  font-style: italic; font-size: 8.6pt; font-weight: 700;
 }
 .challenge .fail::before {
   position: absolute; left: 0.2mm; top: 0.08em;
