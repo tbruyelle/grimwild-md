@@ -462,7 +462,7 @@ li::before {
 }
 .pool .dice {
   font-family: "Noto Sans", sans-serif; font-weight: 800; font-size: 7.6pt;
-  background: #2c2721; color: #f4eee0; border-radius: 0.9mm;
+  background: #9d927f; color: #221e15; border-radius: 0.9mm;
   padding: 0.15mm 1.1mm; letter-spacing: 0.02em;
 }
 .pool h2 {
@@ -556,7 +556,7 @@ li::before {
   box-shadow: 0 0 0 0.25mm rgba(80,70,52,0.25);
 }
 .mix-it-up strong {
-  background: #4c4636; color: #f4eee0; font-variant: small-caps; font-weight: 700;
+  background: #9d927f; color: #221e15; font-variant: small-caps; font-weight: 700;
   letter-spacing: 0.05em; border-radius: 0.9mm; padding: 0.3mm 1.8mm 0.4mm;
   white-space: nowrap;
 }
