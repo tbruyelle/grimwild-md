@@ -411,13 +411,13 @@ body {
 /* ---- module header ---- */
 .module-head {
   position: relative; border: 0.45mm solid rgba(52,45,33,0.65);
-  border-radius: 2mm; padding: 2.2mm 4mm 2.6mm; margin-top: 4.5mm;
+  border-radius: 1mm; padding: 2.2mm 4mm 2.6mm; margin-top: 4.5mm;
   background: rgba(246,241,230,0.55);
 }
 .module-art {
   position: absolute; top: -4.6mm; left: 4mm; width: 15mm; height: 15mm;
   background: linear-gradient(160deg, #3a352c, #232019);
-  border-radius: 1.6mm; box-shadow: 0.4mm 0.4mm 0.8mm rgba(30,25,15,0.35);
+  border-radius: 0.8mm; box-shadow: 0.4mm 0.4mm 0.8mm rgba(30,25,15,0.35);
 }
 .module-art svg { display: block; width: 100%; height: 100%; }
 h1 {
@@ -451,18 +451,18 @@ li::before {
   gap: 6.5mm; margin: 4.5mm 0 0;
 }
 .pool {
-  flex: 1; background: rgba(247,242,231,0.72); border-radius: 1.4mm;
+  flex: 1; background: rgba(247,242,231,0.72); border-radius: 0.7mm;
   box-shadow: 0 0 0 0.25mm rgba(80,70,52,0.25);
 }
 .pool header {
   display: flex; align-items: center; gap: 1.7mm;
   background: linear-gradient(180deg, #ddd7ca, #c9c2b1);
-  border-radius: 1.3mm; padding: 1mm 1.5mm;
+  border-radius: 0.65mm; padding: 1mm 1.5mm;
   box-shadow: 0 0 0 0.25mm rgba(80,70,52,0.30);
 }
 .pool .dice {
   font-family: "Noto Sans", sans-serif; font-weight: 800; font-size: 7.6pt;
-  background: #9d927f; color: #221e15; border-radius: 0.9mm;
+  background: #9d927f; color: #221e15; border-radius: 0.45mm;
   padding: 0.15mm 1.1mm; letter-spacing: 0.02em;
 }
 .pool h2 {
@@ -487,7 +487,7 @@ li::before {
 
 /* ---- banded sections (Useful Pieces / Set It Up) ---- */
 .banded {
-  margin-top: 4.5mm; border-radius: 1.6mm; overflow: hidden;
+  margin-top: 4.5mm; border-radius: 0.8mm; overflow: hidden;
   box-shadow: 0 0 0 0.3mm rgba(80,70,52,0.45);
 }
 .banner {
@@ -507,7 +507,7 @@ li::before {
 /* ---- challenges ---- */
 .challenges { display: flex; gap: 2.5mm; margin-top: 4.5mm; }
 .challenge {
-  flex: 1; background: rgba(247,242,231,0.72); border-radius: 1.3mm;
+  flex: 1; background: rgba(247,242,231,0.72); border-radius: 0.65mm;
   box-shadow: 0 0 0 0.25mm rgba(80,70,52,0.25); overflow: hidden;
 }
 .challenge header {
@@ -552,12 +552,12 @@ li::before {
 /* ---- mix it up ---- */
 .mix-it-up {
   display: flex; align-items: center; gap: 2.4mm; margin: 4.5mm 0 0;
-  background: rgba(247,242,231,0.72); border-radius: 1.2mm; padding: 1mm 1.6mm;
+  background: rgba(247,242,231,0.72); border-radius: 0.6mm; padding: 1mm 1.6mm;
   box-shadow: 0 0 0 0.25mm rgba(80,70,52,0.25);
 }
 .mix-it-up strong {
   background: #9d927f; color: #221e15; font-variant: small-caps; font-weight: 700;
-  letter-spacing: 0.05em; border-radius: 0.9mm; padding: 0.3mm 1.8mm 0.4mm;
+  letter-spacing: 0.05em; border-radius: 0.45mm; padding: 0.3mm 1.8mm 0.4mm;
   white-space: nowrap;
 }
 .mix-it-up em { font-size: 9pt; }
