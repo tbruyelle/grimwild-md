@@ -130,6 +130,8 @@ def parse_challenges(lines):
 
 def parse_div(attr, lines):
     classes = parse_classes(attr)
+    if "module-icon" in classes:
+        return {"kind": "icon", "svg": "\n".join(lines).strip()}
     if "pressure-pool" in classes:
         pool = parse_pool(lines)
         pool["props"] = [c for c in classes if c != "pressure-pool"]
@@ -160,7 +162,11 @@ def parse(text):
                 inner.append(lines[i].strip())
                 i += 1
             i += 1  # closing :::
-            mod["blocks"].append(parse_div(m.group(1), inner))
+            block = parse_div(m.group(1), inner)
+            if block["kind"] == "icon":
+                mod["icon"] = block["svg"]
+            else:
+                mod["blocks"].append(block)
             continue
         if line.startswith("# "):
             mod["title"] = line[2:].strip()
@@ -186,26 +192,7 @@ END_SVG = """<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/200
 """
 
 # Module icon: stylised goblin mask matching the golden example.
-GOBLIN_ICON_SVG = """<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100%' height='100%'>
-  <rect width='100' height='100' rx='14' fill='#232019'/>
-  <!-- head + pointed ears -->
-  <path fill='#efe9d8' d='M14 42 L22 26 Q28 16 36 28 Q42 24 50 24 Q58 24 64 28 Q72 16 78 26 L86 42 Q88 48 82 50 Q84 60 78 70 Q70 84 50 84 Q30 84 22 70 Q16 60 18 50 Q12 48 14 42 Z'/>
-  <!-- eyes -->
-  <ellipse cx='37' cy='46' rx='6.5' ry='8' fill='#232019'/>
-  <ellipse cx='63' cy='46' rx='6.5' ry='8' fill='#232019'/>
-  <!-- brows -->
-  <path fill='none' stroke='#efe9d8' stroke-width='1.6' stroke-linecap='round' d='M29 38 Q36 34 43 38'/>
-  <path fill='none' stroke='#efe9d8' stroke-width='1.6' stroke-linecap='round' d='M57 38 Q64 34 71 38'/>
-  <!-- nose -->
-  <path fill='#232019' d='M45 54 Q50 51 55 54 L51 62 Q50 64 49 62 Z'/>
-  <!-- mouth -->
-  <path fill='#232019' d='M32 66 Q50 76 68 66 Q66 72 58 75 Q50 78 42 75 Q34 72 32 66 Z'/>
-  <!-- fangs -->
-  <path fill='#efe9d8' d='M39 70 L42 78 L45 70 Z'/>
-  <path fill='#efe9d8' d='M55 70 L58 78 L61 70 Z'/>
-  <!-- chin -->
-  <path fill='#efe9d8' d='M47 79 Q50 81 53 79 L50 84 Z'/>
-</svg>"""
+DEFAULT_ICON_SVG="""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ><path d="M0 0h512v512H0z" fill="#000" fill-opacity="1"></path><g><path d="M62.5 17.28c-9.747.288-20.824 5.23-29.844 14.25-15.192 15.193-18.838 36.194-8.125 46.907 7.99 7.988 21.716 8.027 34.47 1.22 16.167 30.05 42.154 57.687 71.438 76.374-18.77 24.156-29.97 54.48-29.97 87.376h18.688c0-28.9 9.828-55.474 26.344-76.53l2.156 39.405C274.5 320.554 402.09 428.196 496.062 494.94c-65.54-95.294-176.99-224.638-288.687-348.407l-38.97-2.124c20.764-15.68 46.638-24.967 74.72-24.97V100.75c-32.2.002-61.945 10.725-85.844 28.78-18.696-29.383-46.39-55.48-76.53-71.686 6.795-12.748 6.796-26.423-1.188-34.407-4.352-4.352-10.393-6.352-17.062-6.156z" fill="#fff" fill-opacity="1"></path></g></svg>"""
 
 # ------------------------------------------------------------------ icons ---
 
@@ -360,7 +347,7 @@ def render(mod, css=None):
     intros = "".join(h for h in head_parts if "class='intro'" in h)
     return TEMPLATE.format(
         title=inline(mod["title"] or ""),
-        goblin_icon=GOBLIN_ICON_SVG,
+        goblin_icon=mod.get("icon") or DEFAULT_ICON_SVG,
         hooks=f"<div class='hooks'>{hooks}</div>" if hooks else "",
         intros=intros,
         body="\n".join(body_parts),
@@ -416,7 +403,7 @@ body {
 }
 .module-art {
   position: absolute; top: -4.6mm; left: 4mm; width: 15mm; height: 15mm;
-  background: linear-gradient(160deg, #3a352c, #232019);
+  background: rgba(246,241,230,0.55);
   border-radius: 0.8mm; box-shadow: 0.4mm 0.4mm 0.8mm rgba(30,25,15,0.35);
 }
 .module-art svg { display: block; width: 100%; height: 100%; }

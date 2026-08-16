@@ -9,6 +9,7 @@ Custom syntax built on fenced divs (`:::`) with these section types:
 
 | Section | Div Class | Rendered Prefix | Notes |
 |---------|-----------|-----------------|-------|
+| Module Icon | `.module-icon` | - | Optional SVG icon for the module header. Defaults to a goblin mask if omitted. Good source for icons: https://game-icons.net/ |
 | Pressure Pools | `.pressure-pool` | `◉` | Tables for columns; links: `>> B` (lock), `>>* B` (trigger) |
 | Pressure Pool properties | `repeat`, `end` | - | Add to div class: `{.pressure-pool repeat}` |
 | Useful Pieces | `.useful-pieces` | `▸` | Right-pointing triangle |
