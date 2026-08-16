@@ -45,7 +45,7 @@ def font_faces():
 DIV_OPEN = re.compile(r"^:::\s*\{([^}]*)\}\s*$")
 DICE_POOL = re.compile(r"^(\dD)\s+(.*)$")
 DICE_CHAL = re.compile(r"^(\dD)\s*\|\s*(.*)$")
-LINK = re.compile(r"^(.*?)\s*(--\*->|-->)\s*(.*?)$")
+LINK = re.compile(r"^(>>\*?)\s*(.*)$")
 
 
 def parse_classes(attr):
@@ -68,9 +68,9 @@ def parse_pool(lines):
             m = LINK.match(s)
             if m:
                 pool["link"] = {
-                    "from": m.group(1),
-                    "to": m.group(3),
-                    "type": "trigger" if "*" in m.group(2) else "lock",
+                    "from": pool["title"],
+                    "to": m.group(2),
+                    "type": "trigger" if "*" in m.group(1) else "lock",
                 }
             else:
                 print(

@@ -19,7 +19,7 @@ goblin plague that transforms them all.
 - Granary catches fire.
 - PCs ambushed in the square.
 
-Night Falls --> Dawn Breaks
+>> Dawn Breaks
 :::
 
 ::: {.pressure-pool repeat}
@@ -29,7 +29,7 @@ Night Falls --> Dawn Breaks
 - Doors smashed all over town.
 - Villager babbles in *goblintongue*.
 
-Dawn Breaks --*-> Townsfolk Snap
+>>* Townsfolk Snap
 :::
 
 ::: {.pressure-pool end}
