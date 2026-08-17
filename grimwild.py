@@ -195,8 +195,8 @@ LOCK_SVG = "<svg viewBox='0 0 10 10'><rect x='2' y='4.4' width='6' height='4.4' 
 
 TRIGGER_SVG = "<svg viewBox='0 0 10 10'><circle cx='5' cy='5' r='3.9' fill='none' stroke='var(--color-pool-icon)' stroke-width='1'/><path d='M3.9 2.9 L6.1 5 L3.9 7.1' fill='none' stroke='var(--color-pool-icon)' stroke-width='1' stroke-linecap='round'/></svg>"
 
-# Module icon: stylised goblin mask matching the golden example.
-DEFAULT_ICON_SVG="""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ><path d="M0 0h512v512H0z" fill="#000" fill-opacity="1"></path><g><path d="M62.5 17.28c-9.747.288-20.824 5.23-29.844 14.25-15.192 15.193-18.838 36.194-8.125 46.907 7.99 7.988 21.716 8.027 34.47 1.22 16.167 30.05 42.154 57.687 71.438 76.374-18.77 24.156-29.97 54.48-29.97 87.376h18.688c0-28.9 9.828-55.474 26.344-76.53l2.156 39.405C274.5 320.554 402.09 428.196 496.062 494.94c-65.54-95.294-176.99-224.638-288.687-348.407l-38.97-2.124c20.764-15.68 46.638-24.967 74.72-24.97V100.75c-32.2.002-61.945 10.725-85.844 28.78-18.696-29.383-46.39-55.48-76.53-71.686 6.795-12.748 6.796-26.423-1.188-34.407-4.352-4.352-10.393-6.352-17.062-6.156z" fill="#fff" fill-opacity="1"></path></g></svg>"""
+# Module icon: default to a sword
+DEFAULT_ICON_SVG="""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ><path d="M0 0h512v512H0z" fill="var(--color-title)" fill-opacity="1"></path><g><path d="M62.5 17.28c-9.747.288-20.824 5.23-29.844 14.25-15.192 15.193-18.838 36.194-8.125 46.907 7.99 7.988 21.716 8.027 34.47 1.22 16.167 30.05 42.154 57.687 71.438 76.374-18.77 24.156-29.97 54.48-29.97 87.376h18.688c0-28.9 9.828-55.474 26.344-76.53l2.156 39.405C274.5 320.554 402.09 428.196 496.062 494.94c-65.54-95.294-176.99-224.638-288.687-348.407l-38.97-2.124c20.764-15.68 46.638-24.967 74.72-24.97V100.75c-32.2.002-61.945 10.725-85.844 28.78-18.696-29.383-46.39-55.48-76.53-71.686 6.795-12.748 6.796-26.423-1.188-34.407-4.352-4.352-10.393-6.352-17.062-6.156z" fill="var(--color-head-bg)" fill-opacity="1"></path></g></svg>"""
 
 # ------------------------------------------------------------------ icons ---
 
@@ -330,7 +330,7 @@ def render(mod, css=None):
     intros = "".join(h for h in head_parts if "class='intro'" in h)
     return TEMPLATE.format(
         title=inline(mod["title"] or ""),
-        goblin_icon=mod.get("icon") or DEFAULT_ICON_SVG,
+        module_icon=mod.get("icon") or DEFAULT_ICON_SVG,
         hooks=f"<div class='hooks'>{hooks}</div>" if hooks else "",
         intros=intros,
         body="\n".join(body_parts),
@@ -381,7 +381,7 @@ BASE_CSS = """
   --color-cream: #f4eee0;
   --color-cream2: #f6f1e4;
   --color-transparent: rgba(0,0,0,0);
-  --color-head-bg: rgba(246,241,230,0.55);
+  --color-head-bg: rgba(246,241,230,1);
   --color-card-bg: rgba(247,242,231,0.72);
   --color-cols-bg: rgba(247,242,231,0.78);
   --color-card-solid: rgba(247,242,231,1);
@@ -573,7 +573,7 @@ TEMPLATE = """<!DOCTYPE html>
 <html><head><meta charset="utf-8"><style>{css}</style></head>
 <body><div class="page">
 <header class="module-head">
-  <div class="module-art">{goblin_icon}</div>
+  <div class="module-art">{module_icon}</div>
   <h1>{title}</h1>
   {hooks}
   {intros}
