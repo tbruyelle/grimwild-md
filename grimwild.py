@@ -186,10 +186,14 @@ def parse(text):
     return mod
 
 
-REPEAT_SVG = """<svg fill='#000000' version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 94.073 94.072' xml:space='preserve'><g><path d='M91.465,5.491c-0.748-0.311-1.609-0.139-2.18,0.434l-8.316,8.316C72.046,5.057,60.125,0,47.399,0c-2.692,0-5.407,0.235-8.068,0.697C21.218,3.845,6.542,17.405,1.944,35.244c-0.155,0.599-0.023,1.235,0.355,1.724c0.379,0.489,0.962,0.775,1.581,0.775h12.738c0.839,0,1.59-0.524,1.878-1.313c3.729-10.193,12.992-17.971,23.598-19.814c1.747-0.303,3.525-0.456,5.288-0.456c8.428,0,16.299,3.374,22.168,9.5l-8.445,8.444c-0.571,0.572-0.742,1.432-0.434,2.179c0.311,0.748,1.039,1.235,1.848,1.235h28.181c1.104,0,2-0.896,2-2V7.338C92.7,6.53,92.211,5.801,91.465,5.491z'/><path d='M90.192,56.328H77.455c-0.839,0-1.59,0.523-1.878,1.312c-3.729,10.193-12.992,17.972-23.598,19.814c-1.748,0.303-3.525,0.456-5.288,0.456c-8.428,0-16.3-3.374-22.168-9.5l8.444-8.444c0.572-0.572,0.743-1.432,0.434-2.179c-0.31-0.748-1.039-1.235-1.848-1.235H3.374c-1.104,0-2,0.896-2,2v28.181c0,0.809,0.487,1.538,1.235,1.848c0.746,0.31,1.607,0.138,2.179-0.435l8.316-8.315c8.922,9.183,20.843,14.241,33.569,14.241c2.693,0,5.408-0.235,8.069-0.697c18.112-3.146,32.789-16.708,37.387-34.547c0.155-0.6,0.023-1.234-0.354-1.725C91.395,56.615,90.811,56.328,90.192,56.328z'/></g></svg>"""
+REPEAT_SVG = """<svg fill='var(--color-pool-icon)' version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 94.073 94.072' xml:space='preserve'><g><path d='M91.465,5.491c-0.748-0.311-1.609-0.139-2.18,0.434l-8.316,8.316C72.046,5.057,60.125,0,47.399,0c-2.692,0-5.407,0.235-8.068,0.697C21.218,3.845,6.542,17.405,1.944,35.244c-0.155,0.599-0.023,1.235,0.355,1.724c0.379,0.489,0.962,0.775,1.581,0.775h12.738c0.839,0,1.59-0.524,1.878-1.313c3.729-10.193,12.992-17.971,23.598-19.814c1.747-0.303,3.525-0.456,5.288-0.456c8.428,0,16.299,3.374,22.168,9.5l-8.445,8.444c-0.571,0.572-0.742,1.432-0.434,2.179c0.311,0.748,1.039,1.235,1.848,1.235h28.181c1.104,0,2-0.896,2-2V7.338C92.7,6.53,92.211,5.801,91.465,5.491z'/><path d='M90.192,56.328H77.455c-0.839,0-1.59,0.523-1.878,1.312c-3.729,10.193-12.992,17.972-23.598,19.814c-1.748,0.303-3.525,0.456-5.288,0.456c-8.428,0-16.3-3.374-22.168-9.5l8.444-8.444c0.572-0.572,0.743-1.432,0.434-2.179c-0.31-0.748-1.039-1.235-1.848-1.235H3.374c-1.104,0-2,0.896-2,2v28.181c0,0.809,0.487,1.538,1.235,1.848c0.746,0.31,1.607,0.138,2.179-0.435l8.316-8.315c8.922,9.183,20.843,14.241,33.569,14.241c2.693,0,5.408-0.235,8.069-0.697c18.112-3.146,32.789-16.708,37.387-34.547c0.155-0.6,0.023-1.234-0.354-1.725C91.395,56.615,90.811,56.328,90.192,56.328z'/></g></svg>"""
 
-END_SVG = """<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="si-glyph si-glyph-circle-star" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>1047</title> <defs> </defs> <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <path d="M8,0.062 C3.581,0.062 0,3.621 0,8.009 C0,12.399 3.581,15.958 8,15.958 C12.418,15.958 16,12.398 16,8.009 C16,3.621 12.418,0.062 8,0.062 L8,0.062 Z M11.108,12.025 L8.021,9.902 L4.933,12.025 L6.112,8.59 L3.024,6.465 L6.841,6.465 L8.021,3.03 L9.201,6.465 L13.017,6.465 L9.93,8.59 L11.108,12.025 L11.108,12.025 Z" fill="#434343" class="si-glyph-fill"> </path> </g> </g></svg>
+END_SVG = """<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="si-glyph si-glyph-circle-star" fill="var(--color-pool-icon)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>1047</title> <defs> </defs> <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <path d="M8,0.062 C3.581,0.062 0,3.621 0,8.009 C0,12.399 3.581,15.958 8,15.958 C12.418,15.958 16,12.398 16,8.009 C16,3.621 12.418,0.062 8,0.062 L8,0.062 Z M11.108,12.025 L8.021,9.902 L4.933,12.025 L6.112,8.59 L3.024,6.465 L6.841,6.465 L8.021,3.03 L9.201,6.465 L13.017,6.465 L9.93,8.59 L11.108,12.025 L11.108,12.025 Z" fill="var(--color-pool-icon)" class="si-glyph-fill"> </path> </g> </g></svg>
 """
+
+LOCK_SVG = "<svg viewBox='0 0 10 10'><rect x='2' y='4.4' width='6' height='4.4' rx='1' fill='var(--color-pool-icon)'/><path d='M3.2 4.4 V3.1 a1.8 1.8 0 0 1 3.6 0 V4.4' fill='none' stroke='var(--color-pool-icon)' stroke-width='1.2'/></svg>"
+
+TRIGGER_SVG = "<svg viewBox='0 0 10 10'><circle cx='5' cy='5' r='3.9' fill='none' stroke='var(--color-pool-icon)' stroke-width='1'/><path d='M3.9 2.9 L6.1 5 L3.9 7.1' fill='none' stroke='var(--color-pool-icon)' stroke-width='1' stroke-linecap='round'/></svg>"
 
 # Module icon: stylised goblin mask matching the golden example.
 DEFAULT_ICON_SVG="""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ><path d="M0 0h512v512H0z" fill="#000" fill-opacity="1"></path><g><path d="M62.5 17.28c-9.747.288-20.824 5.23-29.844 14.25-15.192 15.193-18.838 36.194-8.125 46.907 7.99 7.988 21.716 8.027 34.47 1.22 16.167 30.05 42.154 57.687 71.438 76.374-18.77 24.156-29.97 54.48-29.97 87.376h18.688c0-28.9 9.828-55.474 26.344-76.53l2.156 39.405C274.5 320.554 402.09 428.196 496.062 494.94c-65.54-95.294-176.99-224.638-288.687-348.407l-38.97-2.124c20.764-15.68 46.638-24.967 74.72-24.97V100.75c-32.2.002-61.945 10.725-85.844 28.78-18.696-29.383-46.39-55.48-76.53-71.686 6.795-12.748 6.796-26.423-1.188-34.407-4.352-4.352-10.393-6.352-17.062-6.156z" fill="#fff" fill-opacity="1"></path></g></svg>"""
@@ -207,28 +211,6 @@ MARKER_CHARS = {
 }
 
 
-def icon_svg(kind, color="#8e877f"):
-    """Inline SVG icons for pool properties and links."""
-    if kind == "lock":
-        return (
-            f"<svg viewBox='0 0 10 10'><rect x='2' y='4.4' width='6' height='4.4' rx='1' fill='{color}'/>"
-            f"<path d='M3.2 4.4 V3.1 a1.8 1.8 0 0 1 3.6 0 V4.4' fill='none' "
-            f"stroke='{color}' stroke-width='1.2'/></svg>"
-        )
-    if kind == "trigger":
-        return (
-            f"<svg viewBox='0 0 10 10'><circle cx='5' cy='5' r='3.9' fill='#f4eee0' "
-            f"stroke='{color}' stroke-width='1.2'/>"
-            f"<path d='M3.9 2.9 L6.1 5 L3.9 7.1' fill='none' stroke='{color}' "
-            f"stroke-width='1.2' stroke-linecap='round'/></svg>"
-        )
-    if kind == "repeat":
-        return REPEAT_SVG.replace("#000000", color)
-    if kind == "end":
-        return END_SVG.replace("#000000", color).replace("#434343", color)
-    return ""
-
-
 # --------------------------------------------------------------- rendering ---
 
 
@@ -240,9 +222,9 @@ def render_pool(pool):
     classes = " ".join(["pool"] + pool["props"])
     prop_icon = ""
     if "repeat" in pool["props"]:
-        prop_icon = f"<span class='prop'>{icon_svg('repeat')}</span>"
+        prop_icon = f"<span class='prop'>{REPEAT_SVG}</span>"
     elif "end" in pool["props"]:
-        prop_icon = f"<span class='prop'>{icon_svg('end')}</span>"
+        prop_icon = f"<span class='prop'>{END_SVG}</span>"
     items = "".join(f"<li>{inline(i)}</li>" for i in pool["items"])
     html = (
         f"<div class='{classes}'>"
@@ -251,9 +233,10 @@ def render_pool(pool):
         f"<ul class='m-dot'>{items}</ul></div>"
     )
     if pool["link"]:
+        link_icon = LOCK_SVG if pool["link"]["type"] == "lock" else TRIGGER_SVG
         html += (
             f"<div class='pool-link {pool['link']['type']}'>"
-            f"{icon_svg(pool['link']['type'])}</div>"
+            f"{link_icon}</div>"
         )
     return html
 
@@ -386,13 +369,12 @@ BASE_CSS = """
   --color-heading: #221e15;
   --color-banner-text: #231f16;
   --color-muted: #6d675a;
-  --color-pool-line: #9a9078;
+  --color-pool-icon: #8e877f;
   --color-dice-bg: #9d927f;
-  --color-banner-top: #b3a897;
-  --color-pool-header-bottom: #c9c2b1;
+  --color-banner: #b3a897;
   --color-page-far: #cfc3aa;
   --color-page-mid2: #ddd3bd;
-  --color-pool-header-top: #ddd7ca;
+  --color-pool-header: #ddd7ca;
   --color-page-mid1: #e9e2cf;
   --color-pool-link-bg: #e9e3d2;
   --color-page-start: #efe9d8;
@@ -478,7 +460,7 @@ li::before {
 }
 .pool header {
   display: flex; align-items: center; gap: 1.7mm;
-  background: linear-gradient(180deg, var(--color-pool-header-top), var(--color-pool-header-bottom));
+  background: var(--color-pool-header);
   border-radius: 0.65mm; padding: 1mm 1.5mm;
   box-shadow: 0 0 0 0.25mm var(--color-border-header);
 }
@@ -500,7 +482,7 @@ li::before {
 }
 .pool-link::before {  /* line at header middle, spanning the gap only */
   content: ""; position: absolute; left: 0; right: 0; top: 2.6mm;
-  border-top: 0.35mm dashed var(--color-pool-line);
+  border-top: 0.35mm solid var(--color-pool-icon);
 }
 .pool-link svg {  /* centered on the line, backing hides the line crossing */
   position: relative; display: block; width: 3.5mm; height: 3.5mm;
@@ -515,7 +497,7 @@ li::before {
 .banner {
   margin: 0; text-align: center; font-size: 9.5pt; text-transform: uppercase;
   font-weight: 800; color: var(--color-banner-text);
-  background: linear-gradient(180deg, var(--color-banner-top), var(--color-dice-bg));
+  background: var(--color-banner);
   padding: 0.9mm 0 1.1mm;
 }
 .cols { display: flex; background: var(--color-cols-bg); }
@@ -534,7 +516,7 @@ li::before {
 }
 .challenge header {
   position: relative; display: flex; align-items: baseline; gap: 1mm;
-  background: linear-gradient(180deg, var(--color-banner-top), var(--color-dice-bg));
+  background: var(--color-banner);
   color: var(--color-banner-text); padding: 1.1mm 1.6mm 1.2mm;
 }
 .challenge .dice {
@@ -549,13 +531,13 @@ li::before {
   content: ""; position: absolute; right: 2.4mm; bottom: -0.9mm;
   width: 1.8mm; height: 1.8mm; border-radius: 50%;
   background: var(--color-card-solid);
-  border: 0.25mm solid var(--color-banner-top);
+  border: 0.25mm solid var(--color-banner);
 }
 .challenge header::after {  /* right rivet */
   content: ""; position: absolute; right: 0.1mm; bottom: -0.9mm;
   width: 1.8mm; height: 1.8mm; border-radius: 50%;
   background: var(--color-card-solid);
-  border: 0.25mm solid var(--color-banner-top);
+  border: 0.25mm solid var(--color-banner);
 }
 .challenge ul { margin: 1mm 1.2mm 0; font-size: 8.8pt; padding-bottom: 0.8mm;
   border-bottom: 0.25mm solid var(--color-border-challenge-light); }
