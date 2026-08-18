@@ -32,8 +32,10 @@ Pieces", `.set-it-up` → "Set It Up".
 ### Dice Notation
 
 - Pressure Pools: `xD TITLE` (e.g., `4D Night Falls`)
-- Challenges: `xD | TITLE` (e.g., `4D | Ask One Question`)
+- Challenges: `xD | TITLE` (e.g., `4D | Ask One Question`); the pipe may be omitted
 - x range: 2 to 8
+
+A `.challenges` div can contain any number of challenge cards (one or more).
 
 ### Pressure Pool Links
 

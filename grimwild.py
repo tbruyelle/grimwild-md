@@ -44,7 +44,7 @@ def font_faces():
 
 DIV_OPEN = re.compile(r"^:::\s*\{([^}]*)\}\s*$")
 DICE_POOL = re.compile(r"^(\dD)\s+(.*)$")
-DICE_CHAL = re.compile(r"^(\dD)\s*\|\s*(.*)$")
+DICE_CHAL = re.compile(r"^(\dD)(?:\s*\|\s*|\s+)(.*)$")
 LINK = re.compile(r"^(>>\*?)\s*(.*)$")
 
 
