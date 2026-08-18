@@ -194,35 +194,26 @@ def parse(text):
             mod["title"] = line[2:].strip()
             i += 1
             continue
-        if line.startswith("## "):
-            title = line[3:].strip()
-            items = []
-            buf = []
+        if line.startswith("## ") or line.startswith("### "):
+            level = 2 if line.startswith("## ") else 3
+            title = line.lstrip("#").strip()
+            content = []
             i += 1
-            while (
-                i < len(lines)
-                and not lines[i].startswith("## ")
-                and not lines[i].startswith("# ")
-            ):
+            while i < len(lines) and not DIV_OPEN.match(lines[i]):
                 ln = lines[i]
-                div_m = DIV_OPEN.match(ln)
-                if div_m:
-                    if buf:
-                        items.extend(_buffer_items(buf))
-                        buf = []
-                    inner = []
+                if not ln.strip():
+                    content.append(ln)
                     i += 1
-                    while i < len(lines) and lines[i].strip() != ":::":
-                        inner.append(lines[i].strip())
-                        i += 1
-                    i += 1  # closing :::
-                    items.append(parse_div(div_m.group(1), inner))
-                else:
-                    buf.append(ln)
-                    i += 1
-            if buf:
-                items.extend(_buffer_items(buf))
-            mod["blocks"].append({"kind": "simple-para", "title": title, "items": items})
+                    continue
+                head_m = re.match(r"^(#{1,3}) ", ln)
+                if head_m:
+                    head_level = len(head_m.group(1))
+                    if head_level <= level:
+                        break
+                content.append(ln)
+                i += 1
+            items = _buffer_items(content)
+            mod["blocks"].append({"kind": "simple-para", "level": level, "title": title, "items": items})
             continue
         para = [line.strip()]
         i += 1
@@ -364,18 +355,13 @@ def _render_block(b, parts, pool_run, context="body"):
 
 
 def render_simple_para(b):
-    parts = [f"<section class='simple-para'><h2>{inline(b['title'])}</h2>"]
-    pool_run = []
+    tag = "h2" if b.get("level", 2) == 2 else "h3"
+    parts = [f"<section class='simple-para'><{tag}>{inline(b['title'])}</{tag}>"]
     for item in b["items"]:
-        if item.get("type") == "h3":
-            _flush_pools(parts, pool_run)
+        if item["type"] == "h3":
             parts.append(f"<h3>{inline(item['title'])}</h3>")
-        elif item.get("type") == "p":
-            _flush_pools(parts, pool_run)
-            parts.append(f"<p>{inline(item['text'])}</p>")
         else:
-            _render_block(item, parts, pool_run, context="simple-para")
-    _flush_pools(parts, pool_run)
+            parts.append(f"<p>{inline(item['text'])}</p>")
     parts.append("</section>")
     return "".join(parts)
 
@@ -598,7 +584,6 @@ li::before {
 }
 .simple-para p { margin: 0 0 1.5mm; text-align: justify; font-size: 8.6pt; }
 .simple-para p:last-child { margin-bottom: 0; }
-.simple-para :is(.challenge, .pool) h2 { border-bottom: none; padding-bottom: 0; }
 
 /* ---- challenges ---- */
 .challenges { display: flex; gap: 2.5mm; margin-top: 4.5mm; margin-bottom: 4.5mm; }

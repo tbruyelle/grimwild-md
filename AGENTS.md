@@ -56,12 +56,11 @@ level-2 heading followed by one or more paragraphs, outside of any fenced div:
 Body text goes here.
 ```
 
-The title is rendered in uppercase with a horizontal rule underneath. The
-section continues until the next level-2 heading or module title, so it can
-contain fenced divs such as pressure pools or challenges between its
-paragraphs.
+The title is rendered in uppercase with a horizontal rule underneath. Fenced
+divs (pressure pools, challenges, etc.) break a simple paragraph section and are
+rendered as separate top-level blocks.
 
-Level-3 headings inside the section become bold subheadings:
+Level-3 headings inside a section become bold subheadings:
 
 ```markdown
 ## Action Rolls
@@ -73,7 +72,9 @@ Intro paragraph.
 The GM picks which stat the action uses.
 ```
 
-Omitting the level-2 heading produces a plain body paragraph.
+A level-3 heading at the top level starts a new simple paragraph section with a
+subheading-style title (no underline). Omitting the heading produces a plain
+body paragraph.
 
 ## File Structure
 
