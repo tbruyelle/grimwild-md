@@ -152,6 +152,21 @@ def _para_item(buf):
     return {"type": "p", "text": " ".join(ln.strip() for ln in buf)}
 
 
+def _buffer_items(buf):
+    items = []
+    group = []
+    for ln in buf:
+        if ln.strip() == "":
+            if group:
+                items.append(_para_item(group))
+                group = []
+        else:
+            group.append(ln)
+    if group:
+        items.append(_para_item(group))
+    return items
+
+
 def parse(text):
     lines = text.splitlines()
     mod = {"title": None, "blocks": []}
@@ -181,27 +196,32 @@ def parse(text):
             continue
         if line.startswith("## "):
             title = line[3:].strip()
-            content = []
+            items = []
+            buf = []
             i += 1
             while (
                 i < len(lines)
                 and not lines[i].startswith("## ")
                 and not lines[i].startswith("# ")
-                and not DIV_OPEN.match(lines[i])
             ):
-                content.append(lines[i])
-                i += 1
-            items = []
-            buf = []
-            for ln in content:
-                if ln.strip() == "":
+                ln = lines[i]
+                div_m = DIV_OPEN.match(ln)
+                if div_m:
                     if buf:
-                        items.append(_para_item(buf))
+                        items.extend(_buffer_items(buf))
                         buf = []
+                    inner = []
+                    i += 1
+                    while i < len(lines) and lines[i].strip() != ":::":
+                        inner.append(lines[i].strip())
+                        i += 1
+                    i += 1  # closing :::
+                    items.append(parse_div(div_m.group(1), inner))
                 else:
                     buf.append(ln)
+                    i += 1
             if buf:
-                items.append(_para_item(buf))
+                items.extend(_buffer_items(buf))
             mod["blocks"].append({"kind": "simple-para", "title": title, "items": items})
             continue
         para = [line.strip()]
@@ -311,62 +331,77 @@ def render_challenges(challenges):
     return f"<section class='challenges'>{''.join(out)}</section>"
 
 
+def _flush_pools(parts, pool_run):
+    if pool_run:
+        parts.append(render_pools(pool_run))
+        pool_run.clear()
+
+
+def _render_block(b, parts, pool_run, context="body"):
+    if b["kind"] == "pool":
+        pool_run.append(b)
+        return
+    _flush_pools(parts, pool_run)
+    if b["kind"] == "paragraph":
+        text = b["text"]
+        if context == "head":
+            if text.startswith("*") and text.endswith("*"):
+                parts.append(f"<p class='hook'>{inline(text)}</p>")
+            else:
+                parts.append(f"<p class='intro'>{inline(text)}</p>")
+        elif context == "body" and re.match(r"^\*\*Mix It Up\*\*", text):
+            parts.append(f"<p class='mix-it-up'>{inline(text)}</p>")
+        else:
+            parts.append(f"<p>{inline(text)}</p>")
+    elif b["kind"] == "pieces":
+        parts.append(
+            render_banded("useful-pieces", "Useful Pieces", b["groups"], "m-triangle")
+        )
+    elif b["kind"] == "setup":
+        parts.append(render_banded("set-it-up", "Set It Up", b["groups"], "m-box"))
+    elif b["kind"] == "challenges":
+        parts.append(render_challenges(b["challenges"]))
+
+
+def render_simple_para(b):
+    parts = [f"<section class='simple-para'><h2>{inline(b['title'])}</h2>"]
+    pool_run = []
+    for item in b["items"]:
+        if item.get("type") == "h3":
+            _flush_pools(parts, pool_run)
+            parts.append(f"<h3>{inline(item['title'])}</h3>")
+        elif item.get("type") == "p":
+            _flush_pools(parts, pool_run)
+            parts.append(f"<p>{inline(item['text'])}</p>")
+        else:
+            _render_block(item, parts, pool_run, context="simple-para")
+    _flush_pools(parts, pool_run)
+    parts.append("</section>")
+    return "".join(parts)
+
+
 def render(mod, css=None):
     if css is None:
         css = BASE_CSS + "\n" + font_faces()
     css = build_css(css)
-    head_parts, body_parts, pool_run = [], [], []
+    head_parts, body_parts = [], []
+    body_pool_run = []
 
-    def flush_pools():
-        nonlocal pool_run
-        if pool_run:
-            body_parts.append(render_pools(pool_run))
-            pool_run = []
+    def flush_body_pools():
+        _flush_pools(body_parts, body_pool_run)
 
     seen_section = False
     for b in mod["blocks"]:
-        if b["kind"] == "pool":
-            seen_section = True
-            pool_run.append(b)
+        if b["kind"] == "paragraph" and not seen_section:
+            _render_block(b, head_parts, [], context="head")
             continue
-        flush_pools()
-        if b["kind"] == "paragraph":
-            text = b["text"]
-            if not seen_section:
-                if text.startswith("*") and text.endswith("*"):
-                    head_parts.append(f"<p class='hook'>{inline(text)}</p>")
-                else:
-                    head_parts.append(f"<p class='intro'>{inline(text)}</p>")
-            elif re.match(r"^\*\*Mix It Up\*\*", text):
-                body_parts.append(f"<p class='mix-it-up'>{inline(text)}</p>")
-            else:
-                body_parts.append(f"<p>{inline(text)}</p>")
-        elif b["kind"] == "pieces":
-            seen_section = True
-            body_parts.append(
-                render_banded(
-                    "useful-pieces", "Useful Pieces", b["groups"], "m-triangle"
-                )
-            )
-        elif b["kind"] == "setup":
-            seen_section = True
-            body_parts.append(
-                render_banded("set-it-up", "Set It Up", b["groups"], "m-box")
-            )
-        elif b["kind"] == "challenges":
-            seen_section = True
-            body_parts.append(render_challenges(b["challenges"]))
-        elif b["kind"] == "simple-para":
-            seen_section = True
-            parts = [f"<section class='simple-para'><h2>{inline(b['title'])}</h2>"]
-            for item in b["items"]:
-                if item["type"] == "h3":
-                    parts.append(f"<h3>{inline(item['title'])}</h3>")
-                else:
-                    parts.append(f"<p>{inline(item['text'])}</p>")
-            parts.append("</section>")
-            body_parts.append("".join(parts))
-    flush_pools()
+        seen_section = True
+        if b["kind"] == "simple-para":
+            flush_body_pools()
+            body_parts.append(render_simple_para(b))
+        else:
+            _render_block(b, body_parts, body_pool_run, context="body")
+    flush_body_pools()
 
     hooks = "".join(h for h in head_parts if "class='hook'" in h)
     intros = "".join(h for h in head_parts if "class='intro'" in h)
@@ -563,6 +598,7 @@ li::before {
 }
 .simple-para p { margin: 0 0 1.5mm; text-align: justify; font-size: 8.6pt; }
 .simple-para p:last-child { margin-bottom: 0; }
+.simple-para :is(.challenge, .pool) h2 { border-bottom: none; padding-bottom: 0; }
 
 /* ---- challenges ---- */
 .challenges { display: flex; gap: 2.5mm; margin-top: 4.5mm; }

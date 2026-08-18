@@ -56,8 +56,12 @@ level-2 heading followed by one or more paragraphs, outside of any fenced div:
 Body text goes here.
 ```
 
-The title is rendered in uppercase with a horizontal rule underneath. Level-3
-headings inside the section become bold subheadings:
+The title is rendered in uppercase with a horizontal rule underneath. The
+section continues until the next level-2 heading or module title, so it can
+contain fenced divs such as pressure pools or challenges between its
+paragraphs.
+
+Level-3 headings inside the section become bold subheadings:
 
 ```markdown
 ## Action Rolls
