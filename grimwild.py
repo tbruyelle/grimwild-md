@@ -145,6 +145,13 @@ def parse_div(attr, lines):
     return {"kind": "div", "classes": classes}
 
 
+def _para_item(buf):
+    first = buf[0].strip()
+    if first.startswith("### "):
+        return {"type": "h3", "title": first[4:].strip()}
+    return {"type": "p", "text": " ".join(ln.strip() for ln in buf)}
+
+
 def parse(text):
     lines = text.splitlines()
     mod = {"title": None, "blocks": []}
@@ -172,6 +179,31 @@ def parse(text):
             mod["title"] = line[2:].strip()
             i += 1
             continue
+        if line.startswith("## "):
+            title = line[3:].strip()
+            content = []
+            i += 1
+            while (
+                i < len(lines)
+                and not lines[i].startswith("## ")
+                and not lines[i].startswith("# ")
+                and not DIV_OPEN.match(lines[i])
+            ):
+                content.append(lines[i])
+                i += 1
+            items = []
+            buf = []
+            for ln in content:
+                if ln.strip() == "":
+                    if buf:
+                        items.append(_para_item(buf))
+                        buf = []
+                else:
+                    buf.append(ln)
+            if buf:
+                items.append(_para_item(buf))
+            mod["blocks"].append({"kind": "simple-para", "title": title, "items": items})
+            continue
         para = [line.strip()]
         i += 1
         while (
@@ -182,14 +214,7 @@ def parse(text):
         ):
             para.append(lines[i].strip())
             i += 1
-        if line.startswith("## "):
-            mod["blocks"].append({
-                "kind": "simple-para",
-                "title": line[3:].strip(),
-                "text": " ".join(para[1:]),
-            })
-        else:
-            mod["blocks"].append({"kind": "paragraph", "text": " ".join(para)})
+        mod["blocks"].append({"kind": "paragraph", "text": " ".join(para)})
     return mod
 
 
@@ -333,11 +358,14 @@ def render(mod, css=None):
             body_parts.append(render_challenges(b["challenges"]))
         elif b["kind"] == "simple-para":
             seen_section = True
-            body_parts.append(
-                f"<section class='simple-para'>"
-                f"<h2>{inline(b['title'])}</h2>"
-                f"<p>{inline(b['text'])}</p></section>"
-            )
+            parts = [f"<section class='simple-para'><h2>{inline(b['title'])}</h2>"]
+            for item in b["items"]:
+                if item["type"] == "h3":
+                    parts.append(f"<h3>{inline(item['title'])}</h3>")
+                else:
+                    parts.append(f"<p>{inline(item['text'])}</p>")
+            parts.append("</section>")
+            body_parts.append("".join(parts))
     flush_pools()
 
     hooks = "".join(h for h in head_parts if "class='hook'" in h)
@@ -529,7 +557,12 @@ li::before {
   text-transform: uppercase; font-weight: 800; letter-spacing: 0.02em;
   color: var(--color-title); border-bottom: 0.35mm solid var(--color-title);
 }
-.simple-para p { margin: 0; text-align: justify; font-size: 8.6pt; }
+.simple-para h3 {
+  margin: 2.5mm 0 1mm; font-size: 9.5pt; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.02em; color: var(--color-title);
+}
+.simple-para p { margin: 0 0 1.5mm; text-align: justify; font-size: 8.6pt; }
+.simple-para p:last-child { margin-bottom: 0; }
 
 /* ---- challenges ---- */
 .challenges { display: flex; gap: 2.5mm; margin-top: 4.5mm; }

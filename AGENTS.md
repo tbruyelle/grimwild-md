@@ -54,8 +54,20 @@ level-2 heading followed by one or more paragraphs, outside of any fenced div:
 Body text goes here.
 ```
 
-The title is rendered in uppercase with a horizontal rule underneath. Omitting
-the heading produces a plain body paragraph.
+The title is rendered in uppercase with a horizontal rule underneath. Level-3
+headings inside the section become bold subheadings:
+
+```markdown
+## Action Rolls
+
+Intro paragraph.
+
+### Pick a Stat
+
+The GM picks which stat the action uses.
+```
+
+Omitting the level-2 heading produces a plain body paragraph.
 
 ## File Structure
 
