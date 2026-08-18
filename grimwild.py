@@ -182,7 +182,14 @@ def parse(text):
         ):
             para.append(lines[i].strip())
             i += 1
-        mod["blocks"].append({"kind": "paragraph", "text": " ".join(para)})
+        if line.startswith("## "):
+            mod["blocks"].append({
+                "kind": "simple-para",
+                "title": line[3:].strip(),
+                "text": " ".join(para[1:]),
+            })
+        else:
+            mod["blocks"].append({"kind": "paragraph", "text": " ".join(para)})
     return mod
 
 
@@ -324,6 +331,13 @@ def render(mod, css=None):
         elif b["kind"] == "challenges":
             seen_section = True
             body_parts.append(render_challenges(b["challenges"]))
+        elif b["kind"] == "simple-para":
+            seen_section = True
+            body_parts.append(
+                f"<section class='simple-para'>"
+                f"<h2>{inline(b['title'])}</h2>"
+                f"<p>{inline(b['text'])}</p></section>"
+            )
     flush_pools()
 
     hooks = "".join(h for h in head_parts if "class='hook'" in h)
@@ -507,6 +521,15 @@ li::before {
 .lead strong { font-variant: small-caps; font-weight: 800; letter-spacing: 0.02em; }
 .two-col { columns: 2; column-gap: 4mm; }
 .two-col li { break-inside: avoid; }
+
+/* ---- simple paragraph ---- */
+.simple-para { margin-top: 4.5mm; }
+.simple-para h2 {
+  margin: 0 0 1.5mm; padding-bottom: 1mm; text-align: left; font-size: 15pt;
+  text-transform: uppercase; font-weight: 800; letter-spacing: 0.02em;
+  color: var(--color-title); border-bottom: 0.35mm solid var(--color-title);
+}
+.simple-para p { margin: 0; text-align: justify; font-size: 8.6pt; }
 
 /* ---- challenges ---- */
 .challenges { display: flex; gap: 2.5mm; margin-top: 4.5mm; }

@@ -16,6 +16,8 @@ Custom syntax built on fenced divs (`:::`) with these section types:
 | Set It Up | `.set-it-up` | `▢` | Square checkbox |
 | Challenges | `.challenges` | by list marker | Traits: `*` (`✱`), Moves: `-` (`◉`), Fail State: `x` (`✘`) |
 
+Outside of fenced divs, a level-2 heading followed by a paragraph becomes a simple paragraph section with an underlined title. See [Simple Paragraphs](#simple-paragraphs) below.
+
 Item prefixes are NOT written in the source. The converter renders the
 correct icon from context: div class for pools/pieces/setup, list marker
 for challenges. Source items are plain markdown lists; a fail state is a
@@ -35,11 +37,25 @@ Pieces", `.set-it-up` → "Set It Up".
 
 ### Pressure Pool Links
 
-The pressure pools section contains different pressure pool in columns, they
-can have links between them, they are represented as line between 2 columns,
-with different icon upon the line:
+The pressure pools section contains different pressure pools in columns. They
+can have links between them, represented as lines between two columns, with a
+different icon on the line:
 - Lock link: lock icon
-- Trigger link: `a right arrow inside a circle
+- Trigger link: a right arrow inside a circle
+
+### Simple Paragraphs
+
+A section with an underlined title and a body paragraph is written as a
+level-2 heading followed by one or more paragraphs, outside of any fenced div:
+
+```markdown
+## Optional Title
+
+Body text goes here.
+```
+
+The title is rendered in uppercase with a horizontal rule underneath. Omitting
+the heading produces a plain body paragraph.
 
 ## File Structure
 
