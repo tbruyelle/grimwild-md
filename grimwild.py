@@ -601,7 +601,7 @@ li::before {
 .simple-para :is(.challenge, .pool) h2 { border-bottom: none; padding-bottom: 0; }
 
 /* ---- challenges ---- */
-.challenges { display: flex; gap: 2.5mm; margin-top: 4.5mm; }
+.challenges { display: flex; gap: 2.5mm; margin-top: 4.5mm; margin-bottom: 4.5mm; }
 .challenge {
   flex: 1; background: var(--color-card-bg); border-radius: 0.65mm;
   box-shadow: 0 0 0 0.25mm var(--color-border-card); overflow: hidden;
