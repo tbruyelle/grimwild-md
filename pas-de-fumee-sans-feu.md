@@ -74,6 +74,9 @@ Voyant cela, **Luka** fonce et se rapproche à une distance d'environ 30m, et
 décoche une autre carreau qui vient se planter dans l'autre fesse du *Troll*,
 ce dernier fou de rage envoie la vache sur son aggresseur.
 
+::: {.page-break}
+:::
+
 ::: {.challenges}
 ## 2D | Troll blessé | Elite Blaster
 * Regénération
@@ -82,6 +85,15 @@ ce dernier fou de rage envoie la vache sur son aggresseur.
 - Lance un rocher
 - Arrache un arbre et s'en serre comme massue
 :::
+
+À sa mort, les PJs n'ont que quelques minutes de répi. Une voix rugissante
+vient déchirer le silence de l'après combat: "BIBI? TU VAS BIEN?". Derrière le
+flanc de la montagne viennent d'apparaître une femme *Troll* encore plus
+impressionante, jonchée de 3 autres *Trolls* aussi gros que celui qu'ils
+viennent d'abattre.
+
+> 6D | Mama Troll (Elite Brute)
+> 4D Fistons Trolls (Tough Blaster)
 
 
 ::: {.pressure-pool}
