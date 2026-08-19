@@ -36,6 +36,9 @@ Les traces sont fraîches et faciles à suivre, notamment puisque certaines
 d'entres elles sont particulièrement profondes et larges, visiblement le voleur
 n'est pas humain. La piste entre dans la forêt et grimpe la montagne.
 
+Dans la forêt sombre et accidentée, la piste est moins évidente. Test de Wits
+réussi par le groupe entraine un jet sur le challenge suivant:
+
 ::: {.challenges}
 ## 2D | Trouver Luka
 * Forêt épaisse et sombre
@@ -46,17 +49,40 @@ n'est pas humain. La piste entre dans la forêt et grimpe la montagne.
 
 Les PJs sont surpris par le bruit d'une corde qui se détend, suivi d'un
 sifflement et enfin d'un grognement rauque plus lointain. **Luka** sort sa tête
-d'un buisson, il vient de blesser une imposante créature au loin, cette denière
-s'enfuit plus loin dans la montagne, avec ce qui semble être une vache sur son
-épaule.
+d'un buisson, son *arbalète* à la main, il vient de blesser une imposante
+créature au loin, cette denière s'enfuit plus loin dans la montagne, avec ce
+qui semble être une vache sur son épaule.
 
-Lorsque **Luka** voit les PJs, il s'arrête un instant, les salue et continue sa
-traque de la bête. Si les PJs l'interpelle, il s'excuse prétextant devoir
-poursuivre un voleur balourd.
+**Luka** est un beau jeune homme à l'air innocent mais déterminé, avec des
+cheveux mi-long coiffés avec une raie au milieu, des mèches tombents devant ses
+yeux. Lorsqu'il voit les PJs, il s'arrête un instant, les salue et continue sa
+traque de la bête. Si les PJs l'interpelle, il répond qu'il n'a pas besoin
+d'aide et doit poursuivre un voleur balourd.
 
 ### Poursuite jusqu'au plateau
 
-xx
+Le *Troll* n'est pas difficile à suivre avec les traces de sang vert qu'il
+laisse derrière lui. Au bout d'un moment, les PJs sortent de la forêt et
+arrivent sur un grand plateau, à droite ce qui semble être le vide et à gauche
+le flanc abrupt de la montagne qui continue de grimper. La plateau des
+constitué de hautes herbes et de rochers, avec quelques arbres éparses.
+Certaines hautes herbes sont tachées de sang vert et dans cette direction les
+PJs voient à un cinquantaine de mètres une forme massive qui avant péniblement
+avec toujours la vache sur son épaule.
+
+Voyant cela, **Luka** fonce et se rapproche à une distance d'environ 30m, et
+décoche une autre carreau qui vient se planter dans l'autre fesse du *Troll*,
+ce dernier fou de rage envoie la vache sur son aggresseur.
+
+::: {.challenges}
+## 2D | Troll blessé | Elite Blaster
+* Regénération
+* Peau épaisse
+- Se regénère à 4D
+- Lance un rocher
+- Arrache un arbre et s'en serre comme massue
+:::
+
 
 ::: {.pressure-pool}
 ## 4D Premiers Feux
