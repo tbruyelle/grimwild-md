@@ -208,7 +208,7 @@ Et aucune trace de Naldeth et de sa bande.
 Ce nom doit faire tick à l'oreille des PJs, ils obtiennent assez vite une
 description de la bande, assez classique. Reste maintenant à les trouver.
 
-> ⚂ Lancer pressure pool
+> ⚂ Pressure pool
 
 ::: {.challenges}
 ## 6D | Retrouver les Dragons de Naldeth
@@ -226,17 +226,17 @@ Les PJS font fausse route et arrivent dans un village qui a déjà subit le feu
 des Naldeth mais il y a plusieurs jours. Les réparations ont même commencés.
 Rebelote le *"Ils sont de retours !"*.
 
-> ⚂ Lancer pressure pool
+> ⚂ Pressure pool
 
 ### Rencontre malvenue
 
-> ⚂ Lancer pressure pool
+> ⚂ Pressure pool
 
 ### Une foi ardente
 
-> ⚂ Lancer pressure pool
+> ⚂ Pressure pool
 
 ### La confrérie du Mouton Divin
 
-> ⚂ Lancer pressure pool
+> ⚂ Pressure pool
 
