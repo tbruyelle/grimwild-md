@@ -86,7 +86,7 @@ ce dernier fou de rage envoie la vache sur son aggresseur.
 - Arrache un arbre et s'en serre comme massue
 :::
 
-À sa mort, les PJs n'ont que quelques minutes de répi. Une voix rugissante
+À sa mort, les PJs n'ont que quelques minutes de répit. Une voix rugissante
 vient déchirer le silence de l'après combat: "BIBI? TU VAS BIEN?". Derrière le
 flanc de la montagne viennent d'apparaître une femme *Troll* encore plus
 impressionante, jonchée de 3 autres *Trolls* aussi gros que celui qu'ils
@@ -95,6 +95,58 @@ viennent d'abattre.
 > 6D | Mama Troll (Elite Brute)
 > 4D Fistons Trolls (Tough Blaster)
 
+### Arrivée de Giezzyth
+
+Alors que les PJs se font normalement massacrer par les Trolls, un Dragon
+Rouge arrive et les réduit en cendres. Formidable, immense, plus grande encore
+que tous les membres de son espèce qu'ils ont pu croiser auparavant, la
+créature est très agée, puisque la croissance des dragons ne cesse jamais. Les
+couleurs de ses écailles abondent dans ce sens, le rouge est profond mais
+terne, comme si une fine couche de poussière ou un voile de gaze les couvrait.
+
+Reste qu'il s'agit d'une créature réputée pour son égoisme, son avidité son
+arrogance et ses rages imprévisibles. Si le moindre doute subsistait, la maman
+troll qui tente de s'enfuir après avoir été projetée contre la parois finit
+aussitot enfourée dans la gueule du monstre sans que celui-ci ait quitté les
+PJs du regard.
+
+Puis ils demandent au PJs: *"Qui êtes-vous et que faîtes vous ici ?"*
+
+Les PJs n'étant pas en état de répondre (ou alors juste "arrrgh"), le Dragon
+les guérit d'un coup de griffes et leur repose la question. Peu importe leur
+réponses, Giezzyth les regardent longuement et lache: *"Quel est mon nom?"*
+
+Rappelez à la table les implications de connaître le nom d'une telle créature
+et sur pourquoi elle poserait une telle question. Le dragon montre cependant
+des signes d'impatience et repose la question. Constatant que les PJs ignorent
+totalement à qui ils ont à affaire, il reprend: *"Une bande de paladins sont
+arrivés dans ma montagne la semaine dernière."* Devant l'absence de réaction
+des PJs, il poursuit: *"Dès qu'ils m'ont vu, ils ont hurlés des absurdités
+comme "Tremble Naldeth, ta dernière est blablabla". Bon je ne les ai pas laissé
+finir mais ça m'agace: depuis ce nom me trotte dans la tête. Vous ne connaissez
+pas de Naldeth par hasard ?"*
+
+Suite à la réponse des PJs, le dragon explique vouloir finir ces dernières
+années tranquilement et qu'il apprécierait que les armures restent dans la
+vallée à s'occuper des nécessiteux plutôt que de venir l'embêter. Il ne
+s'appelle pas Naldeth, ne s'est jamais fait appeler ainsi et souhaite qu'on lui
+fiche la paix.
+
+*"Et puis, tiens, puisque vous êtes là, vous allez me trouver ce Naldeth et lui
+dire de dégager. Ou convaincre les gens qu'il n'est pas ici. Entre vous et moi,
+je pense qu'il n'y a pas d'autre dragon dans cette région. Je le saurais"*
+
+Comment refuser ? Et puis c'est demandé si gentiment, avec un sourire si...
+dentu...
+
+**Luka** peut se souvenir de ce nom Naldeth, comme le chef d'une bande
+d'aventurier qui se balade dans la région. De toute façon les PJs n'ont pas
+vraiment le choix, ils acceptent donc la requête.
+
+## La Vallée Cramée
+
+C'est à ce moment qu'on peut introduire les pressure pools suivantes, qui
+s'enchainent jusqu'à la libération de l'Élémental de Feu de l'épée de **Hauré**.
 
 ::: {.pressure-pool}
 ## 4D Premiers Feux
@@ -120,4 +172,71 @@ viennent d'abattre.
 :::
 
 
+### Premier Village en Feu
+
+En descendant la montagne, les PJs aperçoient une fumée épaisse et décident
+d'aller voir ce qu'il en retourne. Bien vite, ils arrivent en vue d'un village
+en proie aux dernières flammes d'un incendie qui a ravagé une bonne partie des
+habitations. En s'approchant, les PJs sont accueillis par une enfant... qui
+s'éloigne en hurlant de terreur: *"Les revoilà !"* crie bientôt un solide
+paysant, ralliant ces camarades, et se dirige avec fourches et fléaux vers les
+PJs.
+
+::: {.challenges}
+## 4D | Calmer les gueux
+* Furieux
+* Apeurés
+- Jet de tomate/excrément
+- Coup de fourche
+x Paysan blessé
+:::
+
+Si au bout de 2 tentatives les villageois ne sont pas calmés, un villageois à
+l'allure d'aubergiste hurle: *"Attendez, c'est pas les mêmes ! C'en est
+d'autres !"*.
+
+La raison de leur colère: hier soir un groupe d'aventuriers est venu ici faire
+la fête. Ils étaient arrivés quelques jours auparavant et le chef du village
+leur avait demandé d'éliminer une bande de bandits qui terrorisaient la région.
+Quand ils sont revenus avec quelques preuves de leur victoire, ils ont été
+célébrés à l'auberge. Personne ne sait exactement ce qui s'est passé mais la
+fête a tourné en bagarre générale, avant que l'auberge ne soit réduite en
+cendres. Par miracle aucune victime, mais la moitié du village est parti en
+fumée et ils ont du batailler contre le feu toute la nuit en s'aidant du puits.
+Et aucune trace de Naldeth et de sa bande.
+
+Ce nom doit faire tick à l'oreille des PJs, ils obtiennent assez vite une
+description de la bande, assez classique. Reste maintenant à les trouver.
+
+> ⚂ Lancer pressure pool
+
+::: {.challenges}
+## 6D | Retrouver les Dragons de Naldeth
+* Ne cherchent pas à être discret
+* Sont également recherchés par Hauré
+- Trouve autre village avec ancien feu (voir *Apprendre de ces erreurs*)
+- Piège sur la route: 4D Gobelins | mooks (voir *Rencontre malvenue*)
+- Arrivée dans l'ancien village de Hauré (voir *Une foi ardente*)
+- Croise la route d'une troupe de paladins (voir *La confrérie du Mouton Divin*)
+:::
+
+### Apprendre de ces erreurs
+
+Les PJS font fausse route et arrivent dans un village qui a déjà subit le feu
+des Naldeth mais il y a plusieurs jours. Les réparations ont même commencés.
+Rebelote le *"Ils sont de retours !"*.
+
+> ⚂ Lancer pressure pool
+
+### Rencontre malvenue
+
+> ⚂ Lancer pressure pool
+
+### Une foi ardente
+
+> ⚂ Lancer pressure pool
+
+### La confrérie du Mouton Divin
+
+> ⚂ Lancer pressure pool
 

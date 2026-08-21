@@ -15,6 +15,7 @@ Custom syntax built on fenced divs (`:::`) with these section types:
 | Useful Pieces | `.useful-pieces` | `▸` | Right-pointing triangle |
 | Set It Up | `.set-it-up` | `▢` | Square checkbox |
 | Challenges | `.challenges` | by list marker | Traits: `*` (`✱`), Moves: `-` (`◉`), Fail State: `x` (`✘`) |
+| Page Break | `.page-break` | - | Forces the following content to start on a new page |
 
 Outside of fenced divs, a level-2 heading followed by a paragraph becomes a simple paragraph section with an underlined title. See [Simple Paragraphs](#simple-paragraphs) below.
 
@@ -76,6 +77,37 @@ A level-3 heading at the top level starts a new simple paragraph section with a
 subheading-style title (no underline). Omitting the heading produces a plain
 body paragraph.
 
+### Blockquotes
+
+Lines starting with `>` become a quote block: italic text with a rule down the
+left edge. Use it for asides aimed at the GM, such as a cue to roll a pressure
+pool or a list of adversary stat lines.
+
+```markdown
+> 6D | Mama Troll (Elite Brute)
+> 4D Fistons Trolls (Tough Blaster)
+```
+
+Adjacent `>` lines form a single quote block and each keeps its own line. A
+line right after a quote that omits the `>` is a lazy continuation and is
+appended to the preceding line. A blank line ends the quote.
+
+Quotes work in section bodies, not in the module header: a `>` line before the
+first heading renders as a normal hook or intro paragraph.
+
+### Page Breaks
+
+A manual page break is inserted with an empty `.page-break` fenced div:
+
+```markdown
+::: {.page-break}
+:::
+```
+
+This is useful to keep a challenge panel or pressure pool from being split
+across two pages. A break with nothing before or after it is dropped rather
+than emitting a blank page, and a run of consecutive breaks counts as one.
+
 ## File Structure
 
 - `*.md` - Module source files
@@ -90,6 +122,24 @@ python3 grimwild.py <module.md> [-o output.pdf] [--html]
 ```
 
 Pipeline: custom markdown → HTML (semantic sections, inline SVG icons)
-→ headless Chromium `--print-to-pdf`. Requires `markdown-it-py` and a
-`chromium` binary. `--html` keeps the intermediate HTML next to the
-source for debugging. Page size: 176mm × 250mm, single page.
+→ headless Chromium `--print-to-pdf`. Requires `markdown-it-py`, a
+`chromium` binary and `pdfinfo` (poppler) for page numbering. `--html` keeps
+the intermediate HTML next to the source for debugging; it is a build artifact
+and is not tracked. Page size: 176mm × 250mm.
+
+Every page is full-bleed. Chromium never paints into an `@page` margin, so the
+margin stays 0 and the parchment is drawn by one backdrop element per page,
+which also keeps each page's gradient identical instead of stretching one
+gradient over the whole document.
+
+Page numbers need the page count, so a module that overflows is rendered
+twice: the first PDF is measured with `pdfinfo`, and if it holds more than one
+page the HTML is rendered again with one bottom-centered number per page,
+absolutely positioned at each page boundary. Content is kept out of that strip
+by a repeating table footer, the one construct Chromium both repeats on every
+page and reserves room for. Reserving that room can push content onto one more
+page, so the render repeats until the page count settles.
+
+A single-page module is left alone: no number, no reserved strip. When
+`pdfinfo` (poppler) is missing, numbering is skipped with a warning and pages
+past the first fall back to a flat parchment colour.

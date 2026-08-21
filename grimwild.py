@@ -142,28 +142,76 @@ def parse_div(attr, lines):
         return {"kind": "setup", "groups": parse_groups(lines)}
     if "challenges" in classes:
         return {"kind": "challenges", "challenges": parse_challenges(lines)}
+    if "page-break" in classes:
+        return {"kind": "page-break"}
     return {"kind": "div", "classes": classes}
 
 
-def _para_item(buf):
-    first = buf[0].strip()
-    if first.startswith("### "):
-        return {"type": "h3", "title": first[4:].strip()}
-    return {"type": "p", "text": " ".join(ln.strip() for ln in buf)}
+QUOTE_MARKER = re.compile(r"^\s*>\s?")
+HEADING_MARKER = re.compile(r"^#{1,6}\s+")
+HEADING_LINE = re.compile(r"^#{1,3} ")
+
+# Page geometry for the page-number offsets; must match @page in BASE_CSS.
+PAGE_HEIGHT = "250mm"
+FOOTER_TOP = "243mm"  # page number offset from the top of its page
+
+# A table footer is the one construct Chromium repeats on every printed page
+# while reserving its height, which keeps content out of the page-number strip.
+SHEET_OPEN = (
+    '<table class="sheet"><tfoot><tr><td class="foot"></td></tr></tfoot>'
+    "<tbody><tr><td>"
+)
+SHEET_CLOSE = "</td></tr></tbody></table>"
+
+
+def _is_quote(line):
+    return line.lstrip().startswith(">")
+
+
+def _strip_quote(line):
+    """Drop the `>` marker (and a single following space) from a quote line."""
+    return HEADING_MARKER.sub("", QUOTE_MARKER.sub("", line, count=1).strip())
 
 
 def _buffer_items(buf):
+    """Turn a run of body lines into paragraph, subheading and quote items.
+
+    Consecutive lines form one item; a blank line, a subheading or the start of
+    a quote ends the current one. Adjacent `>` lines make a single quote, each
+    one kept on its own line, and a line following a quote without a `>` is a
+    lazy continuation of it, as in markdown.
+    """
     items = []
     group = []
+    quoted = False
+
+    def flush():
+        nonlocal group, quoted
+        if group:
+            # Quotes keep their line structure; paragraphs reflow.
+            item = {"type": "p", "text": ("\n" if quoted else " ").join(group)}
+            if quoted:
+                item["quote"] = True
+            items.append(item)
+        group, quoted = [], False
+
     for ln in buf:
-        if ln.strip() == "":
-            if group:
-                items.append(_para_item(group))
-                group = []
+        stripped = ln.strip()
+        if not stripped:
+            flush()
+        elif _is_quote(ln):
+            if not quoted:
+                flush()
+                quoted = True
+            group.append(_strip_quote(ln))
+        elif stripped.startswith("### "):
+            flush()
+            items.append({"type": "h3", "title": stripped[4:].strip()})
+        elif quoted:
+            group[-1] = f"{group[-1]} {stripped}"
         else:
-            group.append(ln)
-    if group:
-        items.append(_para_item(group))
+            group.append(stripped)
+    flush()
     return items
 
 
@@ -215,17 +263,27 @@ def parse(text):
             items = _buffer_items(content)
             mod["blocks"].append({"kind": "simple-para", "level": level, "title": title, "items": items})
             continue
-        para = [line.strip()]
+        # A run of body lines outside any section: paragraphs and quotes.
+        run = [line]
         i += 1
         while (
             i < len(lines)
             and lines[i].strip()
             and not DIV_OPEN.match(lines[i])
-            and not lines[i].startswith("# ")
+            and not HEADING_LINE.match(lines[i])
         ):
-            para.append(lines[i].strip())
+            run.append(lines[i])
             i += 1
-        mod["blocks"].append({"kind": "paragraph", "text": " ".join(para)})
+        for item in _buffer_items(run):
+            if item["type"] == "h3":
+                mod["blocks"].append(
+                    {"kind": "simple-para", "level": 3, "title": item["title"], "items": []}
+                )
+                continue
+            block = {"kind": "paragraph", "text": item["text"]}
+            if item.get("quote"):
+                block["quote"] = True
+            mod["blocks"].append(block)
     return mod
 
 
@@ -259,6 +317,11 @@ MARKER_CHARS = {
 
 def inline(text):
     return MD.renderInline(text.strip())
+
+
+def quote_lines(text):
+    """Inline markup for a quote, one source line per rendered line."""
+    return inline(text).replace("\n", "<br>")
 
 
 def render_pool(pool):
@@ -333,13 +396,20 @@ def _render_block(b, parts, pool_run, context="body"):
         pool_run.append(b)
         return
     _flush_pools(parts, pool_run)
+    if b["kind"] == "page-break":
+        parts.append("<div class='page-break'></div>")
+        return
     if b["kind"] == "paragraph":
         text = b["text"]
+        # The module header has its own hook/intro styling, so a quote there
+        # stays a paragraph rather than picking up the blockquote rule.
         if context == "head":
             if text.startswith("*") and text.endswith("*"):
                 parts.append(f"<p class='hook'>{inline(text)}</p>")
             else:
                 parts.append(f"<p class='intro'>{inline(text)}</p>")
+        elif b.get("quote"):
+            parts.append(f"<blockquote>{quote_lines(text)}</blockquote>")
         elif context == "body" and re.match(r"^\*\*Mix It Up\*\*", text):
             parts.append(f"<p class='mix-it-up'>{inline(text)}</p>")
         else:
@@ -360,13 +430,50 @@ def render_simple_para(b):
     for item in b["items"]:
         if item["type"] == "h3":
             parts.append(f"<h3>{inline(item['title'])}</h3>")
+        elif item.get("quote"):
+            parts.append(f"<blockquote>{quote_lines(item['text'])}</blockquote>")
         else:
             parts.append(f"<p>{inline(item['text'])}</p>")
     parts.append("</section>")
     return "".join(parts)
 
 
-def render(mod, css=None):
+def _drop_empty_breaks(blocks):
+    """Remove page breaks that would only produce a blank page.
+
+    A break is pointless when nothing precedes or follows it, and a run of
+    breaks is worth no more than a single one.
+    """
+    kept = []
+    for b in blocks:
+        if b["kind"] == "page-break" and (not kept or kept[-1]["kind"] == "page-break"):
+            continue
+        kept.append(b)
+    while kept and kept[-1]["kind"] == "page-break":
+        kept.pop()
+    return kept
+
+
+def page_numbers(pages):
+    """Bottom-centered page numbers, one per page, placed at each page break."""
+    if pages < 2:
+        return ""
+    return "\n".join(
+        f"<div class='pagenum' style='top: calc({k} * {PAGE_HEIGHT} + {FOOTER_TOP})'>"
+        f"{k + 1}</div>"
+        for k in range(pages)
+    )
+
+
+def page_backdrops(pages):
+    """One parchment backdrop per page."""
+    return "\n".join(
+        f"<div class='sheet-bg' style='top: calc({k} * {PAGE_HEIGHT})'></div>"
+        for k in range(max(pages, 1))
+    )
+
+
+def render(mod, css=None, pages=1):
     if css is None:
         css = BASE_CSS + "\n" + font_faces()
     css = build_css(css)
@@ -377,7 +484,7 @@ def render(mod, css=None):
         _flush_pools(body_parts, body_pool_run)
 
     seen_section = False
-    for b in mod["blocks"]:
+    for b in _drop_empty_breaks(mod["blocks"]):
         if b["kind"] == "paragraph" and not seen_section:
             _render_block(b, head_parts, [], context="head")
             continue
@@ -397,6 +504,10 @@ def render(mod, css=None):
         hooks=f"<div class='hooks'>{hooks}</div>" if hooks else "",
         intros=intros,
         body="\n".join(body_parts),
+        sheet_open=SHEET_OPEN if pages > 1 else "",
+        sheet_close=SHEET_CLOSE if pages > 1 else "",
+        page_backdrops=page_backdrops(pages),
+        page_numbers=page_numbers(pages),
         css=css,
     )
 
@@ -460,19 +571,39 @@ BASE_CSS = """
   --color-vignette: rgba(84,70,48,0.27);
 }
 
+/* Chromium never paints into an @page margin, so the margin stays 0 to keep
+   the page full-bleed; the page numbers sit inside the page instead. */
 @page { size: 176mm 250mm; margin: 0; }
 * { box-sizing: border-box; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-html, body { margin: 0; padding: 0; }
-body {
-  font-family: "Capito TRIAL 04", "Noto Serif", serif;
-  font-weight: 300;
-  font-size: 8.6pt; line-height: 1.24; color: var(--color-text);
+html { margin: 0; padding: 0; background: var(--color-page-start); }
+/* One parchment backdrop per page, so every page gets the same gradient
+   instead of one gradient stretched over the whole document. Chromium keeps
+   these as vector fills; a page-sized background *tile* on <html> would make
+   it rasterize the whole page into the PDF instead. */
+.sheet-bg {
+  position: absolute; left: 0; z-index: -1;
+  width: 176mm; height: 250mm;
   background:
     radial-gradient(115% 85% at 50% 42%, var(--color-transparent) 52%, var(--color-vignette) 100%),
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.38 0 0 0 0 0.30 0 0 0 0.05 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>"),
     linear-gradient(165deg, var(--color-page-start) 0%, var(--color-page-mid1) 38%, var(--color-page-mid2) 72%, var(--color-page-far) 100%);
-  width: 176mm; height: 250mm; overflow: hidden;
 }
+body {
+  margin: 0; padding: 0; position: relative;
+  font-family: "Capito TRIAL 04", "Noto Serif", serif;
+  font-weight: 300;
+  font-size: 8.6pt; line-height: 1.24; color: var(--color-text);
+  width: 176mm; height: auto;
+}
+.pagenum {
+  position: absolute; left: 0; width: 176mm; text-align: center;
+  font-size: 8pt; color: var(--color-muted);
+}
+/* Only present when the module is numbered: the repeating footer cell keeps
+   content clear of the strip the page number sits in. */
+table.sheet { width: 176mm; border-collapse: collapse; }
+table.sheet td { padding: 0; vertical-align: top; }
+td.foot { height: 7mm; }
 .page { padding: 8mm 10.5mm 7mm; height: 100%; }
 
 /* ---- module header ---- */
@@ -584,6 +715,12 @@ li::before {
 }
 .simple-para p { margin: 0 0 1.5mm; text-align: justify; font-size: 8.6pt; }
 .simple-para p:last-child { margin-bottom: 0; }
+blockquote {
+  margin: 0 0 1.5mm; padding: 0.3mm 0 0.3mm 3mm;
+  border-left: 0.5mm solid var(--color-title);
+  font-style: italic; color: var(--color-muted); font-size: 8.6pt;
+}
+.page-break { break-before: page; }
 
 /* ---- challenges ---- */
 .challenges { display: flex; gap: 2.5mm; margin-top: 4.5mm; margin-bottom: 4.5mm; }
@@ -648,7 +785,7 @@ li::before {
 
 TEMPLATE = """<!DOCTYPE html>
 <html><head><meta charset="utf-8"><style>{css}</style></head>
-<body><div class="page">
+<body>{page_backdrops}{sheet_open}<div class="page">
 <header class="module-head">
   <div class="module-art">{module_icon}</div>
   <h1>{title}</h1>
@@ -656,7 +793,7 @@ TEMPLATE = """<!DOCTYPE html>
   {intros}
 </header>
 {body}
-</div></body></html>
+</div>{sheet_close}{page_numbers}</body></html>
 """
 
 # ------------------------------------------------------------------- main ---
@@ -678,6 +815,22 @@ def to_pdf(html_path, pdf_path):
         sys.exit(f"chromium failed:\n{res.stderr}")
 
 
+def pdf_pages(pdf_path):
+    """Page count of a PDF, or None when pdfinfo is unavailable."""
+    try:
+        res = subprocess.run(
+            ["pdfinfo", str(pdf_path)], capture_output=True, text=True
+        )
+    except FileNotFoundError:
+        return None
+    if res.returncode != 0:
+        return None
+    for line in res.stdout.splitlines():
+        if line.startswith("Pages:"):
+            return int(line.split(":", 1)[1])
+    return None
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("source", type=Path)
@@ -686,20 +839,41 @@ def main():
     args = ap.parse_args()
 
     pdf_path = args.output or args.source.with_suffix(".pdf")
-    html = render(parse(args.source.read_text(encoding="utf-8")))
+    mod = parse(args.source.read_text(encoding="utf-8"))
 
     if args.html:
         html_path = args.source.with_suffix(".html")
-        html_path.write_text(html, encoding="utf-8")
     else:
         tmp = tempfile.NamedTemporaryFile(
             "w", suffix=".html", delete=False, encoding="utf-8"
         )
-        tmp.write(html)
         tmp.close()
         html_path = Path(tmp.name)
 
-    to_pdf(html_path, pdf_path)
+    def build(pages):
+        html_path.write_text(render(mod, pages=pages), encoding="utf-8")
+        to_pdf(html_path, pdf_path)
+
+    # A page number only makes sense once the module overflows, and its
+    # placement needs the page count, so render again once that is known.
+    # Numbering also reserves a strip on every page, which can push content
+    # onto one more page, so repeat until the count settles.
+    build(1)
+    pages = pdf_pages(pdf_path)
+    if pages is None:
+        print("warning: pdfinfo not available, page numbers skipped", file=sys.stderr)
+    else:
+        for _ in range(3):
+            if pages < 2:
+                break
+            build(pages)
+            settled = pdf_pages(pdf_path)
+            if settled is None or settled == pages:
+                break
+            pages = settled
+
+    if not args.html:
+        html_path.unlink(missing_ok=True)
     print(f"wrote {pdf_path}")
 
 
