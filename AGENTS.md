@@ -137,8 +137,10 @@ twice: the first PDF is measured with `pdfinfo`, and if it holds more than one
 page the HTML is rendered again with one bottom-centered number per page,
 absolutely positioned at each page boundary. Content is kept out of that strip
 by a repeating table footer, the one construct Chromium both repeats on every
-page and reserves room for. Reserving that room can push content onto one more
-page, so the render repeats until the page count settles.
+page and reserves room for; a matching header row gives every continuation page
+its top margin, which the block padding alone only applies to the first page.
+Reserving that room can push content onto one more page, so the render repeats
+until the page count settles.
 
 A single-page module is left alone: no number, no reserved strip. When
 `pdfinfo` (poppler) is missing, numbering is skipped with a warning and pages

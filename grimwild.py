@@ -153,12 +153,15 @@ HEADING_LINE = re.compile(r"^#{1,3} ")
 
 # Page geometry for the page-number offsets; must match @page in BASE_CSS.
 PAGE_HEIGHT = "250mm"
-FOOTER_TOP = "243mm"  # page number offset from the top of its page
+FOOTER_TOP = "244mm"  # page number offset from the top of its page
 
-# A table footer is the one construct Chromium repeats on every printed page
-# while reserving its height, which keeps content out of the page-number strip.
+# Table header and footer rows are the one construct Chromium repeats on every
+# printed page while reserving their height, which is what gives a continuation
+# page its top margin and keeps content out of the page-number strip.
 SHEET_OPEN = (
-    '<table class="sheet"><tfoot><tr><td class="foot"></td></tr></tfoot>'
+    '<table class="sheet">'
+    '<thead><tr><td class="head-space"></td></tr></thead>'
+    '<tfoot><tr><td class="foot"></td></tr></tfoot>'
     "<tbody><tr><td>"
 )
 SHEET_CLOSE = "</td></tr></tbody></table>"
@@ -599,10 +602,14 @@ body {
   position: absolute; left: 0; width: 176mm; text-align: center;
   font-size: 8pt; color: var(--color-muted);
 }
-/* Only present when the module is numbered: the repeating footer cell keeps
-   content clear of the strip the page number sits in. */
+/* Only present when the module is numbered: the repeating header and footer
+   cells give every page its top margin and keep content clear of the strip the
+   page number sits in. The block padding below only applies to the first and
+   last page, so the header cell takes over the top margin here. */
 table.sheet { width: 176mm; border-collapse: collapse; }
 table.sheet td { padding: 0; vertical-align: top; }
+table.sheet .page { padding-top: 0; }
+td.head-space { height: 8mm; }
 td.foot { height: 7mm; }
 .page { padding: 8mm 10.5mm 7mm; height: 100%; }
 
@@ -721,6 +728,9 @@ blockquote {
   font-style: italic; color: var(--color-muted); font-size: 8.6pt;
 }
 .page-break { break-before: page; }
+/* The new page's own top margin is enough; drop the section margin on top.
+   Scoped under .page so it outranks the per-section margins below. */
+.page .page-break + * { margin-top: 0; }
 
 /* ---- challenges ---- */
 .challenges { display: flex; gap: 2.5mm; margin-top: 4.5mm; margin-bottom: 4.5mm; }
