@@ -183,6 +183,7 @@ s'enchainent jusqu'à la libération de l'Élémental de Feu de l'épée de **Ha
 - Des villageois se battent devant un puit
 - Cadavres de moutons brûlés, sûrement l'oeuvre du dragon Naldeth!
 - Un nouveau culte sévi dans la région: les illuminés de **Hauré**
+- La distillerie de la vallée explose (acte de **Hauré**)
 
 >> Délivrance
 :::
@@ -235,14 +236,34 @@ description de la bande, assez classique:
 - un homme en robe noire (Puf/Mage)
 - un demi-elfe en cuir clouté (Joz/Voleur)
 
-Reste maintenant à les trouver.
+Reste maintenant à les trouver. Pour cela les PJ vont devoir exploirer la
+vallée en utilisant les règles de l'exploration, en commençant par cette carte:
 
-> ⚂ Pressure pool
+::: {.image}
+![Carte](/home/tom/rpgs/grimwild/grimwild-md/map.png)
+:::
+
+Les PJ sont invités à l'étendre en ajoutant des éléments:
+- **Des points d'intérêts (1 token)**
+  - un carré pour un village
+  - un rond pour un endroit à explorer
+  - un losange pour un endroit dangereux 
+- **Des chemins (0-2 tokens)**
+  - un chemin bien maintenu (2 tokens) 3d story roll
+  - un chemin caillouteux (1 token): 2d story roll
+  - un chemin chargé d'emnuche (0 tokens): 1d story roll
+- **Des endroits spéciaux (3 tokens)**
+  - une curiosité: endroit intriguant à explorer 
+  - une barrière: une rivière, des montagnes une falaise: 1d story roll
+  - une zone: lac, marais, desert, foret
+
+À chaque fois que le MJ juge nécessaire, le challenge ci-dessous est lancé,
+avec un lancer du *Pressure pool* également.
 
 ::: {.challenges}
-## 4D | Retrouver les Dragons de Naldeth
+## 6D | Retrouver les Dragons de **Naldeth**
 * Ne cherchent pas à être discret
-* Sont également recherchés par Hauré
+* Sont également recherchés par **Hauré**
 - Trouve autre village avec ancien feu (voir *Apprendre de ces erreurs*)
 - Arrivée dans l'ancien village de Hauré (voir *Une foi ardente*)
 - Croise la route d'une troupe de paladins (voir *La confrérie du Mouton Divin*)
@@ -250,7 +271,7 @@ Reste maintenant à les trouver.
 
 ### Apprendre de ces erreurs
 
-Les PJS font fausse route et arrivent dans un village qui a déjà subit le feu
+Les PJ font fausse route et arrivent dans un village qui a déjà subit le feu
 des Naldeth mais il y a plusieurs jours. Les réparations ont même commencés.
 Rebelote le *"Ils sont de retours !"*.
 
@@ -258,7 +279,11 @@ Rebelote le *"Ils sont de retours !"*.
 
 ### Une foi ardente
 
-
+Les PJ retrouvent le village de leur vision avec la tour de guet, et trouve la
+forge complètement en ruine fumante. Ils peuvent interroger les villageois qui
+leur raconte que **Hauré** s'est planté devant sa forge en feu, l'air serein,
+l'épée sur ces genoux, et répétant "Tout commence...". Le lendemain il avait
+disparu, personne ne sait par où.
 
 > ⚂ Pressure pool
 
