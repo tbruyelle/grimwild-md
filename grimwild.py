@@ -176,19 +176,24 @@ def _strip_quote(line):
     return HEADING_MARKER.sub("", QUOTE_MARKER.sub("", line, count=1).strip())
 
 
-def _buffer_items(buf):
-    """Turn a run of body lines into paragraph, subheading and quote items.
+LIST_ITEM = re.compile(r"^[-*+] ")
 
-    Consecutive lines form one item; a blank line, a subheading or the start of
-    a quote ends the current one. Adjacent `>` lines make a single quote, each
-    one kept on its own line, and a line following a quote without a `>` is a
-    lazy continuation of it, as in markdown.
+
+def _buffer_items(buf):
+    """Turn a run of body lines into paragraph, list, subheading and quote items.
+
+    Consecutive lines form one item; a blank line, a subheading, the start of a
+    quote, or a list marker ends the current one. Adjacent `>` lines make a
+    single quote, each one kept on its own line, and a line following a quote
+    without a `>` is a lazy continuation of it, as in markdown. Consecutive
+    list-marker lines are gathered into one list item.
     """
     items = []
     group = []
     quoted = False
+    list_items = []
 
-    def flush():
+    def flush_para():
         nonlocal group, quoted
         if group:
             # Quotes keep their line structure; paragraphs reflow.
@@ -198,21 +203,36 @@ def _buffer_items(buf):
             items.append(item)
         group, quoted = [], False
 
+    def flush_list():
+        nonlocal list_items
+        if list_items:
+            items.append({"type": "list", "items": list_items})
+            list_items = []
+
+    def flush():
+        flush_para()
+        flush_list()
+
     for ln in buf:
         stripped = ln.strip()
         if not stripped:
             flush()
         elif _is_quote(ln):
+            flush_list()
             if not quoted:
-                flush()
+                flush_para()
                 quoted = True
             group.append(_strip_quote(ln))
         elif stripped.startswith("### "):
             flush()
             items.append({"type": "h3", "title": stripped[4:].strip()})
+        elif LIST_ITEM.match(stripped):
+            flush_para()
+            list_items.append(LIST_ITEM.sub("", stripped))
         elif quoted:
             group[-1] = f"{group[-1]} {stripped}"
         else:
+            flush_list()
             group.append(stripped)
     flush()
     return items
@@ -282,11 +302,13 @@ def parse(text):
                 mod["blocks"].append(
                     {"kind": "simple-para", "level": 3, "title": item["title"], "items": []}
                 )
-                continue
-            block = {"kind": "paragraph", "text": item["text"]}
-            if item.get("quote"):
-                block["quote"] = True
-            mod["blocks"].append(block)
+            elif item["type"] == "list":
+                mod["blocks"].append({"kind": "list", "items": item["items"]})
+            elif item["type"] == "p":
+                block = {"kind": "paragraph", "text": item["text"]}
+                if item.get("quote"):
+                    block["quote"] = True
+                mod["blocks"].append(block)
     return mod
 
 
@@ -425,6 +447,9 @@ def _render_block(b, parts, pool_run, context="body"):
         parts.append(render_banded("set-it-up", "Set It Up", b["groups"], "m-box"))
     elif b["kind"] == "challenges":
         parts.append(render_challenges(b["challenges"]))
+    elif b["kind"] == "list":
+        items = "".join(f"<li>{inline(i)}</li>" for i in b["items"])
+        parts.append(f"<ul>{items}</ul>")
 
 
 def render_simple_para(b):
@@ -433,6 +458,9 @@ def render_simple_para(b):
     for item in b["items"]:
         if item["type"] == "h3":
             parts.append(f"<h3>{inline(item['title'])}</h3>")
+        elif item["type"] == "list":
+            items = "".join(f"<li>{inline(i)}</li>" for i in item["items"])
+            parts.append(f"<ul>{items}</ul>")
         elif item.get("quote"):
             parts.append(f"<blockquote>{quote_lines(item['text'])}</blockquote>")
         else:
@@ -647,6 +675,7 @@ li { position: relative; padding-left: 3.4mm; margin: 0.35mm 0; }
 li::before {
   position: absolute; left: 0.2mm; top: 0.08em;
   font-family: "DejaVu Sans", sans-serif; font-size: 0.95em; line-height: 1;
+  content: "•";
 }
 /*MARKERS*/
 

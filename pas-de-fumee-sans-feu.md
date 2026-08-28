@@ -7,7 +7,7 @@
 
 *Des paladins ont tués un Dragon, cap sur son trésor !*
 
-Un Dragon Rouge engage les PJs pour calmer une bande d'Aventuriers
+Un Dragon Rouge engage les PJ pour calmer une bande d'Aventuriers
 incendiaires, afin de calmer la population locale qui blame le dit Dragon. Dans
 le même temps, un vieux forgeron Nain perd les pédales au contact d'une épée
 dans laquelle est enfermée un Élémental de Feu non-moins fou qui ne souhaite
@@ -15,7 +15,7 @@ qu'en sortir, chose rendue possible par la propagation des feux dans la région.
 
 ## Intro
 
-Renseigné par une source, les PJs débarquent dans une vallée parsemées de
+Renseigné par une source, les PJ débarquent dans une vallée parsemées de
 petites villages. Dans le premier d'entre eux ils doivent trouver un
 montagnard appelé **Luka**, censé pouvoir les guider vers la cache du Dragon tué
 par des paladins.
@@ -27,7 +27,7 @@ montagne, et là il rencontre **Arkham**, un vieux fermier qui est le père de
 La ferme est bien entretenue et bordée d'un large enclos à vaches. **Arkham** est
 attelé à réparer une partie de l'enclos qui semble avoir été brisé. Il leur dit
 que son fils trop téméraire est parti avec son *arbalète* vers la forêt à la
-poursuite d'un voleur de vache, et que si les PJs pouvaient l'aider à revenir
+poursuite d'un voleur de vache, et que si les PJ pouvaient l'aider à revenir
 sain et sauf cela le rassurerait grandement.
 
 ### Rejoindre Luka
@@ -47,7 +47,7 @@ réussi par le groupe entraine un jet sur le challenge suivant:
 - Cheville coincée dans une racine
 :::
 
-Les PJs sont surpris par le bruit d'une corde qui se détend, suivi d'un
+Les PJ sont surpris par le bruit d'une corde qui se détend, suivi d'un
 sifflement et enfin d'un grognement rauque plus lointain. **Luka** sort sa tête
 d'un buisson, son *arbalète* à la main, il vient de blesser une imposante
 créature au loin, cette denière s'enfuit plus loin dans la montagne, avec ce
@@ -55,19 +55,19 @@ qui semble être une vache sur son épaule.
 
 **Luka** est un beau jeune homme à l'air innocent mais déterminé, avec des
 cheveux mi-long coiffés avec une raie au milieu, des mèches tombents devant ses
-yeux. Lorsqu'il voit les PJs, il s'arrête un instant, les salue et continue sa
-traque de la bête. Si les PJs l'interpelle, il répond qu'il n'a pas besoin
+yeux. Lorsqu'il voit les PJ, il s'arrête un instant, les salue et continue sa
+traque de la bête. Si les PJ l'interpelle, il répond qu'il n'a pas besoin
 d'aide et doit poursuivre un voleur balourd.
 
 ### Poursuite jusqu'au plateau
 
 Le *Troll* n'est pas difficile à suivre avec les traces de sang vert qu'il
-laisse derrière lui. Au bout d'un moment, les PJs sortent de la forêt et
+laisse derrière lui. Au bout d'un moment, les PJ sortent de la forêt et
 arrivent sur un grand plateau, à droite ce qui semble être le vide et à gauche
 le flanc abrupt de la montagne qui continue de grimper. La plateau des
 constitué de hautes herbes et de rochers, avec quelques arbres éparses.
 Certaines hautes herbes sont tachées de sang vert et dans cette direction les
-PJs voient à un cinquantaine de mètres une forme massive qui avant péniblement
+PJ voient à un cinquantaine de mètres une forme massive qui avant péniblement
 avec toujours la vache sur son épaule.
 
 Voyant cela, **Luka** fonce et se rapproche à une distance d'environ 30m, et
@@ -86,7 +86,7 @@ ce dernier fou de rage envoie la vache sur son aggresseur.
 - Arrache un arbre et s'en serre comme massue
 :::
 
-À sa mort, les PJs n'ont que quelques minutes de répit. Une voix rugissante
+À sa mort, les PJ n'ont que quelques minutes de répit. Une voix rugissante
 vient déchirer le silence de l'après combat: "BIBI? TU VAS BIEN?". Derrière le
 flanc de la montagne viennent d'apparaître une femme *Troll* encore plus
 impressionante, jonchée de 3 autres *Trolls* aussi gros que celui qu'ils
@@ -97,7 +97,7 @@ viennent d'abattre.
 
 ### Arrivée de Giezzyth
 
-Alors que les PJs se font normalement massacrer par les Trolls, un Dragon
+Alors que les PJ se font normalement massacrer par les Trolls, un Dragon
 Rouge arrive et les réduit en cendres. Formidable, immense, plus grande encore
 que tous les membres de son espèce qu'ils ont pu croiser auparavant, la
 créature est très agée, puisque la croissance des dragons ne cesse jamais. Les
@@ -108,25 +108,25 @@ Reste qu'il s'agit d'une créature réputée pour son égoisme, son avidité son
 arrogance et ses rages imprévisibles. Si le moindre doute subsistait, la maman
 troll qui tente de s'enfuir après avoir été projetée contre la parois finit
 aussitot enfourée dans la gueule du monstre sans que celui-ci ait quitté les
-PJs du regard.
+PJ du regard.
 
-Puis ils demandent au PJs: *"Qui êtes-vous et que faîtes vous ici ?"*
+Puis ils demandent aux PJ: *"Qui êtes-vous et que faîtes vous ici ?"*
 
-Les PJs n'étant pas en état de répondre (ou alors juste "arrrgh"), le Dragon
+Les PJ n'étant pas en état de répondre (ou alors juste "arrrgh"), le Dragon
 les guérit d'un coup de griffes et leur repose la question. Peu importe leur
 réponses, Giezzyth les regardent longuement et lache: *"Quel est mon nom?"*
 
 Rappelez à la table les implications de connaître le nom d'une telle créature
 et sur pourquoi elle poserait une telle question. Le dragon montre cependant
-des signes d'impatience et repose la question. Constatant que les PJs ignorent
+des signes d'impatience et repose la question. Constatant que les PJ ignorent
 totalement à qui ils ont à affaire, il reprend: *"Une bande de paladins sont
 arrivés dans ma montagne la semaine dernière."* Devant l'absence de réaction
-des PJs, il poursuit: *"Dès qu'ils m'ont vu, ils ont hurlés des absurdités
+des PJ, il poursuit: *"Dès qu'ils m'ont vu, ils ont hurlés des absurdités
 comme "Tremble Naldeth, ta dernière est blablabla". Bon je ne les ai pas laissé
 finir mais ça m'agace: depuis ce nom me trotte dans la tête. Vous ne connaissez
 pas de Naldeth par hasard ?"*
 
-Suite à la réponse des PJs, le dragon explique vouloir finir ces dernières
+Suite à la réponse des PJ, le dragon explique vouloir finir ces dernières
 années tranquilement et qu'il apprécierait que les armures restent dans la
 vallée à s'occuper des nécessiteux plutôt que de venir l'embêter. Il ne
 s'appelle pas Naldeth, ne s'est jamais fait appeler ainsi et souhaite qu'on lui
@@ -140,18 +140,39 @@ Comment refuser ? Et puis c'est demandé si gentiment, avec un sourire si...
 dentu...
 
 **Luka** peut se souvenir de ce nom Naldeth, comme le chef d'une bande
-d'aventurier qui se balade dans la région. De toute façon les PJs n'ont pas
+d'aventurier qui se balade dans la région. De toute façon les PJ n'ont pas
 vraiment le choix, ils acceptent donc la requête.
 
 ## La Vallée Cramée
 
+### Clue-in Hauré
+
+La caméra survole un village de la vallée, on passe au dessus d'une vieille
+tour de guet délabrée, et redescend sur une maison avec une grande cheminée,
+isolée des autres. Devant la maison on y voit un aventurier donner une épée à
+un nain vétu d'une tablier en cuir avec des poches dont l'une dépasse une pince
+métallique. L'épée semble de bonne facture mais est ébréchée. Une fine chaine
+en bronze cours sur plusieurs tours entre la poignée, les quignons et la lame.
+
+Les 2 personnages semblent se mettre d'accord et le forgeron rentre dans sa
+maison, rallume l'atre et met l'épée dedans. Peu de temps après l'arme semble
+réagir aux flammes, celles-ci se mettent à danser autour et à s'amplifier. Une
+voix se fait entendre, "je suis le Dieu de l'Épée, tu m'as réveillé de mon
+sommeil. Tu es désormais mon prophète, grâce à toi je vais prendre de la
+puissance et reigner sur le monde, donne moi plus de FEU!!"
+
+**Hauré** semble alors devenir comme hypotisé et commence à attiser la forge de
+plus en plus, provocant de gerbes de flammes qui tournoient autour de l'épée.
+La vision s'arrête sur les rires mélés de l'être de l'Épée et Hauré réuni.
+
 C'est à ce moment qu'on peut introduire les pressure pools suivantes, qui
 s'enchainent jusqu'à la libération de l'Élémental de Feu de l'épée de **Hauré**.
 
-::: {.pressure-pool}
+::: {.pressure-pool repeat}
 ## 4D Premiers Feux
 
-- Le temps se radoucit, déjà le printemps ?
+- Un paysan se plaint de voir ses plantations déssécher.
+- La dernière distillation du couveur de cru a mal tourné: plusieurs personnes sont devenus aveugles.
 
 >> Canicule
 :::
@@ -160,7 +181,8 @@ s'enchainent jusqu'à la libération de l'Élémental de Feu de l'épée de **Ha
 ## 4D Canicule
 
 - Des villageois se battent devant un puit
-- Cadavres d'animaux desséchés
+- Cadavres de moutons brûlés, sûrement l'oeuvre du dragon Naldeth!
+- Un nouveau culte sévi dans la région: les illuminés de **Hauré**
 
 >> Délivrance
 :::
@@ -174,13 +196,13 @@ s'enchainent jusqu'à la libération de l'Élémental de Feu de l'épée de **Ha
 
 ### Premier Village en Feu
 
-En descendant la montagne, les PJs aperçoient une fumée épaisse et décident
+En descendant la montagne, les PJ aperçoient une fumée épaisse et décident
 d'aller voir ce qu'il en retourne. Bien vite, ils arrivent en vue d'un village
 en proie aux dernières flammes d'un incendie qui a ravagé une bonne partie des
-habitations. En s'approchant, les PJs sont accueillis par une enfant... qui
+habitations. En s'approchant, les PJ sont accueillis par une enfant... qui
 s'éloigne en hurlant de terreur: *"Les revoilà !"* crie bientôt un solide
 paysant, ralliant ces camarades, et se dirige avec fourches et fléaux vers les
-PJs.
+PJ.
 
 ::: {.challenges}
 ## 4D | Calmer les gueux
@@ -205,17 +227,23 @@ cendres. Par miracle aucune victime, mais la moitié du village est parti en
 fumée et ils ont du batailler contre le feu toute la nuit en s'aidant du puits.
 Et aucune trace de Naldeth et de sa bande.
 
-Ce nom doit faire tick à l'oreille des PJs, ils obtiennent assez vite une
-description de la bande, assez classique. Reste maintenant à les trouver.
+Ce nom doit faire tick à l'oreille des PJ, ils obtiennent assez vite une
+description de la bande, assez classique:
+
+- un homme en armure de métal complète (harnois) (Naldeth/Guerrier)
+- une halfeling vétue d'une cotte de maille (Cynthia/Prêtre)
+- un homme en robe noire (Puf/Mage)
+- un demi-elfe en cuir clouté (Joz/Voleur)
+
+Reste maintenant à les trouver.
 
 > ⚂ Pressure pool
 
 ::: {.challenges}
-## 6D | Retrouver les Dragons de Naldeth
+## 4D | Retrouver les Dragons de Naldeth
 * Ne cherchent pas à être discret
 * Sont également recherchés par Hauré
 - Trouve autre village avec ancien feu (voir *Apprendre de ces erreurs*)
-- Piège sur la route: 4D Gobelins | mooks (voir *Rencontre malvenue*)
 - Arrivée dans l'ancien village de Hauré (voir *Une foi ardente*)
 - Croise la route d'une troupe de paladins (voir *La confrérie du Mouton Divin*)
 :::
@@ -228,11 +256,9 @@ Rebelote le *"Ils sont de retours !"*.
 
 > ⚂ Pressure pool
 
-### Rencontre malvenue
-
-> ⚂ Pressure pool
-
 ### Une foi ardente
+
+
 
 > ⚂ Pressure pool
 
