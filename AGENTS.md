@@ -15,6 +15,7 @@ Custom syntax built on fenced divs (`:::`) with these section types:
 | Useful Pieces | `.useful-pieces` | `▸` | Right-pointing triangle |
 | Set It Up | `.set-it-up` | `▢` | Square checkbox |
 | Challenges | `.challenges` | by list marker | Traits: `*` (`✱`), Moves: `-` (`◉`), Fail State: `x` (`✘`) |
+| Image | `.image` | - | Centered standalone image; body uses markdown image syntax |
 | Page Break | `.page-break` | - | Forces the following content to start on a new page |
 
 Outside of fenced divs, a level-2 heading followed by a paragraph becomes a simple paragraph section with an underlined title. See [Simple Paragraphs](#simple-paragraphs) below.
@@ -94,6 +95,23 @@ appended to the preceding line. A blank line ends the quote.
 
 Quotes work in section bodies, not in the module header: a `>` line before the
 first heading renders as a normal hook or intro paragraph.
+
+### Images
+
+A standalone image is written with a `.image` fenced div whose body is a
+markdown image:
+
+```markdown
+::: {.image}
+![Alt text](path/to/image.png)
+:::
+```
+
+The image is centered and capped at the column width and 80 mm tall so it
+fits on a page without overflowing. The path must be reachable by
+Chromium: relative paths resolve from the HTML file, which lives next to
+the source when built with `--html` and in a temp directory otherwise
+(use an absolute `file://` path or a URL in that case).
 
 ### Page Breaks
 

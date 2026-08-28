@@ -142,6 +142,8 @@ def parse_div(attr, lines):
         return {"kind": "setup", "groups": parse_groups(lines)}
     if "challenges" in classes:
         return {"kind": "challenges", "challenges": parse_challenges(lines)}
+    if "image" in classes:
+        return {"kind": "image", "content": "\n".join(lines).strip()}
     if "page-break" in classes:
         return {"kind": "page-break"}
     return {"kind": "div", "classes": classes}
@@ -447,6 +449,8 @@ def _render_block(b, parts, pool_run, context="body"):
         parts.append(render_banded("set-it-up", "Set It Up", b["groups"], "m-box"))
     elif b["kind"] == "challenges":
         parts.append(render_challenges(b["challenges"]))
+    elif b["kind"] == "image":
+        parts.append(f"<figure class='image-block'>{inline(b['content'])}</figure>")
     elif b["kind"] == "list":
         items = "".join(f"<li>{inline(i)}</li>" for i in b["items"])
         parts.append(f"<ul>{items}</ul>")
@@ -804,6 +808,18 @@ blockquote {
 .challenge .fail::before {
   position: absolute; left: 0.2mm; top: 0.08em;
   font-family: "DejaVu Sans", sans-serif; line-height: 1;
+}
+
+/* ---- image ---- */
+.image-block {
+  margin: 4.5mm 0;
+  text-align: center;
+}
+.image-block img {
+  max-width: 100%;
+  max-height: 80mm;
+  height: auto;
+  display: inline-block;
 }
 
 /* ---- mix it up ---- */
