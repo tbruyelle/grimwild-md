@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """grimwild.py — Convert Grimwild module markdown to a styled PDF.
 
-Usage: python3 grimwild.py <module.md> [-o <output.pdf>]
+Usage: python3 grimwild.py <module.md> [-o <output.pdf>] [--print] [--html]
 
 Pipeline: custom markdown -> HTML (semantic sections) -> headless Chromium -> PDF.
 See AGENTS.md for the markdown syntax.
@@ -508,9 +508,12 @@ def page_backdrops(pages):
     )
 
 
-def render(mod, css=None, pages=1):
+def render(mod, css=None, pages=1, print_mode=False):
     if css is None:
-        css = BASE_CSS + "\n" + font_faces()
+        css = BASE_CSS
+        if print_mode:
+            css += "\n" + PRINT_CSS
+        css += "\n" + font_faces()
     css = build_css(css)
     head_parts, body_parts = [], []
     body_pool_run = []
@@ -836,6 +839,47 @@ blockquote {
 .mix-it-up em { font-size: 9pt; }
 """
 
+# Print mode: white background and greyscale ink. Overrides the colour
+# variables defined in BASE_CSS and flattens the page backdrop so the noise
+# filter and gradient (which would still tint the page even with white vars)
+# aren't rendered at all.
+PRINT_CSS = """
+:root {
+  --color-title: #111111;
+  --color-text: #1a1a1a;
+  --color-heading: #111111;
+  --color-banner-text: #222222;
+  --color-muted: #666666;
+  --color-pool-icon: #777777;
+  --color-dice-bg: #d4d4d4;
+  --color-banner: #e8e8e8;
+  --color-page-far: #ffffff;
+  --color-page-mid2: #ffffff;
+  --color-pool-header: #f3f3f3;
+  --color-page-mid1: #ffffff;
+  --color-pool-link-bg: #ffffff;
+  --color-page-start: #ffffff;
+  --color-cream: #ffffff;
+  --color-cream2: #ffffff;
+  --color-transparent: rgba(0,0,0,0);
+  --color-head-bg: #ffffff;
+  --color-card-bg: #ffffff;
+  --color-cols-bg: #ffffff;
+  --color-card-solid: #ffffff;
+  --color-shadow-dark: rgba(0,0,0,0);
+  --color-border-module: #888888;
+  --color-border-hook: #cccccc;
+  --color-border-title: #cccccc;
+  --color-border-challenge-light: #dddddd;
+  --color-border-challenge: #aaaaaa;
+  --color-border-card: #bbbbbb;
+  --color-border-header: #aaaaaa;
+  --color-border-section: #888888;
+  --color-vignette: rgba(0,0,0,0);
+}
+.sheet-bg { background: #ffffff; }
+"""
+
 # ---------------------------------------------------------------- template ---
 
 TEMPLATE = """<!DOCTYPE html>
@@ -891,9 +935,19 @@ def main():
     ap.add_argument("source", type=Path)
     ap.add_argument("-o", "--output", type=Path)
     ap.add_argument("--html", action="store_true", help="keep the intermediate HTML")
+    ap.add_argument(
+        "--print",
+        action="store_true",
+        help="printable version with a white background and greyscale ink",
+    )
     args = ap.parse_args()
 
-    pdf_path = args.output or args.source.with_suffix(".pdf")
+    if args.output:
+        pdf_path = args.output
+    elif args.print:
+        pdf_path = args.source.with_name(args.source.stem + "-print.pdf")
+    else:
+        pdf_path = args.source.with_suffix(".pdf")
     mod = parse(args.source.read_text(encoding="utf-8"))
 
     if args.html:
@@ -906,7 +960,9 @@ def main():
         html_path = Path(tmp.name)
 
     def build(pages):
-        html_path.write_text(render(mod, pages=pages), encoding="utf-8")
+        html_path.write_text(
+            render(mod, pages=pages, print_mode=args.print), encoding="utf-8"
+        )
         to_pdf(html_path, pdf_path)
 
     # A page number only makes sense once the module overflows, and its

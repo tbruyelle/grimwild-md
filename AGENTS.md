@@ -136,7 +136,7 @@ than emitting a blank page, and a run of consecutive breaks counts as one.
 ## Building
 
 ```
-python3 grimwild.py <module.md> [-o output.pdf] [--html]
+python3 grimwild.py <module.md> [-o output.pdf] [--print] [--html]
 ```
 
 Pipeline: custom markdown → HTML (semantic sections, inline SVG icons)
@@ -144,6 +144,10 @@ Pipeline: custom markdown → HTML (semantic sections, inline SVG icons)
 `chromium` binary and `pdfinfo` (poppler) for page numbering. `--html` keeps
 the intermediate HTML next to the source for debugging; it is a build artifact
 and is not tracked. Page size: 176mm × 250mm.
+
+`--print` generates a printable version: white background, greyscale ink,
+flat page backdrop (no gradient, no parchment noise). The default output is
+`<source>-print.pdf` so it doesn't overwrite the colour PDF; `-o` still wins.
 
 Every page is full-bleed. Chromium never paints into an `@page` margin, so the
 margin stays 0 and the parchment is drawn by one backdrop element per page,
