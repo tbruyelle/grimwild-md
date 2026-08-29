@@ -119,12 +119,16 @@ réponses, Giezzyth les regardent longuement et lache: *"Quel est mon nom?"*
 Rappelez à la table les implications de connaître le nom d'une telle créature
 et sur pourquoi elle poserait une telle question. Le dragon montre cependant
 des signes d'impatience et repose la question. Constatant que les PJ ignorent
-totalement à qui ils ont à affaire, il reprend: *"Une bande de paladins sont
-arrivés dans ma montagne la semaine dernière."* Devant l'absence de réaction
-des PJ, il poursuit: *"Dès qu'ils m'ont vu, ils ont hurlés des absurdités
-comme "Tremble Naldeth, ta dernière est blablabla". Bon je ne les ai pas laissé
-finir mais ça m'agace: depuis ce nom me trotte dans la tête. Vous ne connaissez
-pas de Naldeth par hasard ?"*
+totalement à qui ils ont à affaire, il reprend:
+
+*"Une bande de paladins sont arrivés dans ma montagne la semaine dernière."*
+
+Devant l'absence de réaction des PJ, il poursuit:
+
+*"Dès qu'ils m'ont vu, ils ont hurlés des absurdités comme "Tremble Naldeth,
+ta dernière est blablabla". Bon je ne les ai pas laissé finir mais ça m'agace:
+depuis ce nom me trotte dans la tête. Vous ne connaissez pas de Naldeth par
+hasard ?"*
 
 Suite à la réponse des PJ, le dragon explique vouloir finir ces dernières
 années tranquilement et qu'il apprécierait que les armures restent dans la
@@ -168,22 +172,21 @@ La vision s'arrête sur les rires mélés de l'être de l'Épée et Hauré réun
 C'est à ce moment qu'on peut introduire les pressure pools suivantes, qui
 s'enchainent jusqu'à la libération de l'Élémental de Feu de l'épée de **Hauré**.
 
-::: {.pressure-pool repeat}
+::: {.pressure-pool}
 ## 4D Premiers Feux
 
 - Un paysan se plaint de voir ses plantations déssécher.
-- La dernière distillation du couveur de cru a mal tourné: plusieurs personnes sont devenus aveugles.
+- La dernière distillation du couveur de cru a mal tournée: plusieurs personnes sont devenus aveugles.
 
 >> Canicule
 :::
 
-::: {.pressure-pool repeat}
+::: {.pressure-pool}
 ## 4D Canicule
 
 - Des villageois se battent devant un puit
 - Cadavres de moutons brûlés, sûrement l'oeuvre du dragon Naldeth!
 - Un nouveau culte sévi dans la région: les illuminés de **Hauré**
-- La distillerie de la vallée explose (acte de **Hauré**)
 
 >> Délivrance
 :::
@@ -191,7 +194,8 @@ s'enchainent jusqu'à la libération de l'Élémental de Feu de l'épée de **Ha
 ::: {.pressure-pool end}
 ## 4D Délivrance
 
-- L'Élémental de Feu se libère
+- La distillerie de la vallée explose (acte de **Hauré**), libérant l'Élémental de Feu
+- L'Élémental de Feu se libère, d'une manière ou d'une autre
 :::
 
 
@@ -255,7 +259,7 @@ Les PJ sont invités à l'étendre en ajoutant des éléments:
 - **Des endroits spéciaux (3 tokens)**
   - une curiosité: endroit intriguant à explorer 
   - une barrière: une rivière, des montagnes une falaise: 1d story roll
-  - une zone: lac, marais, desert, foret
+  - une zone: lac, marais, désert, forêt
 
 À chaque fois que le MJ juge nécessaire, le challenge ci-dessous est lancé,
 avec un lancer du *Pressure pool* également.
@@ -289,5 +293,25 @@ disparu, personne ne sait par où.
 
 ### La confrérie du Mouton Divin
 
+Il s'agit d'un groupe de paladins fanatiques et crétins qui résident dans le
+monastère sur montagne au Sud. Les PJ peuvent les croiser au hasard sur la
+route ou dans un village, idéalement en train de recevoir les plaintes d'un
+villageois au sujet du dragon Naldeth. Par exemple cela pourrait être quand les
+moutons brulés sont découvert dans leur champs, ce qui est d'autant plus un
+afront pour eux car le mouton est un animal divin à leur yeux.
+
+Ils vont tôt tard partir à la recherche du Dragon, en recherchant le village
+d'**Arkkham** afin que son fils **Luka** les conduise jusqu'à son antre. Les PJ
+doivent tenter de les ralentir d'une manière ou d'une autre ou alors la pool de
+la patience du Dragon se déclenche (pool 4D).
+
 > ⚂ Pressure pool
+
+## Les Dragons de Naldeth
+
+Peu importe où les PJ trouvent Naldeth et sa bande, il va falloir les
+convaincre de partir de la région où de se tenir à careau, et éventuellement de
+les aider à buter **Hauré**. Ce dernier n'est d'ailleurs pas loin et n'attend
+que la confirmation de l'identité de Naldeth pour sortir de l'ombre et leur
+proposer de rentrer sa secte.
 
