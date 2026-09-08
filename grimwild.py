@@ -163,9 +163,16 @@ QUOTE_MARKER = re.compile(r"^\s*>\s?")
 HEADING_MARKER = re.compile(r"^#{1,6}\s+")
 HEADING_LINE = re.compile(r"^#{1,3} ")
 
-# Page geometry for the page-number offsets; must match @page in BASE_CSS.
-PAGE_HEIGHT = "250mm"
-FOOTER_TOP = "244mm"  # page number offset from the top of its page
+# Page geometry: the colour PDF uses the original trim, the print version
+# widens to A4. Sentinels in BASE_CSS and the values below must agree.
+PAGE_GEOMETRY = {
+    "default": {"width": "176mm", "height": "250mm", "footer_top": "244mm"},
+    "print": {"width": "210mm", "height": "297mm", "footer_top": "291mm"},
+}
+
+
+def page_geometry(print_mode):
+    return PAGE_GEOMETRY["print" if print_mode else "default"]
 
 # Table header and footer rows are the one construct Chromium repeats on every
 # printed page while reserving their height, which is what gives a continuation
@@ -504,21 +511,23 @@ def _drop_empty_breaks(blocks):
     return kept
 
 
-def page_numbers(pages):
+def page_numbers(pages, print_mode=False):
     """Bottom-centered page numbers, one per page, placed at each page break."""
     if pages < 2:
         return ""
+    geo = page_geometry(print_mode)
     return "\n".join(
-        f"<div class='pagenum' style='top: calc({k} * {PAGE_HEIGHT} + {FOOTER_TOP})'>"
+        f"<div class='pagenum' style='top: calc({k} * {geo['height']} + {geo['footer_top']})'>"
         f"{k + 1}</div>"
         for k in range(pages)
     )
 
 
-def page_backdrops(pages):
+def page_backdrops(pages, print_mode=False):
     """One parchment backdrop per page."""
+    geo = page_geometry(print_mode)
     return "\n".join(
-        f"<div class='sheet-bg' style='top: calc({k} * {PAGE_HEIGHT})'></div>"
+        f"<div class='sheet-bg' style='top: calc({k} * {geo['height']})'></div>"
         for k in range(max(pages, 1))
     )
 
@@ -529,6 +538,13 @@ def render(mod, css=None, pages=1, print_mode=False):
         if print_mode:
             css += "\n" + PRINT_CSS
         css += "\n" + font_faces()
+    geo = page_geometry(print_mode)
+    css = (
+        css
+        .replace("/*PAGE_WIDTH*/", geo["width"])
+        .replace("/*PAGE_HEIGHT*/", geo["height"])
+        .replace("/*FOOTER_TOP*/", geo["footer_top"])
+    )
     css = build_css(css)
     head_parts, body_parts = [], []
     body_pool_run = []
@@ -559,8 +575,8 @@ def render(mod, css=None, pages=1, print_mode=False):
         body="\n".join(body_parts),
         sheet_open=SHEET_OPEN if pages > 1 else "",
         sheet_close=SHEET_CLOSE if pages > 1 else "",
-        page_backdrops=page_backdrops(pages),
-        page_numbers=page_numbers(pages),
+        page_backdrops=page_backdrops(pages, print_mode),
+        page_numbers=page_numbers(pages, print_mode),
         css=css,
     )
 
@@ -626,7 +642,7 @@ BASE_CSS = """
 
 /* Chromium never paints into an @page margin, so the margin stays 0 to keep
    the page full-bleed; the page numbers sit inside the page instead. */
-@page { size: 176mm 250mm; margin: 0; }
+@page { size: /*PAGE_WIDTH*/ /*PAGE_HEIGHT*/; margin: 0; }
 * { box-sizing: border-box; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 html { margin: 0; padding: 0; background: var(--color-page-start); }
 /* One parchment backdrop per page, so every page gets the same gradient
@@ -635,7 +651,7 @@ html { margin: 0; padding: 0; background: var(--color-page-start); }
    it rasterize the whole page into the PDF instead. */
 .sheet-bg {
   position: absolute; left: 0; z-index: -1;
-  width: 176mm; height: 250mm;
+  width: /*PAGE_WIDTH*/; height: /*PAGE_HEIGHT*/;
   background:
     radial-gradient(115% 85% at 50% 42%, var(--color-transparent) 52%, var(--color-vignette) 100%),
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.38 0 0 0 0 0.30 0 0 0 0.05 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>"),
@@ -646,17 +662,17 @@ body {
   font-family: "Capito TRIAL 04", "Noto Serif", serif;
   font-weight: 300;
   font-size: 8.6pt; line-height: 1.24; color: var(--color-text);
-  width: 176mm; height: auto;
+  width: /*PAGE_WIDTH*/; height: auto;
 }
 .pagenum {
-  position: absolute; left: 0; width: 176mm; text-align: center;
+  position: absolute; left: 0; width: /*PAGE_WIDTH*/; text-align: center;
   font-size: 8pt; color: var(--color-muted);
 }
 /* Only present when the module is numbered: the repeating header and footer
    cells give every page its top margin and keep content clear of the strip the
    page number sits in. The block padding below only applies to the first and
    last page, so the header cell takes over the top margin here. */
-table.sheet { width: 176mm; border-collapse: collapse; }
+table.sheet { width: /*PAGE_WIDTH*/; border-collapse: collapse; }
 table.sheet td { padding: 0; vertical-align: top; }
 table.sheet .page { padding-top: 0; }
 td.head-space { height: 8mm; }

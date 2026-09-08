@@ -74,9 +74,6 @@ Voyant cela, **Luka** fonce et se rapproche à une distance d'environ 30m, et
 décoche une autre carreau qui vient se planter dans l'autre fesse du *Troll*,
 ce dernier fou de rage envoie la vache sur son aggresseur.
 
-::: {.page-break}
-:::
-
 ::: {.challenges}
 ## 2D | Troll blessé | Elite Blaster
 * Regénération
