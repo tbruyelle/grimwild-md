@@ -172,13 +172,12 @@ La vision s'arrête sur les rires mélés de l'être de l'Épée et Hauré réun
 C'est à ce moment qu'on peut introduire les pressure pools suivantes, qui
 s'enchainent jusqu'à la libération de l'Élémental de Feu de l'épée de **Hauré**.
 
-::: {.pressure-pool}
-## 4D Premiers Feux
+::: {.pressure-pool reload}
+## 4D Giezzyth s'impatiente
 
-- Un paysan se plaint de voir ses plantations déssécher.
-- La dernière distillation du couveur de cru a mal tournée: plusieurs personnes sont devenus aveugles.
+- Brûle la ferme d'Arkham pour débusquer Luka
+- Survole la vallée
 
->> Canicule
 :::
 
 ::: {.pressure-pool}
@@ -307,11 +306,23 @@ la patience du Dragon se déclenche (pool 4D).
 
 > ⚂ Pressure pool
 
-## Les Dragons de Naldeth
+## Épilogue
 
-Peu importe où les PJ trouvent Naldeth et sa bande, il va falloir les
-convaincre de partir de la région où de se tenir à careau, et éventuellement de
-les aider à buter **Hauré**. Ce dernier n'est d'ailleurs pas loin et n'attend
-que la confirmation de l'identité de Naldeth pour sortir de l'ombre et leur
-proposer de rentrer sa secte.
+Les PJ trouvent Naldeth et sa bande un soir dans une auberge ou dans la
+distillerie, en train de se saouler. Ils ne sont pas belliqueux et sont prêt à
+accepté leur demandes si l'un d'entre gagne un jeu de boisson.
+
+Le jeu de boisson consiste à utiliser le Brawn comme un power pool, Naldeth a
+4d car il tient bien la boisson. Lorsque l'un des participants a son pool
+épuisé, il a perdu. Un Messy sur le lancer entraine un marque sur un stat
+(cumulable), un Grim entrain la condition "2d saoul". Un pool épuisé veut dire
+que le participant roule sous la table. À son réveil il est "6d éméché".
+
+Après cette beuverie, **Hauré** débarque (le PJ peut utiliser un point de
+Suspense), confirme l'identité des Naldeth et leur propose d'entrer dans leur
+secte. Ces derniers ne sont pas chauds mais très vite les choses se gatent
+puisque **Hauré** (ou ses disciples si il en a, voir pressure pool) a mis le
+feu à l'extérieur ce qui devrait entrainer le réveil de l'Élémentaire.
+
+
 
