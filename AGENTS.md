@@ -11,6 +11,7 @@ Custom syntax built on fenced divs (`:::`) with these section types:
 |---------|-----------|-----------------|-------|
 | Module Icon | `.module-icon` | - | Optional SVG icon for the module header. Defaults to a goblin mask if omitted. Good source for icons: https://game-icons.net/ |
 | Pressure Pools | `.pressure-pool` | `◉` | Tables for columns; links: `>> B` (lock), `>>* B` (trigger) |
+| Challenge Links | inside `.challenges` | - | `>> B` (lock with icon), `> B` (plain line); placed inside the source challenge, points to another challenge title |
 | Pressure Pool properties | `repeat`, `end` | - | Add to div class: `{.pressure-pool repeat}` |
 | Useful Pieces | `.useful-pieces` | `▸` | Right-pointing triangle |
 | Set It Up | `.set-it-up` | `▢` | Square checkbox |
@@ -46,6 +47,27 @@ can have links between them, represented as lines between two columns, with a
 different icon on the line:
 - Lock link: lock icon
 - Trigger link: a right arrow inside a circle
+
+### Challenge Links
+
+A challenge card can link to another challenge. The line goes inside the
+source challenge, after its traits, moves, or fail state:
+
+- `>> TITLE` — lock link, drawn as a line with a lock icon
+- `> TITLE` — simple link, drawn as a plain line (no icon)
+- Trigger links (`>>*`) are not supported in challenges
+
+```markdown
+::: {.challenges}
+## 4D | First Challenge
+
+* trait
+- move
+>> Second Challenge
+
+## 4D | Second Challenge
+:::
+```
 
 ### Simple Paragraphs
 

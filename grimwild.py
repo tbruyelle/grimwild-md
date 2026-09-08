@@ -43,9 +43,10 @@ def font_faces():
 # ---------------------------------------------------------------- parsing ---
 
 DIV_OPEN = re.compile(r"^:::\s*\{([^}]*)\}\s*$")
-DICE_POOL = re.compile(r"^(\dD)\s+(.*)$")
-DICE_CHAL = re.compile(r"^(\dD)(?:\s*\|\s*|\s+)(.*)$")
+DICE_POOL = re.compile(r"^(\d[Dd])\s+(.*)$")
+DICE_CHAL = re.compile(r"^(\d[Dd])(?:\s*\|\s*|\s+)(.*)$")
 LINK = re.compile(r"^(>>\*?)\s*(.*)$")
+CHAL_LINK = re.compile(r"^(>>|>)\s+(.*)$")
 
 
 def parse_classes(attr):
@@ -117,6 +118,7 @@ def parse_challenges(lines):
                         "traits": [],
                         "moves": [],
                         "fail": None,
+                        "link": None,
                     }
                 )
         elif s.startswith("* "):
@@ -125,6 +127,14 @@ def parse_challenges(lines):
             challenges[-1]["moves"].append(s[2:])
         elif s.startswith("x "):
             challenges[-1]["fail"] = s[2:]
+        else:
+            m = CHAL_LINK.match(s)
+            if m:
+                challenges[-1]["link"] = {
+                    "from": challenges[-1]["title"],
+                    "to": m.group(2),
+                    "type": "lock" if m.group(1) == ">>" else "simple",
+                }
     return challenges
 
 
@@ -409,6 +419,11 @@ def render_challenges(challenges):
             f"<ul class='m-star traits'>{traits}</ul>"
             f"<ul class='m-dot moves'>{moves}</ul>{fail}</div>"
         )
+        if c["link"]:
+            body = LOCK_SVG if c["link"]["type"] == "lock" else ""
+            out.append(
+                f"<div class='challenge-link {c['link']['type']}'>{body}</div>"
+            )
     return f"<section class='challenges'>{''.join(out)}</section>"
 
 
@@ -769,7 +784,7 @@ blockquote {
 .page .page-break + * { margin-top: 0; }
 
 /* ---- challenges ---- */
-.challenges { display: flex; gap: 2.5mm; margin-top: 4.5mm; margin-bottom: 4.5mm; }
+.challenges { display: flex; gap: 4mm; margin-top: 4.5mm; margin-bottom: 4.5mm; }
 .challenge {
   flex: 1; background: var(--color-card-bg); border-radius: 0.65mm;
   box-shadow: 0 0 0 0.25mm var(--color-border-card); overflow: hidden;
@@ -811,6 +826,21 @@ blockquote {
 .challenge .fail::before {
   position: absolute; left: 0.2mm; top: 0.08em;
   font-family: "DejaVu Sans", sans-serif; line-height: 1;
+}
+.challenge-link {
+  position: relative; flex: none; align-self: flex-start;
+  width: 4mm; height: 6mm; margin: 0 -4mm;  /* exactly bridges the flex gap */
+}
+.challenge-link::before {  /* line at header middle, spanning the gap only */
+  content: ""; position: absolute; left: 0; right: 0; top: 2.6mm;
+  border-top: 0.35mm solid var(--color-pool-icon);
+}
+.challenge-link svg {  /* sitting just above the line */
+  position: absolute; display: block; width: 3.5mm; height: 3.5mm;
+  left: 50%; top: 0.5mm; transform: translateX(-50%);
+}
+.challenge-link.simple::before {  /* plain link: no icon, thicker line */
+  border-top-width: 1.05mm;
 }
 
 /* ---- image ---- */

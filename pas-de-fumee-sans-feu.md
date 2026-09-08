@@ -173,7 +173,7 @@ C'est à ce moment qu'on peut introduire les pressure pools suivantes, qui
 s'enchainent jusqu'à la libération de l'Élémental de Feu de l'épée de **Hauré**.
 
 ::: {.pressure-pool reload}
-## 4D Giezzyth s'impatiente
+## 4d Giezzyth s'impatiente
 
 - Brûle la ferme d'Arkham pour débusquer Luka
 - Survole la vallée
@@ -181,7 +181,7 @@ s'enchainent jusqu'à la libération de l'Élémental de Feu de l'épée de **Ha
 :::
 
 ::: {.pressure-pool}
-## 4D Canicule
+## 4d Canicule
 
 - Des villageois se battent devant un puit
 - Cadavres de moutons brûlés, sûrement l'oeuvre du dragon Naldeth!
@@ -191,7 +191,7 @@ s'enchainent jusqu'à la libération de l'Élémental de Feu de l'épée de **Ha
 :::
 
 ::: {.pressure-pool end}
-## 4D Délivrance
+## 4d Délivrance
 
 - La distillerie de la vallée explose (acte de **Hauré**), libérant l'Élémental de Feu
 - L'Élémental de Feu se libère, d'une manière ou d'une autre
@@ -209,7 +209,7 @@ paysant, ralliant ces camarades, et se dirige avec fourches et fléaux vers les
 PJ.
 
 ::: {.challenges}
-## 4D | Calmer les gueux
+## 4d | Calmer les gueux
 * Furieux
 * Apeurés
 - Jet de tomate/excrément
@@ -264,7 +264,7 @@ Les PJ sont invités à l'étendre en ajoutant des éléments:
 avec un lancer du *Pressure pool* également.
 
 ::: {.challenges}
-## 6D | Retrouver les Dragons de **Naldeth**
+## 6d | Retrouver les Dragons de **Naldeth**
 * Ne cherchent pas à être discret
 * Sont également recherchés par **Hauré**
 - Trouve autre village avec ancien feu (voir *Apprendre de ces erreurs*)
@@ -324,5 +324,31 @@ secte. Ces derniers ne sont pas chauds mais très vite les choses se gatent
 puisque **Hauré** (ou ses disciples si il en a, voir pressure pool) a mis le
 feu à l'extérieur ce qui devrait entrainer le réveil de l'Élémentaire.
 
+::: {.challenges}
+## 6d | Forme Éthérée
+* Intangibilité totale: insensible aux attaques physique.
+* Sensible à l'eau, aux fortes bourrasques et au manque d'oxygène.
+* Chaleur Rayonnante: dégats thermiques à quiconque s'approche à moins de 5m.
+- Fouet d'Éther
+- Implosion Pyro-asphixiante
+
+>> Forme Magmatique
+
+## 8d | Forme Magmatique
+* Carapase de basalte
+* Sensible à l'eau, rend sa carapace cassante
+- Balayage Magmatique
+- Projection de scories
+- Ancrage terreux
+
+>> Forme Calcifiée
+
+## 4d | Forme calcifiée
+* Structure friable: sensible aux armes contendantes
+* Invisibilité dans la fumée
+- Griffe d'escarre
+- Nuage de suie aveuglant
+- Bouquet final: à la limite de l'anéantissement, explose dans une gerbe d'étincelles.
+:::
 
 
