@@ -313,16 +313,15 @@ distillerie, en train de se saouler. Ils ne sont pas belliqueux et sont prêt à
 accepté leur demandes si l'un d'entre gagne un jeu de boisson.
 
 Le jeu de boisson consiste à utiliser le Brawn comme un power pool, Naldeth a
-4d car il tient bien la boisson. Lorsque l'un des participants a son pool
-épuisé, il a perdu. Un Messy sur le lancer entraine un marque sur un stat
-(cumulable), un Grim entrain la condition "2d saoul". Un pool épuisé veut dire
-que le participant roule sous la table. À son réveil il est "6d éméché".
+4d car il tient bien la boisson. Lorsque l'un des participants a épuisé son pool, il a perdu. Un Messy sur le lancer entraine un marque sur une stat (cumulable), un Grim entraine la condition "2d saoul" (cumulable). Un pool épuisé veut dire que le participant roule sous la table. À son réveil il est "6d éméché".
 
 Après cette beuverie, **Hauré** débarque (le PJ peut utiliser un point de
 Suspense), confirme l'identité des Naldeth et leur propose d'entrer dans leur
 secte. Ces derniers ne sont pas chauds mais très vite les choses se gatent
 puisque **Hauré** (ou ses disciples si il en a, voir pressure pool) a mis le
 feu à l'extérieur ce qui devrait entrainer le réveil de l'Élémentaire.
+
+L'Élémentaire a 3 formes consécutives:
 
 ::: {.challenges}
 ## 6d | Forme Éthérée
@@ -351,4 +350,9 @@ feu à l'extérieur ce qui devrait entrainer le réveil de l'Élémentaire.
 - Bouquet final: à la limite de l'anéantissement, explose dans une gerbe d'étincelles.
 :::
 
+Les PJ peuvent se faire aider par les Naldeths ou par des paladins si ils en
+ont croisé et ont réussi à les convaincre de les suivre. Utiliser des power
+pools pour représenter ces participants.
 
+Une fois l'Élémentaire éliminé, le calme revient dans la vallée et Giezzyth
+revient récompenser les PJ.
