@@ -316,9 +316,8 @@ Après cette beuverie, **Hauré** débarque (le PJ peut utiliser un point de
 Suspense), confirme l'identité des Naldeth et leur propose d'entrer dans leur
 secte. Ces derniers ne sont pas chauds mais très vite les choses se gatent
 puisque **Hauré** (ou ses disciples si il en a, voir pressure pool) a mis le
-feu à l'extérieur ce qui devrait entrainer le réveil de l'Élémentaire.
-
-L'Élémentaire a 3 formes consécutives:
+feu à l'extérieur ce qui devrait entrainer le réveil de l'Élémentaire,
+**Tostadora**.
 
 ::: {.challenges title="Tostadora l'Élémentaire de Feu"}
 ## 6d | Forme Éthérée
