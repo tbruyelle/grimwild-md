@@ -320,7 +320,7 @@ feu à l'extérieur ce qui devrait entrainer le réveil de l'Élémentaire.
 
 L'Élémentaire a 3 formes consécutives:
 
-::: {.challenges}
+::: {.challenges title="Tostadora l'Élémentaire de Feu"}
 ## 6d | Forme Éthérée
 * Intangibilité totale: insensible aux attaques physique.
 * Sensible à l'eau, aux fortes bourrasques et au manque d'oxygène.

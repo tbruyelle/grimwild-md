@@ -111,11 +111,64 @@ class FixtureTest(unittest.TestCase):
             "expected 'no matching opener' error at line 104",
         )
 
-    def test_fixture_produces_no_unexpected_issues(self):
+    def test_unknown_challenges_property(self):
+        self.assertTrue(
+            at_line(self.issues, 108, "unknown challenges property"),
+            "expected 'unknown challenges property' error at line 108",
+        )
+
+    def test_single_quoted_prop_value(self):
+        # The "bogus" case on line 108 also fires the double-quote
+        # check; the dedicated single-quote title prop is at line 114.
+        self.assertTrue(
+            at_line(self.issues, 108, "double quotes"),
+            "expected 'double quotes' error at line 108",
+        )
+        self.assertTrue(
+            at_line(self.issues, 115, "double quotes"),
+            "expected 'double quotes' error at line 115",
+        )
+
+    def test_challenges_title_with_no_value(self):
+        self.assertTrue(
+            at_line(self.issues, 122, "has no value"),
+            "expected 'has no value' error at line 122",
+        )
+
+    def test_issues_are_sorted_by_line(self):
+        lines = [i["line"] for i in self.issues]
+        self.assertEqual(lines, sorted(lines), "issues should be sorted by line")
+
+    def test_each_expected_issue(self):
+        # Each case in the fixture is pinned by line and a message
+        # substring. A new case added to the fixture below must also be
+        # added here, and removing one fails this test.
+        expected = [
+            (11, "unknown pressure-pool property: 'reload'"),
+            (18, "unknown div class: 'foo'"),
+            (25, "pressure-pool missing '## xD TITLE' heading"),
+            (32, "challenges div has no challenge cards"),
+            (37, "image div has no markdown image"),
+            (43, "challenges div has no challenge cards"),
+            (44, "heading missing dice notation: 'A Title Without Dice'"),
+            (54, "trigger link '>>*' is not supported in challenges"),
+            (64, "plain link '>' is not supported in pressure pools"),
+            (77, "pressure-pool link target not found: 'Ghost Pool'"),
+            (86, "duplicate challenge title: 'Same Name'"),
+            (95, "dice value 0 outside 1..8 range"),
+            (98, "dice value 9 outside 1..8 range"),
+            (104, "closing ':::' with no matching opener"),
+            (108, "unknown challenges property: 'bogus'"),
+            (108, "prop must use double quotes: \"bogus='value'\""),
+            (115, "prop must use double quotes: \"title='Wrong quotes'\""),
+            (122, "challenges property 'title' has no value (use title=\"...\")"),
+        ]
+        actual = [(i["line"], i["message"]) for i in self.issues]
         self.assertEqual(
-            len(self.issues),
-            14,
-            f"unexpected issue count: {[i for i in self.issues]}",
+            actual,
+            expected,
+            "fixture issues do not match the expected list; "
+            "update this test when adding or removing a case in the fixture.",
         )
 
 

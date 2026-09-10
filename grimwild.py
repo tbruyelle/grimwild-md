@@ -49,9 +49,21 @@ LINK = re.compile(r"^(>>\*?)\s*(.*)$")
 CHAL_LINK = re.compile(r"^(>>|>)\s+(.*)$")
 
 
-def parse_classes(attr):
-    """'.pressure-pool repeat' -> ['pressure-pool', 'repeat']"""
-    return [c.lstrip(".") for c in attr.split()]
+def parse_div_attr(attr):
+    """Parse a fenced div attribute into (classes, props).
+
+    '.pressure-pool repeat' -> (['pressure-pool', 'repeat'], {})
+    '.challenges title="A title"' -> (['challenges'], {'title': 'A title'})
+    """
+    # Pull out key=value tokens first; the rest is class tokens.
+    remaining = re.sub(r"""[\w-]+=(?:"[^"]*"|'[^']*'|\S+)""", "", attr)
+    classes = [c.lstrip(".") for c in remaining.split() if c.lstrip(".")]
+    props = {}
+    for m in re.finditer(r"""([\w-]+)=(?:"([^"]*)"|'([^']*)'|(\S+))""", attr):
+        key = m.group(1)
+        value = m.group(2) or m.group(3) or m.group(4) or ""
+        props[key] = value
+    return classes, props
 
 
 def parse_pool(lines):
@@ -139,7 +151,7 @@ def parse_challenges(lines):
 
 
 def parse_div(attr, lines):
-    classes = parse_classes(attr)
+    classes, props = parse_div_attr(attr)
     if "module-icon" in classes:
         return {"kind": "icon", "svg": "\n".join(lines).strip()}
     if "pressure-pool" in classes:
@@ -151,7 +163,10 @@ def parse_div(attr, lines):
     if "set-it-up" in classes:
         return {"kind": "setup", "groups": parse_groups(lines)}
     if "challenges" in classes:
-        return {"kind": "challenges", "challenges": parse_challenges(lines)}
+        block = {"kind": "challenges", "challenges": parse_challenges(lines)}
+        if "title" in props:
+            block["title"] = props["title"]
+        return block
     if "image" in classes:
         return {"kind": "image", "content": "\n".join(lines).strip()}
     if "page-break" in classes:
@@ -338,6 +353,7 @@ def parse(text):
 KNOWN_CLASSES = ["module-icon", "pressure-pool", "useful-pieces",
                  "set-it-up", "challenges", "image", "page-break"]
 KNOWN_POOL_PROPS = {"repeat", "end"}
+KNOWN_CHALLENGE_PROPS = {"title"}
 ALL_LINKS = re.compile(r"^(>>\*?|>) (.+)$")
 IMAGE_RE = re.compile(r"!\[[^\]]*\]\([^)]+\)")
 
@@ -365,7 +381,7 @@ def validate(text):
         m = DIV_OPEN.match(line)
         if m:
             attr = m.group(1)
-            classes = [c.lstrip(".") for c in attr.split()]
+            classes, props = parse_div_attr(attr)
             primary = next((c for c in KNOWN_CLASSES if c in classes), None)
             extras = [c for c in classes if c not in KNOWN_CLASSES]
             if not primary:
@@ -374,6 +390,15 @@ def validate(text):
                 for bp in extras:
                     if bp not in KNOWN_POOL_PROPS:
                         add(i, f"unknown pressure-pool property: {bp!r}")
+            elif primary == "challenges":
+                for name in props:
+                    if name not in KNOWN_CHALLENGE_PROPS:
+                        add(i, f"unknown challenges property: {name!r}")
+                if "title" in extras:
+                    add(i, "challenges property 'title' has no value (use title=\"...\")")
+            # Enforce double-quoted prop values everywhere.
+            for sm in re.finditer(r"""[\w-]+='[^']*'""", attr):
+                add(i, f"prop must use double quotes: {sm.group()!r}")
             div = {
                 "line": i, "primary": primary, "headings": [], "links": [],
                 "body_lines": [],
@@ -457,7 +482,10 @@ def validate(text):
             if not IMAGE_RE.search(body):
                 add(d["line"], "image div has no markdown image")
 
-    return issues
+    # Two passes contribute issues: the inline pass walks the source
+    # top-to-bottom, and the post-pass reports missing content at the
+    # div's opening line. Sort so the output reads in source order.
+    return sorted(issues, key=lambda i: i["line"])
 
 
 REPEAT_SVG = """<svg fill='var(--color-pool-icon)' version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 94.073 94.072' xml:space='preserve'><g><path d='M91.465,5.491c-0.748-0.311-1.609-0.139-2.18,0.434l-8.316,8.316C72.046,5.057,60.125,0,47.399,0c-2.692,0-5.407,0.235-8.068,0.697C21.218,3.845,6.542,17.405,1.944,35.244c-0.155,0.599-0.023,1.235,0.355,1.724c0.379,0.489,0.962,0.775,1.581,0.775h12.738c0.839,0,1.59-0.524,1.878-1.313c3.729-10.193,12.992-17.971,23.598-19.814c1.747-0.303,3.525-0.456,5.288-0.456c8.428,0,16.299,3.374,22.168,9.5l-8.445,8.444c-0.571,0.572-0.742,1.432-0.434,2.179c0.311,0.748,1.039,1.235,1.848,1.235h28.181c1.104,0,2-0.896,2-2V7.338C92.7,6.53,92.211,5.801,91.465,5.491z'/><path d='M90.192,56.328H77.455c-0.839,0-1.59,0.523-1.878,1.312c-3.729,10.193-12.992,17.972-23.598,19.814c-1.748,0.303-3.525,0.456-5.288,0.456c-8.428,0-16.3-3.374-22.168-9.5l8.444-8.444c0.572-0.572,0.743-1.432,0.434-2.179c-0.31-0.748-1.039-1.235-1.848-1.235H3.374c-1.104,0-2,0.896-2,2v28.181c0,0.809,0.487,1.538,1.235,1.848c0.746,0.31,1.607,0.138,2.179-0.435l8.316-8.315c8.922,9.183,20.843,14.241,33.569,14.241c2.693,0,5.408-0.235,8.069-0.697c18.112-3.146,32.789-16.708,37.387-34.547c0.155-0.6,0.023-1.234-0.354-1.725C91.395,56.615,90.811,56.328,90.192,56.328z'/></g></svg>"""
@@ -540,15 +568,20 @@ def render_banded(kind, title, groups, marker):
     )
 
 
-def render_challenges(challenges):
+def render_challenges(block):
     out = []
-    for c in challenges:
+    if block.get("title"):
+        out.append(
+            f"<h2 class='challenges-title'>{inline(block['title'])}</h2>"
+        )
+    cards = []
+    for c in block["challenges"]:
         traits = "".join(f"<li>{inline(t)}</li>" for t in c["traits"])
         moves = "".join(f"<li>{inline(m)}</li>" for m in c["moves"])
         fail = ""
         if c["fail"]:
             fail = f"<p class='fail'>{c["fail"]}</p>"
-        out.append(
+        cards.append(
             f"<div class='challenge'>"
             f"<header><span class='dice'>{c['dice']}</span>"
             f"<span class='sep'>|</span><h2>{inline(c['title'])}</h2></header>"
@@ -557,9 +590,10 @@ def render_challenges(challenges):
         )
         if c["link"]:
             body = LOCK_SVG if c["link"]["type"] == "lock" else ""
-            out.append(
+            cards.append(
                 f"<div class='challenge-link {c['link']['type']}'>{body}</div>"
             )
+    out.append(f"<div class='challenges-cards'>{''.join(cards)}</div>")
     return f"<section class='challenges'>{''.join(out)}</section>"
 
 
@@ -599,7 +633,7 @@ def _render_block(b, parts, pool_run, context="body"):
     elif b["kind"] == "setup":
         parts.append(render_banded("set-it-up", "Set It Up", b["groups"], "m-box"))
     elif b["kind"] == "challenges":
-        parts.append(render_challenges(b["challenges"]))
+        parts.append(render_challenges(b))
     elif b["kind"] == "image":
         parts.append(f"<figure class='image-block'>{inline(b['content'])}</figure>")
     elif b["kind"] == "list":
@@ -737,6 +771,7 @@ def build_css(css):
 BASE_CSS = """
 :root {
   --color-title: #16130d;
+  --color-title-bar: #3d2817;
   --color-text: #211d15;
   --color-heading: #221e15;
   --color-banner-text: #231f16;
@@ -929,7 +964,16 @@ blockquote {
 .page .page-break + * { margin-top: 0; }
 
 /* ---- challenges ---- */
-.challenges { display: flex; gap: 4mm; margin-top: 4.5mm; margin-bottom: 4.5mm; }
+.challenges { margin-top: 4.5mm; margin-bottom: 4.5mm; }
+.challenges-title {
+  background: var(--color-title-bar); color: var(--color-page-start);
+  text-align: center; text-transform: uppercase;
+  font-family: "Tiller", "Noto Sans", sans-serif; font-weight: 800;
+  font-size: 11pt; letter-spacing: 0.04em;
+  padding: 1.6mm 2mm; border-radius: 0.65mm;
+  margin: 0 0 1.5mm;
+}
+.challenges-cards { display: flex; gap: 4mm; }
 .challenge {
   flex: 1; background: var(--color-card-bg); border-radius: 0.65mm;
   box-shadow: 0 0 0 0.25mm var(--color-border-card); overflow: hidden;
@@ -1021,6 +1065,7 @@ blockquote {
 PRINT_CSS = """
 :root {
   --color-title: #111111;
+  --color-title-bar: #111111;
   --color-text: #1a1a1a;
   --color-heading: #111111;
   --color-banner-text: #222222;

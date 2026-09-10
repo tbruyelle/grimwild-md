@@ -103,6 +103,27 @@ x Bad Fail
 
 :::
 
+## Unknown challenges property
+
+::: {.challenges bogus='value'}
+## 4D | Test
+* trait
+:::
+
+## Prop value with single quotes (must be double)
+
+::: {.challenges title='Wrong quotes'}
+## 4D | Test
+* trait
+:::
+
+## Prop with no value
+
+::: {.challenges title}
+## 4D | Test
+* trait
+:::
+
 ## Valid syntax (no issues expected)
 
 The cases below exercise the positive path: well-formed input that must
@@ -172,5 +193,17 @@ x fail state
 
 ::: {.image}
 ![Alt text](path/to/image.png)
+:::
+
+### Challenges with title prop
+
+::: {.challenges title="Panel header text"}
+## 4D | First
+* trait
+- move
+
+## 4D | Second
+* trait
+- move
 :::
 

@@ -13,6 +13,7 @@ Custom syntax built on fenced divs (`:::`) with these section types:
 | Pressure Pools | `.pressure-pool` | `◉` | Tables for columns; links: `>> B` (lock), `>>* B` (trigger) |
 | Challenge Links | inside `.challenges` | - | `>> B` (lock with icon), `> B` (plain line); placed inside the source challenge, points to another challenge title |
 | Pressure Pool properties | `repeat`, `end` | - | Add to div class: `{.pressure-pool repeat}` |
+| Challenges Panel Header | `title="..."` on `.challenges` | - | Dark full-width bar above the cards; text rendered in uppercase |
 | Useful Pieces | `.useful-pieces` | `▸` | Right-pointing triangle |
 | Set It Up | `.set-it-up` | `▢` | Square checkbox |
 | Challenges | `.challenges` | by list marker | Traits: `*` (`✱`), Moves: `-` (`◉`), Fail State: `x` (`✘`) |
@@ -66,7 +67,31 @@ source challenge, after its traits, moves, or fail state:
 
 ## 4D | Second Challenge
 :::
+
+### Panel Header
+
+A `.challenges` div can take a `title="..."` property to render a dark
+header bar across the full width, above the cards:
+
+```markdown
+::: {.challenges title="Negotiating Peace in a Civil War"}
+## 8D | Duchess Lysandra
+* lineal heir
+- Show Strength
+
+## 4D | Baron Reynard
+* war weary
+- Challenge Honor
+
+## 6D | Count Lucian
+* diplomatic
+- Reveal Secret
+:::
 ```
+
+The text is rendered in uppercase white-on-dark, matching the simple
+paragraph heading style. The value must be quoted with double quotes
+and may contain spaces.
 
 ### Simple Paragraphs
 
@@ -158,8 +183,9 @@ Checks include:
 
 - Fenced div balance: an unmatched opener (`::: {.x}` without `:::`) or a
   closer with no opener.
-- Unknown div classes (typos like `.pressure-pull`) and unknown properties
-  on `.pressure-pool` (only `repeat` and `end` are recognised).
+- Unknown div classes (typos like `.pressure-pull`), unknown properties
+  on `.pressure-pool` (only `repeat` and `end` are recognised), and
+  unknown properties on `.challenges` (only `title` is recognised).
 - Required content: `.pressure-pool` and `.challenges` need a `## xD
   TITLE` heading; `.image` needs a markdown image.
 - Heading dice notation inside pools and challenges, with x in 1..8.
