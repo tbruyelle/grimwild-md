@@ -331,6 +331,135 @@ def parse(text):
     return mod
 
 
+# ----------------------------------------------------------- validation ---
+
+# Order matters: parse_div() checks classes in this order, so the validator
+# picks the same primary class when several are listed on one fence.
+KNOWN_CLASSES = ["module-icon", "pressure-pool", "useful-pieces",
+                 "set-it-up", "challenges", "image", "page-break"]
+KNOWN_POOL_PROPS = {"repeat", "end"}
+ALL_LINKS = re.compile(r"^(>>\*?|>) (.+)$")
+IMAGE_RE = re.compile(r"!\[[^\]]*\]\([^)]+\)")
+
+
+def validate(text):
+    """Walk the source, returning a list of structural issues.
+
+    Each issue is a dict: {'line': int, 'message': str}. Any issue is
+    a build-blocking error: the parser itself is lenient and would
+    silently swallow typos, broken references, and unsupported link
+    forms, so the validator exists to catch them.
+    """
+    issues = []
+    lines = text.splitlines()
+    divs = []   # every div seen, for the post-pass link check
+    stack = []  # currently open divs
+
+    def add(ln, msg):
+        issues.append({"line": ln, "message": msg})
+
+    for i, line in enumerate(lines, start=1):
+        s = line.strip()
+        if not s:
+            continue
+        m = DIV_OPEN.match(line)
+        if m:
+            attr = m.group(1)
+            classes = [c.lstrip(".") for c in attr.split()]
+            primary = next((c for c in KNOWN_CLASSES if c in classes), None)
+            extras = [c for c in classes if c not in KNOWN_CLASSES]
+            if not primary:
+                add(i, f"unknown div class: {', '.join(extras)!r}")
+            elif primary == "pressure-pool":
+                for bp in extras:
+                    if bp not in KNOWN_POOL_PROPS:
+                        add(i, f"unknown pressure-pool property: {bp!r}")
+            div = {
+                "line": i, "primary": primary, "headings": [], "links": [],
+                "body_lines": [],
+            }
+            divs.append(div)
+            stack.append(div)
+            continue
+        if s == ":::":
+            if not stack:
+                add(i, "closing ':::' with no matching opener")
+            else:
+                stack.pop()
+            continue
+        if not stack:
+            continue
+        div = stack[-1]
+        if div["primary"] is None or div["primary"] in ("module-icon", "page-break"):
+            continue
+        if div["primary"] == "image":
+            div["body_lines"].append(s)
+            continue
+        if s.startswith("## "):
+            text = s[3:]
+            if div["primary"] == "pressure-pool":
+                mm = DICE_POOL.match(text)
+            elif div["primary"] == "challenges":
+                mm = DICE_CHAL.match(text)
+            else:
+                mm = None
+            if not mm:
+                add(i, f"heading missing dice notation: {text!r}")
+                continue
+            dice = mm.group(1)
+            dm = re.match(r"(\d+)", dice)
+            n = int(dm.group(1)) if dm else -1
+            if not (1 <= n <= 8):
+                add(i, f"dice value {n} outside 1..8 range")
+            div["headings"].append((i, mm.group(2)))
+        elif s.startswith(("* ", "- ")):
+            pass
+        elif s.startswith("x "):
+            pass
+        else:
+            lm = ALL_LINKS.match(s)
+            if lm:
+                form, target = lm.group(1), lm.group(2)
+                if div["primary"] == "challenges" and form == ">>*":
+                    add(i, "trigger link '>>*' is not supported in challenges")
+                elif div["primary"] == "pressure-pool" and form == ">":
+                    add(i, "plain link '>' is not supported in pressure pools")
+                div["links"].append((i, target))
+
+    for div in stack:
+        add(div["line"], "unclosed fenced div")
+
+    # Post-pass: check link targets now that every title is known.
+    pool_titles = {t for d in divs if d["primary"] == "pressure-pool"
+                   for _, t in d["headings"]}
+    for d in divs:
+        primary = d["primary"]
+        if primary == "pressure-pool":
+            if not d["headings"]:
+                add(d["line"], "pressure-pool missing '## xD TITLE' heading")
+            for ln, target in d["links"]:
+                if target not in pool_titles:
+                    add(ln, f"pressure-pool link target not found: {target!r}")
+        elif primary == "challenges":
+            if not d["headings"]:
+                add(d["line"], "challenges div has no challenge cards")
+            titles = [t for _, t in d["headings"]]
+            seen = {}
+            for ln, t in d["headings"]:
+                if t in seen:
+                    add(ln, f"duplicate challenge title: {t!r}")
+                seen[t] = ln
+            for ln, target in d["links"]:
+                if target not in titles:
+                    add(ln, f"challenge link target not found: {target!r}")
+        elif primary == "image":
+            body = "\n".join(d["body_lines"])
+            if not IMAGE_RE.search(body):
+                add(d["line"], "image div has no markdown image")
+
+    return issues
+
+
 REPEAT_SVG = """<svg fill='var(--color-pool-icon)' version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 94.073 94.072' xml:space='preserve'><g><path d='M91.465,5.491c-0.748-0.311-1.609-0.139-2.18,0.434l-8.316,8.316C72.046,5.057,60.125,0,47.399,0c-2.692,0-5.407,0.235-8.068,0.697C21.218,3.845,6.542,17.405,1.944,35.244c-0.155,0.599-0.023,1.235,0.355,1.724c0.379,0.489,0.962,0.775,1.581,0.775h12.738c0.839,0,1.59-0.524,1.878-1.313c3.729-10.193,12.992-17.971,23.598-19.814c1.747-0.303,3.525-0.456,5.288-0.456c8.428,0,16.299,3.374,22.168,9.5l-8.445,8.444c-0.571,0.572-0.742,1.432-0.434,2.179c0.311,0.748,1.039,1.235,1.848,1.235h28.181c1.104,0,2-0.896,2-2V7.338C92.7,6.53,92.211,5.801,91.465,5.491z'/><path d='M90.192,56.328H77.455c-0.839,0-1.59,0.523-1.878,1.312c-3.729,10.193-12.992,17.972-23.598,19.814c-1.748,0.303-3.525,0.456-5.288,0.456c-8.428,0-16.3-3.374-22.168-9.5l8.444-8.444c0.572-0.572,0.743-1.432,0.434-2.179c-0.31-0.748-1.039-1.235-1.848-1.235H3.374c-1.104,0-2,0.896-2,2v28.181c0,0.809,0.487,1.538,1.235,1.848c0.746,0.31,1.607,0.138,2.179-0.435l8.316-8.315c8.922,9.183,20.843,14.241,33.569,14.241c2.693,0,5.408-0.235,8.069-0.697c18.112-3.146,32.789-16.708,37.387-34.547c0.155-0.6,0.023-1.234-0.354-1.725C91.395,56.615,90.811,56.328,90.192,56.328z'/></g></svg>"""
 
 END_SVG = """<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="si-glyph si-glyph-circle-star" fill="var(--color-pool-icon)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>1047</title> <defs> </defs> <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <path d="M8,0.062 C3.581,0.062 0,3.621 0,8.009 C0,12.399 3.581,15.958 8,15.958 C12.418,15.958 16,12.398 16,8.009 C16,3.621 12.418,0.062 8,0.062 L8,0.062 Z M11.108,12.025 L8.021,9.902 L4.933,12.025 L6.112,8.59 L3.024,6.465 L6.841,6.465 L8.021,3.03 L9.201,6.465 L13.017,6.465 L9.93,8.59 L11.108,12.025 L11.108,12.025 Z" fill="var(--color-pool-icon)" class="si-glyph-fill"> </path> </g> </g></svg>
@@ -986,6 +1115,11 @@ def main():
         action="store_true",
         help="printable version with a white background and greyscale ink",
     )
+    ap.add_argument(
+        "--validate-only",
+        action="store_true",
+        help="run the validator and exit; do not render the PDF",
+    )
     args = ap.parse_args()
 
     if args.output:
@@ -994,7 +1128,23 @@ def main():
         pdf_path = args.source.with_name(args.source.stem + "-print.pdf")
     else:
         pdf_path = args.source.with_suffix(".pdf")
-    mod = parse(args.source.read_text(encoding="utf-8"))
+    text = args.source.read_text(encoding="utf-8")
+
+    # Validate the custom syntax before doing any rendering work. Any
+    # issue blocks the build; the parser is lenient and would silently
+    # swallow typos and broken references otherwise.
+    issues = validate(text)
+    for issue in issues:
+        print(f"error: line {issue['line']}: {issue['message']}",
+              file=sys.stderr)
+    if issues:
+        sys.exit(1)
+
+    if args.validate_only:
+        print("validation passed")
+        return
+
+    mod = parse(text)
 
     if args.html:
         html_path = args.source.with_suffix(".html")

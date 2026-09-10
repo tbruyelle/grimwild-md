@@ -339,7 +339,7 @@ L'Élémentaire a 3 formes consécutives:
 
 >> Forme Calcifiée
 
-## 4d | Forme calcifiée
+## 4d | Forme Calcifiée
 * Structure friable: sensible aux armes contendantes
 * Invisibilité dans la fumée
 - Griffe d'escarre

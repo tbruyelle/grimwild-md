@@ -25,8 +25,7 @@ Item prefixes are NOT written in the source. The converter renders the
 correct icon from context: div class for pools/pieces/setup, list marker
 for challenges. Source items are plain markdown lists; a fail state is a
 plain line starting with `x `. Blank lines between challenge groups are
-optional, except before the `x ` fail-state line, where one is required
-(otherwise markdown parses it as part of the last list item).
+optional.
 
 Section titles are NOT written in the source either. The converter
 renders the banner from the div class: `.useful-pieces` → "Useful
@@ -36,7 +35,7 @@ Pieces", `.set-it-up` → "Set It Up".
 
 - Pressure Pools: `xD TITLE` (e.g., `4D Night Falls`)
 - Challenges: `xD | TITLE` (e.g., `4D | Ask One Question`); the pipe may be omitted
-- x range: 2 to 8
+- x range: 1 to 8
 
 A `.challenges` div can contain any number of challenge cards (one or more).
 
@@ -148,6 +147,32 @@ This is useful to keep a challenge panel or pressure pool from being split
 across two pages. A break with nothing before or after it is dropped rather
 than emitting a blank page, and a run of consecutive breaks counts as one.
 
+### Validation
+
+Every build runs `validate(text)` before parsing. It walks the source
+line by line and reports any issues to stderr, each prefixed with
+`error:` and the offending line number. Any issue blocks the build; the
+build exits with a non-zero status and no PDF is written.
+
+Checks include:
+
+- Fenced div balance: an unmatched opener (`::: {.x}` without `:::`) or a
+  closer with no opener.
+- Unknown div classes (typos like `.pressure-pull`) and unknown properties
+  on `.pressure-pool` (only `repeat` and `end` are recognised).
+- Required content: `.pressure-pool` and `.challenges` need a `## xD
+  TITLE` heading; `.image` needs a markdown image.
+- Heading dice notation inside pools and challenges, with x in 1..8.
+- Cross-references: a pressure-pool link (`>>` or `>>*`) and a challenge
+  link (`>>` or `>`) must point at a title that exists in the right scope.
+  A `>>*` inside a challenges div, or a `>` inside a pressure pool, is
+  rejected.
+- Duplicate challenge titles inside one `.challenges` div.
+
+The validator is structural; it does not check that prose is meaningful.
+When the source has been changed and a build suddenly stops, the first
+`error:` line is the place to look.
+
 ## File Structure
 
 - `*.md` - Module source files
@@ -189,3 +214,18 @@ until the page count settles.
 A single-page module is left alone: no number, no reserved strip. When
 `pdfinfo` (poppler) is missing, numbering is skipped with a warning and pages
 past the first fall back to a flat parchment colour.
+
+## Tests
+
+`tests/validate-fixture.md` exercises one validator case per fenced block;
+`tests/test_validate.py` pins the expected line numbers and message
+substrings, plus a few edge cases (empty input, lone fences) and a check
+that the shipped modules stay clean. Run with:
+
+```
+python3 -m unittest discover tests
+```
+
+The fixture's cases are pinned by line, so add new cases at the bottom of
+the file rather than in the middle, and update the matching test method.
+
