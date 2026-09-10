@@ -169,7 +169,7 @@ La vision s'arrête sur les rires mélés de l'être de l'Épée et Hauré réun
 C'est à ce moment qu'on peut introduire les pressure pools suivantes, qui
 s'enchainent jusqu'à la libération de l'Élémental de Feu de l'épée de **Hauré**.
 
-::: {.pressure-pool reload}
+::: {.pressure-pool repeat}
 ## 4d Giezzyth s'impatiente
 
 - Brûle la ferme d'Arkham pour débusquer Luka
@@ -348,7 +348,7 @@ L'Élémentaire a 3 formes consécutives:
 :::
 
 Les PJ peuvent se faire aider par les Naldeths ou par des paladins si ils en
-ont croisé et ont réussi à les convaincre de les suivre. Utiliser des power
+ont croisés et ont réussi à les convaincre de les suivre. Utiliser des power
 pools pour représenter ces participants.
 
 Une fois l'Élémentaire éliminé, le calme revient dans la vallée et Giezzyth
