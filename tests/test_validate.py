@@ -217,6 +217,24 @@ class EdgeCaseTest(unittest.TestCase):
         )
         self.assertEqual(issues, [])
 
+    def test_list_with_sublist_parses_as_tree(self):
+        # The sublist test exercises the indent-aware parser: 2-space
+        # items become children of the previous 0-space item.
+        items = grimwild._buffer_items([
+            "- top one",
+            "  - sub A",
+            "  - sub B",
+            "- top two",
+            "  - sub C",
+            "- top three",
+        ])
+        self.assertEqual(len(items), 1)
+        tree = items[0]["items"]
+        self.assertEqual([t["text"] for t in tree], ["top one", "top two", "top three"])
+        self.assertEqual([c["text"] for c in tree[0]["children"]], ["sub A", "sub B"])
+        self.assertEqual([c["text"] for c in tree[1]["children"]], ["sub C"])
+        self.assertEqual(tree[2]["children"], [])
+
 
 def _valid_section():
     """The "Valid syntax" section in the fixture: well-formed examples

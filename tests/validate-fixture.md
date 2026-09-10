@@ -211,3 +211,12 @@ x fail state
 
 ::: {.page-break}
 :::
+
+### List with a sublist
+
+- top item one
+  - sub item A
+  - sub item B
+- top item two
+  - sub item C
+- top item three

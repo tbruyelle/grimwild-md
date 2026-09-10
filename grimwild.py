@@ -210,7 +210,7 @@ def _strip_quote(line):
     return HEADING_MARKER.sub("", QUOTE_MARKER.sub("", line, count=1).strip())
 
 
-LIST_ITEM = re.compile(r"^[-*+] ")
+LIST_RE = re.compile(r"^( *)([-*+]) (.*)$")
 
 
 def _buffer_items(buf):
@@ -219,13 +219,15 @@ def _buffer_items(buf):
     Consecutive lines form one item; a blank line, a subheading, the start of a
     quote, or a list marker ends the current one. Adjacent `>` lines make a
     single quote, each one kept on its own line, and a line following a quote
-    without a `>` is a lazy continuation of it, as in markdown. Consecutive
-    list-marker lines are gathered into one list item.
+    without a `>` is a lazy continuation of it, as in markdown. List items
+    indented with two spaces (or any 2-space increment) become children of the
+    previous item at that indent level.
     """
     items = []
     group = []
     quoted = False
-    list_items = []
+    list_items = []        # top-level items
+    list_stack = []        # (indent, items_list) pairs, deepest last
 
     def flush_para():
         nonlocal group, quoted
@@ -238,10 +240,11 @@ def _buffer_items(buf):
         group, quoted = [], False
 
     def flush_list():
-        nonlocal list_items
+        nonlocal list_items, list_stack
         if list_items:
             items.append({"type": "list", "items": list_items})
-            list_items = []
+        list_items = []
+        list_stack = []
 
     def flush():
         flush_para()
@@ -260,14 +263,29 @@ def _buffer_items(buf):
         elif stripped.startswith("### "):
             flush()
             items.append({"type": "h3", "title": stripped[4:].strip()})
-        elif LIST_ITEM.match(stripped):
-            flush_para()
-            list_items.append(LIST_ITEM.sub("", stripped))
-        elif quoted:
-            group[-1] = f"{group[-1]} {stripped}"
         else:
-            flush_list()
-            group.append(stripped)
+            m = LIST_RE.match(ln)
+            if m:
+                indent = len(m.group(1))
+                text = m.group(3)
+                flush_para()
+                # Pop the stack until we find a level strictly less indented
+                # than the new item, so a 2-space item becomes a child of the
+                # most recent 0-space item, a 4-space item a child of the
+                # most recent 2-space item, etc.
+                while list_stack and list_stack[-1][0] >= indent:
+                    list_stack.pop()
+                new_item = {"text": text, "children": []}
+                if list_stack:
+                    list_stack[-1][1].append(new_item)
+                else:
+                    list_items.append(new_item)
+                list_stack.append((indent, new_item["children"]))
+            elif quoted:
+                group[-1] = f"{group[-1]} {stripped}"
+            else:
+                flush_list()
+                group.append(stripped)
     flush()
     return items
 
@@ -637,8 +655,17 @@ def _render_block(b, parts, pool_run, context="body"):
     elif b["kind"] == "image":
         parts.append(f"<figure class='image-block'>{inline(b['content'])}</figure>")
     elif b["kind"] == "list":
-        items = "".join(f"<li>{inline(i)}</li>" for i in b["items"])
-        parts.append(f"<ul>{items}</ul>")
+        parts.append(render_list(b["items"]))
+
+
+def render_list(items):
+    """Render a (possibly nested) list. Each item is a dict with `text`
+    and `children` keys; children is a list of the same shape."""
+    out = []
+    for item in items:
+        inner = render_list(item["children"]) if item.get("children") else ""
+        out.append(f"<li>{inline(item['text'])}{inner}</li>")
+    return f"<ul>{''.join(out)}</ul>"
 
 
 def render_simple_para(b):
@@ -648,8 +675,7 @@ def render_simple_para(b):
         if item["type"] == "h3":
             parts.append(f"<h3>{inline(item['title'])}</h3>")
         elif item["type"] == "list":
-            items = "".join(f"<li>{inline(i)}</li>" for i in item["items"])
-            parts.append(f"<ul>{items}</ul>")
+            parts.append(render_list(item["items"]))
         elif item.get("quote"):
             parts.append(f"<blockquote>{quote_lines(item['text'])}</blockquote>")
         else:
@@ -873,6 +899,7 @@ h1 {
 /* ---- generic lists with Unicode markers ---- */
 strong { font-weight: 700; }
 ul { margin: 0; padding: 0; list-style: none; }
+ul ul { margin-top: 0.35mm; }
 li { position: relative; padding-left: 3.4mm; margin: 0.35mm 0; }
 li::before {
   position: absolute; left: 0.2mm; top: 0.08em;
