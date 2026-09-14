@@ -168,21 +168,77 @@ input:disabled { opacity: 0.55; cursor: not-allowed; }
   font-family: "Tiller", "Noto Sans", sans-serif;
   font-weight: 900;
 }
-#help dl { margin: 0; }
-#help dt {
-  margin-top: 0.75rem;
-  font-weight: 700;
+#help h3 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 800;
   color: var(--color-title);
 }
-#help dt:first-child { margin-top: 0; }
-#help dd { margin: 0.25rem 0 0 1rem; }
+#help h3:first-of-type { margin-top: 0; }
+#help h4 {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-title-bar);
+}
+#help p { margin: 0.25rem 0 0.5rem; }
 #help code {
   font-size: 0.9em;
   background: rgba(60,50,35,0.10);
   padding: 0.1em 0.4em;
   border-radius: 0.2em;
 }
-#help a { color: var(--color-title-bar); }
+.syntax-example {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+.syntax-example pre {
+  margin: 0;
+  background: rgba(60,50,35,0.06);
+  padding: 0.75rem 1rem;
+  border-radius: 0.3rem;
+  font-size: 0.82em;
+  line-height: 1.45;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  border: 0.25mm solid rgba(80,70,52,0.18);
+  color: var(--color-text);
+}
+.syntax-example pre code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+}
+.syntax-example img.rendered {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: rgba(60,50,35,0.05);
+  border-radius: 0.3rem;
+  border: 0.25mm solid rgba(80,70,52,0.18);
+  min-height: 60px;
+  object-fit: contain;
+}
+/* syntax tokens */
+.syntax-example pre code .tok-divider  { color: var(--color-muted); font-style: italic; }
+.syntax-example pre code .tok-class    { color: var(--color-title-bar); font-weight: 700; }
+.syntax-example pre code .tok-heading  { color: var(--color-title); font-weight: 700; }
+.syntax-example pre code .tok-dice     { color: #c2410c; font-weight: 700; }
+.syntax-example pre code .tok-link     { font-weight: 700; }
+.syntax-example pre code .tok-link-lock    { color: #0e7490; }
+.syntax-example pre code .tok-link-trigger { color: #b45309; }
+.syntax-example pre code .tok-link-plain   { color: #6d675a; font-weight: 400; }
+.syntax-example pre code .tok-trait   { color: var(--color-title-bar); font-weight: 700; }
+.syntax-example pre code .tok-move    { color: var(--color-muted); }
+.syntax-example pre code .tok-fail    { color: #b91c1c; font-weight: 700; }
+@media (max-width: 700px) {
+  .syntax-example { grid-template-columns: 1fr; }
+}
 
 .errors ul { color: #7a1f1f; padding-left: 1.2rem; }
 .errors li { margin-bottom: 0.4rem; }

@@ -23,12 +23,183 @@
   </section>
   <section id="help">
     <h2>Help</h2>
-    <dl>
-      <dt>Printable version</dt>
-      <dd>Switches the PDF to A4 format with a white background and greyscale ink — easier on a printer and easier on the eyes in sunlight.</dd>
-      <dt>Markdown syntax</dt>
-      <dd>Module files use custom fenced divs like <code>::: {.challenges}</code> and <code>::: {.pressure-pool}</code>. See <a href="https://github.com/tbruyelle/grimwild-md/blob/master/AGENTS.md">AGENTS.md</a> for the full reference.</dd>
-    </dl>
+
+    <h3>Printable version</h3>
+    <p>Switches the PDF to A4 format with a white background and greyscale ink — easier on a printer and easier on the eyes in sunlight.</p>
+
+    <h3>Markdown syntax</h3>
+    <p>Module files use standard markdown plus these custom fenced divs. The dice notation (<code>xD</code>, 1–8) inside headings is what tells the renderer what's a pool or challenge.</p>
+
+    <h4>Pressure pool</h4>
+    <p>One column per <code>## xD TITLE</code> heading inside a <code>.pressure-pool</code> div.</p>
+    <div class="syntax-example">
+      <pre><code>::: {.pressure-pool}
+## 4D Night Falls
+- The sun sets
+- Stars appear
+:::</code></pre>
+      <img class="rendered" src="/static/assets/syntax-pool.png" alt="Pressure pool">
+    </div>
+
+    <h4>Pressure pool — repeat</h4>
+    <p>The <code>repeat</code> property adds an icon indicating the pool restarts from 0 when filled.</p>
+    <div class="syntax-example">
+      <pre><code>::: {.pressure-pool repeat}
+## 4D Night Falls
+- The sun sets
+- Stars appear
+:::</code></pre>
+      <img class="rendered" src="/static/assets/syntax-pool-repeat.png" alt="Pressure pool with repeat">
+    </div>
+
+    <h4>Pressure pool — lock link</h4>
+    <p>A <code>&gt;&gt; TITLE</code> line draws a lock link to another pool's heading.</p>
+    <div class="syntax-example">
+      <pre><code>::: {.pressure-pool}
+## 4D Night Falls
+- The sun sets
+- Stars appear
+&gt;&gt; Day Breaks
+:::
+
+::: {.pressure-pool}
+## 4D Day Breaks
+- The sun rises
+- Birds sing
+:::</code></pre>
+      <img class="rendered" src="/static/assets/syntax-pool-link.png" alt="Pressure pool with lock link">
+    </div>
+
+    <h4>Pressure pool — trigger link</h4>
+    <p>A <code>&gt;&gt;* TITLE</code> line draws a trigger (circle-arrow) link instead of a lock. The target heading must exist in the same pool.</p>
+    <div class="syntax-example">
+      <pre><code>::: {.pressure-pool}
+## 4D Night Falls
+- The sun sets
+- Stars appear
+&gt;&gt;* Day Breaks
+:::
+
+::: {.pressure-pool}
+## 4D Day Breaks
+- The sun rises
+- Birds sing
+:::</code></pre>
+      <img class="rendered" src="/static/assets/syntax-pool-trigger.png" alt="Pressure pool with trigger link">
+    </div>
+
+    <h4>Challenge</h4>
+    <p>One card per <code>## xD | TITLE</code> heading inside a <code>.challenges</code> div (the pipe may be omitted). Items starting with <code>*</code> are traits, <code>-</code> are moves, and <code>x</code> is the fail state.</p>
+    <div class="syntax-example">
+      <pre><code>::: {.challenges}
+## 4D | Goblin Ambush
+* sneaky
+- Steal food
+x You fall
+:::</code></pre>
+      <img class="rendered" src="/static/assets/syntax-challenge.png" alt="Challenge card">
+    </div>
+
+    <h4>Challenge — lock link</h4>
+    <p>A <code>&gt;&gt; TITLE</code> line inside a challenge draws a lock link to another challenge.</p>
+    <div class="syntax-example">
+      <pre><code>::: {.challenges}
+## 4D | Goblin Ambush
+* Sneaky
+- Steal food
+x You fall
+>> Goblin Panic
+## 2D | Goblin Panic
+* Go crazy
+- Move everywhere
+:::</code></pre>
+      <img class="rendered" src="/static/assets/syntax-challenge-link.png" alt="Challenge with lock link">
+    </div>
+
+    <h4>Linked Challenges with title</h4>
+    <p>A <code>&gt; TITLE</code> line draws a plain line (no icon).</p>
+    <div class="syntax-example">
+      <pre><code>::: {.challenges title="Negotiating Peace"}
+## 4D | Duchess Lysandra
+* lineal heir
+- Show Strength
+> Baron Reynard
+
+## 4D | Baron Reynard
+- Challenge Honor
+:::</code></pre>
+      <img class="rendered" src="/static/assets/syntax-challenge-plain.png" alt="Challenge with plain link">
+    </div>
+
+    <h4>Useful pieces</h4>
+    <p>Items the party can pick up. Renders as a right-pointing triangle list.</p>
+    <div class="syntax-example">
+      <pre><code>::: {.useful-pieces}
+**Villagers**: Honest, hard-working people
+
+- Refuse to speak on the problem.
+- Disappear entirely after sundown.
+- Friendly enough, otherwise.
+
+**The Well**: Life in Dreghill seems to revolve around the small square
+in the center of the village.
+
+- Emits a peculiar *metallic* smell.
+- Villagers insist on gathering there.
+- Goblins are drawn to it.
+
+**Mella Gortis**: The closest thing the village has to a leader
+
+- Always gets in the PC's way.
+- Curses in *goblintongue*.
+- Has a soft spot for outsiders.
+:::</code></pre>
+      <img class="rendered" src="/static/assets/syntax-useful-pieces.png" alt="Useful pieces">
+    </div>
+
+    <h4>Set it up</h4>
+    <p>Prep steps before a session. Renders as a square checkbox list.</p>
+    <div class="syntax-example">
+      <pre><code>::: {.set-it-up}
+**Goblin Plague**: Choose 2 causes of the sickness and 1 odd thing
+that's ultimately a false trail.
+
+- Villagers started eating exotic roots.
+- A **Hag** (*pg. 106*) in the forest.
+- Dead goblin in the well.
+
+**Death**: Choose 1 usual outcome when a goblin dies and 1 rare
+possibility that's always untimely.
+
+- Dies like a goblin normally would.
+- Reverts into a human, dead.
+- Reverts into a human, alive.
+
+**Desires**: Choose 2 goblins crave with wild abandon and 1 that
+strikes them with irrational dread.
+
+- *Shiny things*
+- *Weapons*
+- *Hijinx*
+:::</code></pre>
+      <img class="rendered" src="/static/assets/syntax-set-it-up.png" alt="Set it up">
+    </div>
+
+    <h4>Page break</h4>
+    <p>An empty <code>.page-break</code> div forces the following content onto a new page.</p>
+    <div class="syntax-example">
+      <pre><code>::: {.page-break}
+:::</code></pre>
+    </div>
+
+    <h4>Module icon</h4>
+    <p>Optional SVG icon for the module header. The body uses raw SVG markup.</p>
+    <div class="syntax-example">
+      <pre><code>::: {.module-icon}
+&lt;svg ...&gt;...&lt;/svg&gt;
+:::</code></pre>
+      <img class="rendered" src="/static/assets/syntax-module-icon.png" alt="Module icon">
+    </div>
   </section>
 </main>
 <script>
@@ -38,6 +209,31 @@ const pdf = document.getElementById('pdf');
 const download = document.getElementById('download');
 const button = form.querySelector('button');
 let lastUrl = null;
+
+const escapeHtml = (text) => text
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;');
+
+const highlightSyntax = (code) => {
+  let html = escapeHtml(code);
+  html = html.replace(/:::/g, '<span class="tok-divider">:::</span>');
+  html = html.replace(/\{[\w-]+(?:\s+(?:repeat|end|title="[^"]*"))?\}/g,
+    m => `<span class="tok-class">${m}</span>`);
+  html = html.replace(/^##\s/gm, m => `<span class="tok-heading">${m}</span>`);
+  html = html.replace(/\b(\d+D)\b/g, m => `<span class="tok-dice">${m}</span>`);
+  html = html.replace(/^&gt;&gt;\*\s/gm, m => `<span class="tok-link tok-link-trigger">${m}</span>`);
+  html = html.replace(/^&gt;&gt;\s/gm, m => `<span class="tok-link tok-link-lock">${m}</span>`);
+  html = html.replace(/^&gt;\s/gm, m => `<span class="tok-link tok-link-plain">${m}</span>`);
+  html = html.replace(/^\*\s/gm, m => `<span class="tok-trait">${m}</span>`);
+  html = html.replace(/^-\s/gm, m => `<span class="tok-move">${m}</span>`);
+  html = html.replace(/^x\s/gm, m => `<span class="tok-fail">${m}</span>`);
+  return html;
+};
+
+document.querySelectorAll('.syntax-example pre code').forEach(el => {
+  el.innerHTML = highlightSyntax(el.textContent);
+});
 
 const setLoading = (loading) => {
   if (!form.isConnected) return;

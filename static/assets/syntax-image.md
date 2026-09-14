@@ -1,0 +1,3 @@
+::: {.image}
+![Map](map.png)
+:::
