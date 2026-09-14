@@ -1177,8 +1177,35 @@ def pdf_pages(pdf_path):
     return None
 
 
+def _build_loop(mod, html_path, pdf_path, print_mode=False):
+    """Render `mod` to `pdf_path`, iterating until the page count settles.
+
+    A page number only makes sense once the module overflows, and its
+    placement needs the page count, so we render again once that is known.
+    Numbering also reserves a strip on every page, which can push content
+    onto one more page, so we repeat until the count settles (or pdfinfo is
+    missing).
+    """
+    def build(pages):
+        html_path.write_text(render(mod, pages=pages, print_mode=print_mode), encoding="utf-8")
+        to_pdf(html_path, pdf_path)
+    build(1)
+    pages = pdf_pages(pdf_path)
+    if pages is None:
+        print("warning: pdfinfo not available, page numbers skipped", file=sys.stderr)
+        return
+    for _ in range(3):
+        if pages < 2:
+            break
+        build(pages)
+        settled = pdf_pages(pdf_path)
+        if settled is None or settled == pages:
+            break
+        pages = settled
+
+
 def build_pdf(mod, print_mode=False) -> bytes:
-    """Build PDF bytes from a parsed module. Iterates until page count settles."""
+    """Build PDF bytes from a parsed module."""
     tmp_html = tempfile.NamedTemporaryFile("w", suffix=".html", delete=False, encoding="utf-8")
     tmp_html.close()
     html_path = Path(tmp_html.name)
@@ -1186,22 +1213,7 @@ def build_pdf(mod, print_mode=False) -> bytes:
     tmp_pdf.close()
     pdf_path = Path(tmp_pdf.name)
     try:
-        def build(pages):
-            html_path.write_text(render(mod, pages=pages, print_mode=print_mode), encoding="utf-8")
-            to_pdf(html_path, pdf_path)
-        build(1)
-        pages = pdf_pages(pdf_path)
-        if pages is None:
-            print("warning: pdfinfo not available, page numbers skipped", file=sys.stderr)
-        else:
-            for _ in range(3):
-                if pages < 2:
-                    break
-                build(pages)
-                settled = pdf_pages(pdf_path)
-                if settled is None or settled == pages:
-                    break
-                pages = settled
+        _build_loop(mod, html_path, pdf_path, print_mode)
         return pdf_path.read_bytes()
     finally:
         html_path.unlink(missing_ok=True)
@@ -1258,29 +1270,7 @@ def main():
         tmp.close()
         html_path = Path(tmp.name)
 
-    def build(pages):
-        html_path.write_text(
-            render(mod, pages=pages, print_mode=args.print), encoding="utf-8"
-        )
-        to_pdf(html_path, pdf_path)
-
-    # A page number only makes sense once the module overflows, and its
-    # placement needs the page count, so render again once that is known.
-    # Numbering also reserves a strip on every page, which can push content
-    # onto one more page, so repeat until the count settles.
-    build(1)
-    pages = pdf_pages(pdf_path)
-    if pages is None:
-        print("warning: pdfinfo not available, page numbers skipped", file=sys.stderr)
-    else:
-        for _ in range(3):
-            if pages < 2:
-                break
-            build(pages)
-            settled = pdf_pages(pdf_path)
-            if settled is None or settled == pages:
-                break
-            pages = settled
+    _build_loop(mod, html_path, pdf_path, args.print)
 
     if not args.html:
         html_path.unlink(missing_ok=True)
