@@ -236,7 +236,7 @@ const escapeHtml = (text) => text
 const highlightSyntax = (code) => {
   let html = escapeHtml(code);
   html = html.replace(/:::/g, '<span class="tok-divider">:::</span>');
-  html = html.replace(/\{[\w-]+(?:\s+(?:repeat|end|title="[^"]*"))?\}/g,
+  html = html.replace(/\{[\w.-]+(?:\s+(?:repeat|end|title="[^"]*"))?\}/g,
     m => `<span class="tok-class">${m}</span>`);
   html = html.replace(/^##\s/gm, m => `<span class="tok-heading">${m}</span>`);
   html = html.replace(/\b(\d+D)\b/g, m => `<span class="tok-dice">${m}</span>`);

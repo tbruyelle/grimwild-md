@@ -269,6 +269,12 @@ input:disabled { opacity: 0.55; cursor: not-allowed; }
   padding: 0.1em 0.4em;
   border-radius: 0.2em;
 }
+#help .syntax-example pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
 .syntax-example {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -303,16 +309,21 @@ input:disabled { opacity: 0.55; cursor: not-allowed; }
   border: 0.25mm solid rgba(80,70,52,0.18);
 }
 /* syntax tokens */
-.syntax-example pre code .tok-divider  { color: var(--color-muted); font-style: italic; }
+.syntax-example pre code .tok-divider,
+.syntax-example pre code .tok-move,
+.syntax-example pre code .tok-link-plain {
+  font-style: italic;
+}
+.syntax-example pre code .tok-divider  { color: var(--color-title-bar); }
 .syntax-example pre code .tok-class    { color: var(--color-title-bar); font-weight: 700; }
 .syntax-example pre code .tok-heading  { color: var(--color-title); font-weight: 700; }
 .syntax-example pre code .tok-dice     { color: #c2410c; font-weight: 700; }
 .syntax-example pre code .tok-link     { font-weight: 700; }
 .syntax-example pre code .tok-link-lock    { color: #0e7490; }
 .syntax-example pre code .tok-link-trigger { color: #b45309; }
-.syntax-example pre code .tok-link-plain   { color: #6d675a; font-weight: 400; }
+.syntax-example pre code .tok-link-plain   { color: var(--color-title-bar); }
 .syntax-example pre code .tok-trait   { color: var(--color-title-bar); font-weight: 700; }
-.syntax-example pre code .tok-move    { color: var(--color-muted); }
+.syntax-example pre code .tok-move    { color: var(--color-title-bar); }
 .syntax-example pre code .tok-fail    { color: #b91c1c; font-weight: 700; }
 @media (max-width: 700px) {
   .syntax-example { grid-template-columns: 1fr; }
