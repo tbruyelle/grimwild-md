@@ -5,6 +5,7 @@ by `static/index.html`:
 
 - `syntax-pool.png`
 - `syntax-pool-repeat.png`
+- `syntax-pool-end.png`
 - `syntax-pool-link.png`
 - `syntax-pool-trigger.png`
 - `syntax-challenge.png`
