@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="/static/styles.css">
 <main>
   <h1>Grimwild Module Renderer</h1>
+  <p class="welcome">Turn a Grimwild module markdown file into a styled PDF — pressure pools, challenges, panels and all.</p>
   <form id="form">
     <input type="file" name="file" accept=".md,text/markdown" required>
     <label><input type="checkbox" name="print_mode" value="true"> Printable version</label>
@@ -19,6 +20,15 @@
       <a id="download" class="btn" download>Download PDF</a>
       <a class="btn" href="/">Convert another</a>
     </div>
+  </section>
+  <section id="help">
+    <h2>Help</h2>
+    <dl>
+      <dt>Printable version</dt>
+      <dd>Switches the PDF to A4 format with a white background and greyscale ink — easier on a printer and easier on the eyes in sunlight.</dd>
+      <dt>Markdown syntax</dt>
+      <dd>Module files use custom fenced divs like <code>::: {.challenges}</code> and <code>::: {.pressure-pool}</code>. See <a href="https://github.com/tbruyelle/grimwild-md/blob/master/AGENTS.md">AGENTS.md</a> for the full reference.</dd>
+    </dl>
   </section>
 </main>
 <script>
