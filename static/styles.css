@@ -263,6 +263,7 @@ input:disabled { opacity: 0.55; cursor: not-allowed; }
   color: var(--color-title-bar);
 }
 #help p { margin: 0.25rem 0 0.5rem; }
+#help a { color: var(--color-title-bar); }
 #help code {
   font-size: 0.9em;
   background: rgba(60,50,35,0.10);

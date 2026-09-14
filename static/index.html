@@ -201,10 +201,12 @@ strikes them with irrational dread.
     </div>
 
     <h3>Module icon</h3>
-    <p>Optional SVG icon for the module header. The body uses raw SVG markup.</p>
+    <p>Optional SVG icon for the module header. The body uses raw SVG markup. <code>width</code> and <code>height</code> attributes are not needed — the renderer scales the SVG to fit. Good source for icons: <a href="https://game-icons.net/" target="_blank" rel="noopener">game-icons.net</a>.</p>
     <div class="syntax-example">
       <pre><code>::: {.module-icon}
-&lt;svg ...&gt;...&lt;/svg&gt;
+&lt;svg xmlns="..." viewBox="0 0 100 100"&gt;
+  &lt;circle cx="50" cy="50" r="40" fill="currentColor"/&gt;
+&lt;/svg&gt;
 :::</code></pre>
       <img class="rendered" src="/static/assets/syntax-module-icon.png" alt="Module icon">
     </div>
