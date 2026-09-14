@@ -20,6 +20,12 @@ markdown modules to PDF on demand, deployable on Render.
 - Public, no auth.
 - Render as the host (free tier, easiest Docker deploy, GitHub-integrated).
 - Print-mode toggle exposed on the form.
+- Validator runs first; on failure the errors are rendered as an HTML
+  page (HTTP 400) instead of returning a PDF. The build is skipped.
+- Response returns the PDF with `Content-Disposition: inline`. The page
+  intercepts the submit with a tiny vanilla-JS handler, fetches the PDF
+  as a blob, shows it in an iframe (browser's native PDF viewer), and
+  exposes a "Download PDF" button. No JS framework, no build step.
 
 ## Files
 
@@ -70,9 +76,11 @@ Brief notes on running locally and deploying.
 from pathlib import Path
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.responses import HTMLResponse, Response
-from grimwild import parse, build_pdf
+from grimwild import validate, parse, build_pdf
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/fonts", StaticFiles(directory="fonts"), name="fonts")
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -83,18 +91,43 @@ async def index():
 @app.post("/convert")
 async def convert(file: UploadFile = File(...), print_mode: bool = Form(False)):
     text = (await file.read()).decode("utf-8")
+    issues = validate(text)
+    if issues:
+        items = "".join(
+            f"<li><b>line {i['line']}</b>: {i['message']}</li>" for i in issues
+        )
+        html = (
+            "<!doctype html><meta charset='utf-8'>"
+            "<title>Validation errors</title>"
+            "<link rel='stylesheet' href='/static/styles.css'>"
+            "<main class='errors'>"
+            "<h1>Validation failed</h1>"
+            f"<ul>{items}</ul>"
+            "<a class='btn' href='/'>Back</a>"
+            "</main>"
+        )
+        return HTMLResponse(html, status_code=400)
     pdf_bytes = build_pdf(parse(text), print_mode=print_mode)
     stem = Path(file.filename or "module").stem
     return Response(
         content=pdf_bytes,
         media_type="application/pdf",
-        headers={"Content-Disposition": f'attachment; filename="{stem}.pdf"'},
+        headers={"Content-Disposition": f'inline; filename="{stem}.pdf"'},
     )
 ```
 
 #### `static/index.html`
-Minimal HTML form: file input, "Print mode" checkbox, submit. Inline CSS,
-no JS framework. Posts to `/convert`.
+HTML form: file input, "Print mode" checkbox, submit, plus a hidden
+preview section with an iframe and a Download button. A small inline
+script intercepts the submit, POSTs the file to `/convert` via `fetch`,
+and on success shows the PDF in the iframe (browser's native PDF
+viewer) using a blob URL. On HTTP 400 it swaps the page for the
+server-rendered error document. No JS framework, no build step.
+
+#### `static/styles.css`
+Same parchment palette, gradient, and fonts as the rendered PDF (Capito
+TRIAL 04 from `fonts/`), so the form and error page sit in the same
+visual world as the document they produce.
 
 #### `requirements.txt`
 ```
@@ -146,9 +179,10 @@ services:
 
 ## Order of work
 
-1. Add `build_pdf()` to `grimwild.py`.
+1. Add `build_pdf()` to `grimwild.py` (validation stays in `app.py` —
+   it runs before `parse` and short-circuits the build).
 2. Create `requirements.txt`, `.dockerignore`.
-3. Create `static/index.html`.
+3. Create `static/index.html`, `static/styles.css`.
 4. Create `app.py`.
 5. Create `Dockerfile`.
 6. Local smoke test: `docker build && docker run -p 8000:8000 grimwild`.

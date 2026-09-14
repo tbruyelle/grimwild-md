@@ -1,0 +1,60 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Grimwild Module Renderer</title>
+<link rel="stylesheet" href="/static/styles.css">
+<main>
+  <h1>Grimwild Module Renderer</h1>
+  <form id="form">
+    <input type="file" name="file" accept=".md,text/markdown" required>
+    <label><input type="checkbox" name="print_mode" value="true"> Print mode</label>
+    <button type="submit">Convert</button>
+  </form>
+  <section id="preview" hidden>
+    <iframe id="pdf"></iframe>
+    <div class="actions">
+      <a id="download" class="btn" download>Download PDF</a>
+      <a class="btn" href="/">Convert another</a>
+    </div>
+  </section>
+</main>
+<script>
+const form = document.getElementById('form');
+const preview = document.getElementById('preview');
+const iframe = document.getElementById('pdf');
+const download = document.getElementById('download');
+const button = form.querySelector('button');
+let lastUrl = null;
+
+const setLoading = (loading) => {
+  if (!form.isConnected) return;
+  button.setAttribute('aria-busy', loading ? 'true' : 'false');
+  button.textContent = loading ? 'Converting…' : 'Convert';
+  for (const el of form.querySelectorAll('input, button')) el.disabled = loading;
+};
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+  setLoading(true);
+  try {
+    const res = await fetch('/convert', { method: 'POST', body: data });
+    if (res.status === 400) {
+      document.open();
+      document.write(await res.text());
+      document.close();
+      return;
+    }
+    const blob = await res.blob();
+    if (lastUrl) URL.revokeObjectURL(lastUrl);
+    lastUrl = URL.createObjectURL(blob);
+    iframe.src = lastUrl;
+    const name = (data.get('file')?.name || 'module').replace(/\.md$/, '') + '.pdf';
+    download.href = lastUrl;
+    download.download = name;
+    preview.hidden = false;
+    preview.scrollIntoView({ behavior: 'smooth' });
+  } finally {
+    setLoading(false);
+  }
+});
+</script>

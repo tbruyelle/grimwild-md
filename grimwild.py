@@ -1177,6 +1177,37 @@ def pdf_pages(pdf_path):
     return None
 
 
+def build_pdf(mod, print_mode=False) -> bytes:
+    """Build PDF bytes from a parsed module. Iterates until page count settles."""
+    tmp_html = tempfile.NamedTemporaryFile("w", suffix=".html", delete=False, encoding="utf-8")
+    tmp_html.close()
+    html_path = Path(tmp_html.name)
+    tmp_pdf = tempfile.NamedTemporaryFile("wb", suffix=".pdf", delete=False)
+    tmp_pdf.close()
+    pdf_path = Path(tmp_pdf.name)
+    try:
+        def build(pages):
+            html_path.write_text(render(mod, pages=pages, print_mode=print_mode), encoding="utf-8")
+            to_pdf(html_path, pdf_path)
+        build(1)
+        pages = pdf_pages(pdf_path)
+        if pages is None:
+            print("warning: pdfinfo not available, page numbers skipped", file=sys.stderr)
+        else:
+            for _ in range(3):
+                if pages < 2:
+                    break
+                build(pages)
+                settled = pdf_pages(pdf_path)
+                if settled is None or settled == pages:
+                    break
+                pages = settled
+        return pdf_path.read_bytes()
+    finally:
+        html_path.unlink(missing_ok=True)
+        pdf_path.unlink(missing_ok=True)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("source", type=Path)

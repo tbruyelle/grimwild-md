@@ -1,0 +1,10 @@
+.git
+.gitignore
+*.pdf
+example-golden.pdf
+__pycache__
+*.pyc
+*.pyo
+.DS_Store
+.vscode
+.idea
