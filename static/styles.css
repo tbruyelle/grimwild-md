@@ -17,6 +17,8 @@
   font-style: normal;
 }
 
+html { font-size: 1.5rem; }
+
 :root {
   --color-title: #16130d;
   --color-title-bar: #3d2817;
