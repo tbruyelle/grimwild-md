@@ -10,7 +10,11 @@
     <button type="submit">Convert</button>
   </form>
   <section id="preview" hidden>
-    <iframe id="pdf"></iframe>
+    <div class="ratio" style="--aspect-ratio: 105%;">
+      <object id="pdf" type="application/pdf">
+        <p>Your browser doesn't support inline PDF preview.</p>
+      </object>
+    </div>
     <div class="actions">
       <a id="download" class="btn" download>Download PDF</a>
       <a class="btn" href="/">Convert another</a>
@@ -20,7 +24,7 @@
 <script>
 const form = document.getElementById('form');
 const preview = document.getElementById('preview');
-const iframe = document.getElementById('pdf');
+const pdf = document.getElementById('pdf');
 const download = document.getElementById('download');
 const button = form.querySelector('button');
 let lastUrl = null;
@@ -47,7 +51,7 @@ form.addEventListener('submit', async (e) => {
     const blob = await res.blob();
     if (lastUrl) URL.revokeObjectURL(lastUrl);
     lastUrl = URL.createObjectURL(blob);
-    iframe.src = lastUrl;
+    pdf.data = lastUrl;
     const name = (data.get('file')?.name || 'module').replace(/\.md$/, '') + '.pdf';
     download.href = lastUrl;
     download.download = name;
