@@ -48,6 +48,9 @@ main {
   margin: 4rem auto;
   padding: 0 1.5rem;
 }
+@media (min-width: 800px) {
+  main { max-width: 56rem; }
+}
 
 h1 {
   font-family: "Tiller", "Noto Sans", sans-serif;
