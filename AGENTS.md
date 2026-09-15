@@ -12,7 +12,7 @@ Custom syntax built on fenced divs (`:::`) with these section types:
 | Module Icon | `.module-icon` | - | Optional SVG icon for the module header. Defaults to a goblin mask if omitted. Good source for icons: https://game-icons.net/ |
 | Pressure Pools | `.pressure-pools` | `◉` | Tables for columns; links: `>> B` (lock), `>>* B` (trigger) |
 | Challenge Links | inside `.challenges` | - | `>> B` (lock with icon), `> B` (plain line); placed inside the source challenge, points to another challenge title |
-| Pressure Pool properties | `repeat`, `end` | - | Add to div class: `{.pressure-pools repeat}` |
+| Pressure Pool column suffix | `[repeat]`, `[end]` | - | Add to a column heading: `## 4D TITLE [repeat]` |
 | Challenges Panel Header | `title="..."` on `.challenges` | - | Dark full-width bar above the cards; text rendered in uppercase |
 | Useful Pieces | `.useful-pieces` | `▸` | Right-pointing triangle |
 | Set It Up | `.set-it-up` | `▢` | Square checkbox |
@@ -34,11 +34,14 @@ Pieces", `.set-it-up` → "Set It Up".
 
 ### Dice Notation
 
-- Pressure Pools: `xD TITLE` (e.g., `4D Night Falls`)
+- Pressure Pools: `xD TITLE` (e.g., `4D Night Falls`); multiple columns per div, each its own heading
 - Challenges: `xD | TITLE` (e.g., `4D | Ask One Question`); the pipe may be omitted
 - x range: 1 to 8
 
 A `.challenges` div can contain any number of challenge cards (one or more).
+A `.pressure-pools` div can contain any number of column headings (one or
+more); each heading may add a `[repeat]` or `[end]` suffix to set the icon
+for that column only. Columns without a suffix render with no icon.
 
 ### Pressure Pool Links
 
@@ -184,15 +187,19 @@ Checks include:
 - Fenced div balance: an unmatched opener (`::: {.x}` without `:::`) or a
   closer with no opener.
 - Unknown div classes (typos like `.pressure-pull`), unknown properties
-  on `.pressure-pools` (only `repeat` and `end` are recognised), and
-  unknown properties on `.challenges` (only `title` is recognised).
+  on `.pressure-pools` (`.pressure-pools` takes no class-level props;
+  use a column heading suffix), unknown column suffix on a
+  `.pressure-pools` heading (only `[repeat]` and `[end]` are
+  recognised), and unknown properties on `.challenges` (only `title`
+  is recognised).
 - Required content: `.pressure-pools` and `.challenges` need a `## xD
   TITLE` heading; `.image` needs a markdown image.
 - Heading dice notation inside pools and challenges, with x in 1..8.
 - Cross-references: a pressure-pools link (`>>` or `>>*`) and a challenge
-  link (`>>` or `>`) must point at a title that exists in the right scope.
-  A `>>*` inside a challenges div, or a `>` inside a pressure pool, is
-  rejected.
+  link (`>>` or `>`) must point at a title that exists in the same div.
+  Cross-div pressure-pools links are rejected (each `.pressure-pools`
+  div renders as its own row). A `>>*` inside a challenges div, or a
+  `>` inside a pressure pool, is rejected.
 - Duplicate challenge titles inside one `.challenges` div.
 
 The validator is structural; it does not check that prose is meaningful.

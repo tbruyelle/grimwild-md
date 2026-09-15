@@ -8,6 +8,8 @@ by `static/index.html`:
 - `syntax-pool-end.png`
 - `syntax-pool-link.png`
 - `syntax-pool-trigger.png`
+- `syntax-pool-column-repeat.png`
+- `syntax-pool-column-end.png`
 - `syntax-challenge.png`
 - `syntax-challenge-link.png`
 - `syntax-challenge-plain.png`

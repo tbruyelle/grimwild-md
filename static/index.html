@@ -46,25 +46,25 @@
     </div>
 
     <h3>Pressure pool — repeat</h3>
-    <p>The <code>repeat</code> property adds an icon indicating the pool restarts from 0 when filled.</p>
+    <p>Add <code>[repeat]</code> to a column heading to mark the pool as restarting from 0 when filled.</p>
     <div class="syntax-example">
-      <pre><code>::: {.pressure-pools repeat}
-## 4D Night Falls
+      <pre><code>::: {.pressure-pools}
+## 4D Night Falls [repeat]
 - The sun sets
 - Stars appear
 :::</code></pre>
-      <img class="rendered" src="/static/assets/syntax-pool-repeat.png" alt="Pressure pool with repeat">
+      <img class="rendered" src="/static/assets/syntax-pool-repeat.png" alt="Pressure pool with [repeat] suffix">
     </div>
 
     <h3>Pressure pool — end</h3>
-    <p>The <code>end</code> property adds an icon indicating the pool stops the scene when filled.</p>
+    <p>Add <code>[end]</code> to a column heading to mark the pool as stopping the scene when filled.</p>
     <div class="syntax-example">
-      <pre><code>::: {.pressure-pools end}
-## 4D Night Falls
+      <pre><code>::: {.pressure-pools}
+## 4D Night Falls [end]
 - The sun sets
 - Stars appear
 :::</code></pre>
-      <img class="rendered" src="/static/assets/syntax-pool-end.png" alt="Pressure pool with end">
+      <img class="rendered" src="/static/assets/syntax-pool-end.png" alt="Pressure pool with [end] suffix">
     </div>
 
     <h3>Pressure pool — lock link</h3>
@@ -75,9 +75,7 @@
 - The sun sets
 - Stars appear
 &gt;&gt; Day Breaks
-:::
 
-::: {.pressure-pools}
 ## 4D Day Breaks
 - The sun rises
 - Birds sing
@@ -93,14 +91,54 @@
 - The sun sets
 - Stars appear
 &gt;&gt;* Day Breaks
-:::
 
-::: {.pressure-pools}
 ## 4D Day Breaks
 - The sun rises
 - Birds sing
 :::</code></pre>
       <img class="rendered" src="/static/assets/syntax-pool-trigger.png" alt="Pressure pool with trigger link">
+    </div>
+
+    <h3>Pressure pool — column [repeat] suffix</h3>
+    <p>Multiple columns in one div. Each <code>## xD TITLE [prop]</code> heading carries its own prop instead of putting it on the div class. Useful when neighbouring columns need different icons.</p>
+    <div class="syntax-example">
+      <pre><code>::: {.pressure-pools}
+## 4D Night Falls [repeat]
+- The sun sets
+- Stars appear
+&gt;&gt; Dawn Breaks
+
+## 4D Dawn Breaks [repeat]
+- The sun rises
+- Birds sing
+&gt;&gt;* Townsfolk Snap
+
+## 4D Townsfolk Snap [end]
+- Mob forms
+- Shops close
+:::</code></pre>
+      <img class="rendered" src="/static/assets/syntax-pool-column-repeat.png" alt="Pressure pool with column [repeat] suffix">
+    </div>
+
+    <h3>Pressure pool — column [end] suffix</h3>
+    <p>The same idea, with <code>[end]</code> on every column heading.</p>
+    <div class="syntax-example">
+      <pre><code>::: {.pressure-pools}
+## 4D Night Falls [end]
+- The sun sets
+- Stars appear
+&gt;&gt; Dawn Breaks
+
+## 4D Dawn Breaks [end]
+- The sun rises
+- Birds sing
+&gt;&gt; Townsfolk Snap
+
+## 4D Townsfolk Snap [end]
+- Mob forms
+- Shops close
+:::</code></pre>
+      <img class="rendered" src="/static/assets/syntax-pool-column-end.png" alt="Pressure pool with column [end] suffix">
     </div>
 
     <h3>Challenge</h3>
@@ -253,6 +291,7 @@ const highlightSyntax = (code) => {
   html = html.replace(/\{[\w.-]+(?:\s+(?:repeat|end|title="[^"]*"))?\}/g,
     m => `<span class="tok-class">${m}</span>`);
   html = html.replace(/^##\s/gm, m => `<span class="tok-heading">${m}</span>`);
+  html = html.replace(/\s\[(repeat|end)\]/g, m => ` <span class="tok-class">${m.trim()}</span>`);
   html = html.replace(/\b(\d+D)\b/g, m => `<span class="tok-dice">${m}</span>`);
   html = html.replace(/^&gt;&gt;\*\s/gm, m => `<span class="tok-link tok-link-trigger">${m}</span>`);
   html = html.replace(/^&gt;&gt;\s/gm, m => `<span class="tok-link tok-link-lock">${m}</span>`);
