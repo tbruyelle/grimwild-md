@@ -5,9 +5,6 @@ venv:
 	.venv/bin/pip install --upgrade pip
 	.venv/bin/pip install -r requirements.txt
 
-venv-activate:
-	source .venv/bin/activate
-
 test:
 	python3 -m unittest discover tests
 
