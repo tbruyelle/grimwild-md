@@ -893,7 +893,7 @@ BASE_CSS = """
 /* Chromium never paints into an @page margin, so the margin stays 0 to keep
    the page full-bleed; the page numbers sit inside the page instead. */
 @page { size: /*PAGE_WIDTH*/ /*PAGE_HEIGHT*/; margin: 0; }
-* { box-sizing: border-box; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+* { box-sizing: border-box; print-color-adjust: exact; -webkit-print-color-adjust: exact; text-rendering: geometricPrecision; }
 html { margin: 0; padding: 0; background: var(--color-page-start); }
 /* One parchment backdrop per page, so every page gets the same gradient
    instead of one gradient stretched over the whole document. Chromium keeps
@@ -984,9 +984,10 @@ li::before {
   box-shadow: 0 0 0 0.25mm var(--color-border-header);
 }
 .pool-card .dice {
-  font-family: "Noto Sans", sans-serif; font-weight: 800; font-size: 7.6pt;
+  font-family: "Noto Sans", sans-serif; font-weight: 700; font-size: 8.8pt;
   background: var(--color-dice-bg); color: var(--color-heading); border-radius: 0.45mm;
-  padding: 0.15mm 1.1mm; letter-spacing: 0.02em;
+  padding: 0.2mm 1.1mm 0.5mm; letter-spacing: 0.02em; line-height: 1;
+  display: inline-flex; align-items: center; align-self: center;
 }
 .pool-card h2 {
   margin: 0; font-size: 10pt; font-variant: small-caps; font-weight: 800;
