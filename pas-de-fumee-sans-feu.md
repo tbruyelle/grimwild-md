@@ -169,15 +169,12 @@ La vision s'arrête sur les rires mélés de l'être de l'Épée et Hauré réun
 C'est à ce moment qu'on peut introduire les pressure pools suivantes, qui
 s'enchainent jusqu'à la libération de l'Élémental de Feu de l'épée de **Hauré**.
 
-::: {.pressure-pools repeat}
-## 4d Giezzyth s'impatiente
+::: {.pressure-pools}
+## 4d Giezzyth s'impatiente [repeat]
 
 - Brûle la ferme d'Arkham pour débusquer Luka
 - Survole la vallée
 
-:::
-
-::: {.pressure-pools}
 ## 4d Canicule
 
 - Des villageois se battent devant un puit
@@ -185,10 +182,8 @@ s'enchainent jusqu'à la libération de l'Élémental de Feu de l'épée de **Ha
 - Un nouveau culte sévi dans la région: les illuminés de **Hauré**
 
 >> Délivrance
-:::
 
-::: {.pressure-pools end}
-## 4d Délivrance
+## 4d Délivrance [end]
 
 - La distillerie de la vallée explose (acte de **Hauré**), libérant l'Élémental de Feu
 - L'Élémental de Feu se libère, d'une manière ou d'une autre

@@ -47,12 +47,14 @@ DICE_POOL = re.compile(r"^(\d[Dd])\s+(.*)$")
 DICE_CHAL = re.compile(r"^(\d[Dd])(?:\s*\|\s*|\s+)(.*)$")
 LINK = re.compile(r"^(>>\*?)\s*(.*)$")
 CHAL_LINK = re.compile(r"^(>>|>)\s+(.*)$")
+COLUMN_SUFFIX = re.compile(r"\s+\[(repeat|end)\]\s*$")
+COLUMN_SUFFIX_ANY = re.compile(r"\s+\[([^\]]+)\]\s*$")
 
 
 def parse_div_attr(attr):
     """Parse a fenced div attribute into (classes, props).
 
-    '.pressure-pools repeat' -> (['pressure-pools', 'repeat'], {})
+    '.pressure-pools' -> (['pressure-pools'], {})
     '.challenges title="A title"' -> (['challenges'], {'title': 'A title'})
     """
     # Pull out key=value tokens first; the rest is class tokens.
@@ -67,29 +69,48 @@ def parse_div_attr(attr):
 
 
 def parse_pool(lines):
-    pool = {"kind": "pool", "dice": None, "title": None, "items": [], "link": None}
+    """A `.pressure-pools` div may contain several columns; each
+    `## xD TITLE [prop]` heading starts a new one. Items and links
+    belong to the most recent column.
+    """
+    columns = []
+    cur = None
     for s in lines:
         if not s:
             continue
         if s.startswith("## "):
-            m = DICE_POOL.match(s[3:])
+            heading = s[3:]
+            m_suf = COLUMN_SUFFIX.search(heading)
+            prop = m_suf.group(1) if m_suf else None
+            if prop:
+                heading = heading[: m_suf.start()]
+            m = DICE_POOL.match(heading)
             if m:
-                pool["dice"], pool["title"] = m.group(1), m.group(2)
+                cur = {
+                    "dice": m.group(1),
+                    "title": m.group(2),
+                    "items": [],
+                    "link": None,
+                    "props": [prop] if prop else [],
+                }
+                columns.append(cur)
         elif s.startswith("- "):
-            pool["items"].append(s[2:])
+            if cur is not None:
+                cur["items"].append(s[2:])
         else:
             m = LINK.match(s)
-            if m:
-                pool["link"] = {
-                    "from": pool["title"],
+            if m and cur is not None:
+                cur["link"] = {
+                    "from": cur["title"],
                     "to": m.group(2),
                     "type": "trigger" if "*" in m.group(1) else "lock",
                 }
-            else:
+            elif s.strip():
                 print(
-                    f"warning: unparsed line in pressure pool: {s!r}", file=sys.stderr
+                    f"warning: unparsed line in pressure pool: {s!r}",
+                    file=sys.stderr,
                 )
-    return pool
+    return columns
 
 
 def parse_groups(lines):
@@ -155,9 +176,8 @@ def parse_div(attr, lines):
     if "module-icon" in classes:
         return {"kind": "icon", "svg": "\n".join(lines).strip()}
     if "pressure-pools" in classes:
-        pool = parse_pool(lines)
-        pool["props"] = [c for c in classes if c != "pressure-pools"]
-        return pool
+        columns = parse_pool(lines)
+        return {"kind": "pool", "columns": columns}
     if "useful-pieces" in classes:
         return {"kind": "pieces", "groups": parse_groups(lines)}
     if "set-it-up" in classes:
@@ -370,7 +390,6 @@ def parse(text):
 # picks the same primary class when several are listed on one fence.
 KNOWN_CLASSES = ["module-icon", "pressure-pools", "useful-pieces",
                  "set-it-up", "challenges", "image", "page-break"]
-KNOWN_POOL_PROPS = {"repeat", "end"}
 KNOWN_CHALLENGE_PROPS = {"title"}
 ALL_LINKS = re.compile(r"^(>>\*?|>) (.+)$")
 IMAGE_RE = re.compile(r"!\[[^\]]*\]\([^)]+\)")
@@ -406,8 +425,7 @@ def validate(text):
                 add(i, f"unknown div class: {', '.join(extras)!r}")
             elif primary == "pressure-pools":
                 for bp in extras:
-                    if bp not in KNOWN_POOL_PROPS:
-                        add(i, f"unknown pressure-pools property: {bp!r}")
+                    add(i, f"unknown pressure-pools property: {bp!r}")
             elif primary == "challenges":
                 for name in props:
                     if name not in KNOWN_CHALLENGE_PROPS:
@@ -440,7 +458,17 @@ def validate(text):
             continue
         if s.startswith("## "):
             text = s[3:]
+            col_prop = None
             if div["primary"] == "pressure-pools":
+                m_suf = COLUMN_SUFFIX.search(text)
+                if m_suf:
+                    col_prop = m_suf.group(1)
+                    text = text[: m_suf.start()]
+                else:
+                    m_any = COLUMN_SUFFIX_ANY.search(text)
+                    if m_any:
+                        add(i, f"unknown column property: {m_any.group(1)!r}")
+                        text = text[: m_any.start()]
                 mm = DICE_POOL.match(text)
             elif div["primary"] == "challenges":
                 mm = DICE_CHAL.match(text)
@@ -455,6 +483,8 @@ def validate(text):
             if not (1 <= n <= 8):
                 add(i, f"dice value {n} outside 1..8 range")
             div["headings"].append((i, mm.group(2)))
+            if div["primary"] == "pressure-pools":
+                div.setdefault("column_props", []).append((i, col_prop))
         elif s.startswith(("* ", "- ")):
             pass
         elif s.startswith("x "):
@@ -473,15 +503,17 @@ def validate(text):
         add(div["line"], "unclosed fenced div")
 
     # Post-pass: check link targets now that every title is known.
-    pool_titles = {t for d in divs if d["primary"] == "pressure-pools"
-                   for _, t in d["headings"]}
+    # Pressure-pool links must resolve to a column in the same div; each
+    # `.pressure-pools` renders as its own row, so cross-div links have
+    # nowhere to bridge.
     for d in divs:
         primary = d["primary"]
         if primary == "pressure-pools":
             if not d["headings"]:
                 add(d["line"], "pressure-pools missing '## xD TITLE' heading")
+            titles = {t for _, t in d["headings"]}
             for ln, target in d["links"]:
-                if target not in pool_titles:
+                if target not in titles:
                     add(ln, f"pressure-pools link target not found: {target!r}")
         elif primary == "challenges":
             if not d["headings"]:
@@ -544,7 +576,7 @@ def quote_lines(text):
 
 
 def render_pool(pool):
-    classes = " ".join(["pool"] + pool["props"])
+    classes = " ".join(["pool-card"] + pool["props"])
     prop_icon = ""
     if "repeat" in pool["props"]:
         prop_icon = f"<span class='prop'>{REPEAT_SVG}</span>"
@@ -566,9 +598,16 @@ def render_pool(pool):
     return html
 
 
-def render_pools(pools):
-    body = "".join(render_pool(p) for p in pools)
-    return f"<section class='pools'>{body}</section>"
+def render_pools(pool_blocks):
+    """One flex row per `.pressure-pools` div. A single div can hold
+    several columns (its heading list); separate divs each render as
+    their own row.
+    """
+    sections = []
+    for b in pool_blocks:
+        body = "".join(render_pool(c) for c in b["columns"])
+        sections.append(f"<section class='pools'>{body}</section>")
+    return "".join(sections)
 
 
 def render_banded(kind, title, groups, marker):
@@ -913,28 +952,28 @@ li::before {
   display: flex; align-items: stretch;
   gap: 6.5mm; margin: 4.5mm 0 0;
 }
-.pool {
+.pool-card {
   flex: 1; background: var(--color-card-bg); border-radius: 0.7mm;
   box-shadow: 0 0 0 0.25mm var(--color-border-card);
 }
-.pool header {
+.pool-card header {
   display: flex; align-items: center; gap: 1.7mm;
   background: var(--color-pool-header);
   border-radius: 0.65mm; padding: 1mm 1.5mm;
   box-shadow: 0 0 0 0.25mm var(--color-border-header);
 }
-.pool .dice {
+.pool-card .dice {
   font-family: "Noto Sans", sans-serif; font-weight: 800; font-size: 7.6pt;
   background: var(--color-dice-bg); color: var(--color-heading); border-radius: 0.45mm;
   padding: 0.15mm 1.1mm; letter-spacing: 0.02em;
 }
-.pool h2 {
+.pool-card h2 {
   margin: 0; font-size: 10pt; font-variant: small-caps; font-weight: 800;
   color: var(--color-heading); white-space: nowrap;
 }
-.pool .prop { margin-left: auto; width: 2.8mm; height: 2.8mm; }
-.pool .prop svg { width: 100%; height: 100%; display: block; }
-.pool ul { padding: 1.1mm 1.5mm 1.3mm; }
+.pool-card .prop { margin-left: auto; width: 2.8mm; height: 2.8mm; }
+.pool-card .prop svg { width: 100%; height: 100%; display: block; }
+.pool-card ul { padding: 1.1mm 1.5mm 1.3mm; }
 .pool-link {
   position: relative; flex: none; align-self: flex-start;
   width: 6.5mm; height: 6mm; margin: 0 -6.5mm;  /* exactly bridges the flex gap */

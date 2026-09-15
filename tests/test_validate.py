@@ -135,6 +135,24 @@ class FixtureTest(unittest.TestCase):
             "expected 'has no value' error at line 122",
         )
 
+    def test_unknown_column_property(self):
+        self.assertTrue(
+            at_line(self.issues, 130, "unknown column property"),
+            "expected 'unknown column property' error at line 130",
+        )
+
+    def test_div_level_repeat_property_rejected(self):
+        self.assertTrue(
+            at_line(self.issues, 136, "unknown pressure-pools property"),
+            "expected 'unknown pressure-pools property' error at line 136",
+        )
+
+    def test_cross_div_pool_link_rejected(self):
+        self.assertTrue(
+            at_line(self.issues, 146, "pressure-pools link target not found"),
+            "expected 'pressure-pools link target not found' error at line 146",
+        )
+
     def test_issues_are_sorted_by_line(self):
         lines = [i["line"] for i in self.issues]
         self.assertEqual(lines, sorted(lines), "issues should be sorted by line")
@@ -153,6 +171,7 @@ class FixtureTest(unittest.TestCase):
             (44, "heading missing dice notation: 'A Title Without Dice'"),
             (54, "trigger link '>>*' is not supported in challenges"),
             (64, "plain link '>' is not supported in pressure pools"),
+            (64, "pressure-pools link target not found: 'Pool B'"),
             (77, "pressure-pools link target not found: 'Ghost Pool'"),
             (86, "duplicate challenge title: 'Same Name'"),
             (95, "dice value 0 outside 1..8 range"),
@@ -162,6 +181,9 @@ class FixtureTest(unittest.TestCase):
             (108, "prop must use double quotes: \"bogus='value'\""),
             (115, "prop must use double quotes: \"title='Wrong quotes'\""),
             (122, "challenges property 'title' has no value (use title=\"...\")"),
+            (130, "unknown column property: 'foo'"),
+            (136, "unknown pressure-pools property: 'repeat'"),
+            (146, "pressure-pools link target not found: 'Pool Y'"),
         ]
         actual = [(i["line"], i["message"]) for i in self.issues]
         self.assertEqual(

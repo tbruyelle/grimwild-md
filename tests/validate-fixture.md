@@ -124,6 +124,33 @@ x Bad Fail
 * trait
 :::
 
+## Unknown column property
+
+::: {.pressure-pools}
+## 4D Pool Alpha [foo]
+- item
+:::
+
+## Div-level repeat property (column suffix required)
+
+::: {.pressure-pools repeat}
+## 4D Pool Alpha
+- item
+:::
+
+## Cross-div pressure-pools link (not allowed)
+
+::: {.pressure-pools}
+## 4D Pool X
+- item
+>> Pool Y
+:::
+
+::: {.pressure-pools}
+## 4D Pool Y
+- item
+:::
+
 ## Valid syntax (no issues expected)
 
 The cases below exercise the positive path: well-formed input that must
@@ -137,20 +164,12 @@ extracts this section and runs it through `validate()` expecting `[]`.
 ## 4D Pool Alpha
 - item
 >> Pool Beta
-:::
 
-### Pressure pool with trigger link and repeat prop
-
-::: {.pressure-pools repeat}
-## 4D Pool Beta
+## 4D Pool Beta [repeat]
 - item
 >>* Pool Gamma
-:::
 
-### Pressure pool with end prop
-
-::: {.pressure-pools end}
-## 4D Pool Gamma
+## 4D Pool Gamma [end]
 - item
 :::
 
@@ -220,3 +239,29 @@ x fail state
 - top item two
   - sub item C
 - top item three
+
+### Pressure pool with column [repeat] suffix
+
+::: {.pressure-pools}
+## 4D Pool One [repeat]
+- item
+>> Pool Two
+
+## 4D Pool Two [end]
+- item
+:::
+
+### Pressure pool with multi-heading columns and cross-column link
+
+::: {.pressure-pools}
+## 4D Pool One
+- item
+>> Pool Three
+
+## 4D Pool Two
+- item
+>>* Pool Three
+
+## 4D Pool Three [end]
+- item
+:::

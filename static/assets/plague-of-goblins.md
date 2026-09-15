@@ -16,28 +16,24 @@ now they stay inside and refuse to speak on what happens at night. It
 keeps their sanity, and keeps self and neighbor alike safe from the
 goblin plague that transforms them all.
 
-::: {.pressure-pools repeat}
-## 4D Night Falls
+::: {.pressure-pools}
+## 4D Night Falls [repeat]
 
 - Someone locked outside.
 - Granary catches fire.
 - PCs ambushed in the square.
 
 >> Dawn Breaks
-:::
 
-::: {.pressure-pools repeat}
-## 4D Dawn Breaks
+## 4D Dawn Breaks [repeat]
 
 - Prominent villager lies dead.
 - Doors smashed all over town.
 - Villager babbles in *goblintongue*.
 
 >>* Townsfolk Snap
-:::
 
-::: {.pressure-pools end}
-## 4D Townsfolk Snap
+## 4D Townsfolk Snap [end]
 
 - *Enraged* mob chases off PCs.
 - Neighbors turn on each other.

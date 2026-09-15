@@ -1,20 +1,20 @@
-::: {.pressure-pools repeat}
-## 4D Night Falls
+::: {.pressure-pools}
+## 4D Night Falls [repeat]
 - The sun sets
 - Stars appear
 :::
-::: {.pressure-pools repeat}
-## 4D Night Falls
+::: {.pressure-pools}
+## 4D Night Falls [repeat]
 - The sun sets
 - Stars appear
 :::
-::: {.pressure-pools repeat}
-## 4D Night Falls
+::: {.pressure-pools}
+## 4D Night Falls [repeat]
 - The sun sets
 - Stars appear
 :::
-::: {.pressure-pools repeat}
-## 4D Night Falls
+::: {.pressure-pools}
+## 4D Night Falls [repeat]
 - The sun sets
 - Stars appear
 :::
