@@ -13,7 +13,7 @@ Custom syntax built on fenced divs (`:::`) with these section types:
 | Pressure Pools | `.pressure-pools` | `◉` | Tables for columns; links: `>> B` (lock), `>>* B` (trigger) |
 | Challenge Links | inside `.challenges` | - | `>> B` (lock with icon), `> B` (plain line); placed inside the source challenge, points to another challenge title |
 | Pressure Pool column suffix | `[repeat]`, `[end]` | - | Add to a column heading: `## 4D TITLE [repeat]` |
-| Challenges Panel Header | `title="..."` on `.challenges` | - | Dark full-width bar above the cards; text rendered in uppercase |
+| Challenges Panel Header | `# Title` inside `.challenges` | - | Dark full-width bar above the cards; text rendered in uppercase; at most one, must be the first content |
 | Useful Pieces | `.useful-pieces` | `▸` | Right-pointing triangle |
 | Set It Up | `.set-it-up` | `▢` | Square checkbox |
 | Challenges | `.challenges` | by list marker | Traits: `*` (`✱`), Moves: `-` (`◉`), Fail State: `x` (`✘`) |
@@ -73,11 +73,15 @@ source challenge, after its traits, moves, or fail state:
 
 ### Panel Header
 
-A `.challenges` div can take a `title="..."` property to render a dark
-header bar across the full width, above the cards:
+A `.challenges` div can take an optional `# Title` heading at the very
+top, before any `## xD | TITLE` cards. It renders as a dark full-width
+bar above the cards (uppercase white-on-dark). At most one `# Title`
+is allowed and it must be the first content in the div:
 
 ```markdown
-::: {.challenges title="Negotiating Peace in a Civil War"}
+::: {.challenges}
+# Negotiating Peace in a Civil War
+
 ## 8D | Duchess Lysandra
 * lineal heir
 - Show Strength
@@ -91,10 +95,6 @@ header bar across the full width, above the cards:
 - Reveal Secret
 :::
 ```
-
-The text is rendered in uppercase white-on-dark, matching the simple
-paragraph heading style. The value must be quoted with double quotes
-and may contain spaces.
 
 ### Simple Paragraphs
 
@@ -190,10 +190,12 @@ Checks include:
   on `.pressure-pools` (`.pressure-pools` takes no class-level props;
   use a column heading suffix), unknown column suffix on a
   `.pressure-pools` heading (only `[repeat]` and `[end]` are
-  recognised), and unknown properties on `.challenges` (only `title`
-  is recognised).
+  recognised), and unknown properties on `.challenges` (the div
+  takes no class-level props; use an inner `# Title` heading instead).
 - Required content: `.pressure-pools` and `.challenges` need a `## xD
   TITLE` heading; `.image` needs a markdown image.
+- The optional `# Title` heading inside a `.challenges` div must be
+  the first content, and at most one is allowed per div.
 - Heading dice notation inside pools and challenges, with x in 1..8.
 - Cross-references: a pressure-pools link (`>>` or `>>*`) and a challenge
   link (`>>` or `>`) must point at a title that exists in the same div.

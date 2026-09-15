@@ -170,9 +170,11 @@ x You fall
     </div>
 
     <h3>Linked Challenges with title</h3>
-    <p>A <code>&gt; TITLE</code> line draws a plain line (no icon).</p>
+    <p>A <code>&gt; TITLE</code> line draws a plain line (no icon). Add a <code># Title</code> heading inside the div to draw a dark header bar above the cards; at most one <code># Title</code> is allowed and it must be the first content in the div.</p>
     <div class="syntax-example">
-      <pre><code>::: {.challenges title="Negotiating Peace"}
+      <pre><code>::: {.challenges}
+# Negotiating Peace
+
 ## 4D | Duchess Lysandra
 * lineal heir
 - Show Strength
@@ -181,7 +183,7 @@ x You fall
 ## 4D | Baron Reynard
 - Challenge Honor
 :::</code></pre>
-      <img class="rendered" src="/static/assets/syntax-challenge-plain.png" alt="Challenge with plain link">
+      <img class="rendered" src="/static/assets/syntax-challenge-plain.png" alt="Challenge with plain link and panel title">
     </div>
 
     <h3>Useful pieces</h3>
@@ -288,8 +290,9 @@ const escapeHtml = (text) => text
 const highlightSyntax = (code) => {
   let html = escapeHtml(code);
   html = html.replace(/:::/g, '<span class="tok-divider">:::</span>');
-  html = html.replace(/\{[\w.-]+(?:\s+(?:repeat|end|title="[^"]*"))?\}/g,
+  html = html.replace(/\{[\w.-]+(?:\s+(?:repeat|end))?\}/g,
     m => `<span class="tok-class">${m}</span>`);
+  html = html.replace(/^#\s/gm, m => `<span class="tok-heading">${m}</span>`);
   html = html.replace(/^##\s/gm, m => `<span class="tok-heading">${m}</span>`);
   html = html.replace(/\s\[(repeat|end)\]/g, m => ` <span class="tok-class">${m.trim()}</span>`);
   html = html.replace(/\b(\d+D)\b/g, m => `<span class="tok-dice">${m}</span>`);

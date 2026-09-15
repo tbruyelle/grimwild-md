@@ -119,7 +119,7 @@ class FixtureTest(unittest.TestCase):
 
     def test_single_quoted_prop_value(self):
         # The "bogus" case on line 108 also fires the double-quote
-        # check; the dedicated single-quote title prop is at line 114.
+        # check; the dedicated single-quote title prop is at line 115.
         self.assertTrue(
             at_line(self.issues, 108, "double quotes"),
             "expected 'double quotes' error at line 108",
@@ -129,10 +129,26 @@ class FixtureTest(unittest.TestCase):
             "expected 'double quotes' error at line 115",
         )
 
-    def test_challenges_title_with_no_value(self):
+    def test_challenges_title_property_rejected(self):
         self.assertTrue(
-            at_line(self.issues, 122, "has no value"),
-            "expected 'has no value' error at line 122",
+            at_line(self.issues, 115, "unknown challenges property"),
+            "expected 'unknown challenges property' error at line 115",
+        )
+        self.assertTrue(
+            at_line(self.issues, 122, "unknown challenges property"),
+            "expected 'unknown challenges property' error at line 122",
+        )
+
+    def test_challenges_title_not_at_top(self):
+        self.assertTrue(
+            at_line(self.issues, 159, "must be at the top"),
+            "expected '# Title must be at top' error at line 159",
+        )
+
+    def test_challenges_multiple_titles(self):
+        self.assertTrue(
+            at_line(self.issues, 166, "multiple '# Title' headings"),
+            "expected 'multiple # Title headings' error at line 166",
         )
 
     def test_unknown_column_property(self):
@@ -179,11 +195,14 @@ class FixtureTest(unittest.TestCase):
             (104, "closing ':::' with no matching opener"),
             (108, "unknown challenges property: 'bogus'"),
             (108, "prop must use double quotes: \"bogus='value'\""),
+            (115, "unknown challenges property: 'title'"),
             (115, "prop must use double quotes: \"title='Wrong quotes'\""),
-            (122, "challenges property 'title' has no value (use title=\"...\")"),
+            (122, "unknown challenges property: 'title'"),
             (130, "unknown column property: 'foo'"),
             (136, "unknown pressure-pools property: 'repeat'"),
             (146, "pressure-pools link target not found: 'Pool Y'"),
+            (159, "challenges '# Title' must be at the top of the div"),
+            (166, "challenges div has multiple '# Title' headings"),
         ]
         actual = [(i["line"], i["message"]) for i in self.issues]
         self.assertEqual(

@@ -55,7 +55,7 @@ def parse_div_attr(attr):
     """Parse a fenced div attribute into (classes, props).
 
     '.pressure-pools' -> (['pressure-pools'], {})
-    '.challenges title="A title"' -> (['challenges'], {'title': 'A title'})
+    '.challenges' -> (['challenges'], {})
     """
     # Pull out key=value tokens first; the rest is class tokens.
     remaining = re.sub(r"""[\w-]+=(?:"[^"]*"|'[^']*'|\S+)""", "", attr)
@@ -139,8 +139,19 @@ def parse_groups(lines):
 
 
 def parse_challenges(lines):
+    """A `.challenges` div may carry an optional `# Title` heading at
+    the very top; everything else is `## xD | TITLE` cards with their
+    traits, moves, fail state, and an optional link.
+    """
+    title = None
+    i = 0
+    while i < len(lines) and not lines[i]:
+        i += 1
+    if i < len(lines) and lines[i].startswith("# "):
+        title = lines[i][2:].strip()
+        i += 1
     challenges = []
-    for s in lines:
+    for s in lines[i:]:
         if s.startswith("## "):
             m = DICE_CHAL.match(s[3:])
             if m:
@@ -168,7 +179,7 @@ def parse_challenges(lines):
                     "to": m.group(2),
                     "type": "lock" if m.group(1) == ">>" else "simple",
                 }
-    return challenges
+    return title, challenges
 
 
 def parse_div(attr, lines):
@@ -183,9 +194,10 @@ def parse_div(attr, lines):
     if "set-it-up" in classes:
         return {"kind": "setup", "groups": parse_groups(lines)}
     if "challenges" in classes:
-        block = {"kind": "challenges", "challenges": parse_challenges(lines)}
-        if "title" in props:
-            block["title"] = props["title"]
+        title, challenges = parse_challenges(lines)
+        block = {"kind": "challenges", "challenges": challenges}
+        if title:
+            block["title"] = title
         return block
     if "image" in classes:
         return {"kind": "image", "content": "\n".join(lines).strip()}
@@ -390,7 +402,6 @@ def parse(text):
 # picks the same primary class when several are listed on one fence.
 KNOWN_CLASSES = ["module-icon", "pressure-pools", "useful-pieces",
                  "set-it-up", "challenges", "image", "page-break"]
-KNOWN_CHALLENGE_PROPS = {"title"}
 ALL_LINKS = re.compile(r"^(>>\*?|>) (.+)$")
 IMAGE_RE = re.compile(r"!\[[^\]]*\]\([^)]+\)")
 
@@ -428,10 +439,7 @@ def validate(text):
                     add(i, f"unknown pressure-pools property: {bp!r}")
             elif primary == "challenges":
                 for name in props:
-                    if name not in KNOWN_CHALLENGE_PROPS:
-                        add(i, f"unknown challenges property: {name!r}")
-                if "title" in extras:
-                    add(i, "challenges property 'title' has no value (use title=\"...\")")
+                    add(i, f"unknown challenges property: {name!r}")
             # Enforce double-quoted prop values everywhere.
             for sm in re.finditer(r"""[\w-]+='[^']*'""", attr):
                 add(i, f"prop must use double quotes: {sm.group()!r}")
@@ -485,10 +493,21 @@ def validate(text):
             div["headings"].append((i, mm.group(2)))
             if div["primary"] == "pressure-pools":
                 div.setdefault("column_props", []).append((i, col_prop))
+            div["seen_content"] = True
+        elif s.startswith("# "):
+            if div["primary"] == "challenges":
+                if div.get("seen_h1"):
+                    add(i, "challenges div has multiple '# Title' headings")
+                elif div.get("seen_content"):
+                    add(i, "challenges '# Title' must be at the top of the div")
+                div["seen_h1"] = True
+            # h1 is silently ignored in other divs for now
         elif s.startswith(("* ", "- ")):
-            pass
+            if div["primary"] == "challenges":
+                div["seen_content"] = True
         elif s.startswith("x "):
-            pass
+            if div["primary"] == "challenges":
+                div["seen_content"] = True
         else:
             lm = ALL_LINKS.match(s)
             if lm:
@@ -498,6 +517,8 @@ def validate(text):
                 elif div["primary"] == "pressure-pools" and form == ">":
                     add(i, "plain link '>' is not supported in pressure pools")
                 div["links"].append((i, target))
+                if div["primary"] == "challenges":
+                    div["seen_content"] = True
 
     for div in stack:
         add(div["line"], "unclosed fenced div")

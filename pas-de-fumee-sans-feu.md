@@ -314,7 +314,9 @@ puisque **Hauré** (ou ses disciples si il en a, voir pressure pool) a mis le
 feu à l'extérieur ce qui devrait entrainer le réveil de l'Élémentaire,
 **Tostadora**.
 
-::: {.challenges title="Tostadora l'Élémentaire de Feu"}
+::: {.challenges}
+# Tostadora l'Élémentaire de Feu
+
 ## 6d | Forme Éthérée
 * Intangibilité totale: insensible aux attaques physique.
 * Sensible à l'eau, aux fortes bourrasques et au manque d'oxygène.

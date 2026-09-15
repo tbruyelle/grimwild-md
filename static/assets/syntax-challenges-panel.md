@@ -1,4 +1,6 @@
-::: {.challenges title="Negotiating Peace"}
+::: {.challenges}
+# Negotiating Peace
+
 ## 4D | Duchess Lysandra
 * lineal heir
 - Show Strength

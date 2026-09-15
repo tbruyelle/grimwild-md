@@ -119,7 +119,7 @@ x Bad Fail
 
 ## Prop with no value
 
-::: {.challenges title}
+::: {.challenges title=""}
 ## 4D | Test
 * trait
 :::
@@ -149,6 +149,24 @@ x Bad Fail
 ::: {.pressure-pools}
 ## 4D Pool Y
 - item
+:::
+
+## # Title not at top of challenges div
+
+::: {.challenges}
+## 4D | First
+* trait
+# Title After Card
+:::
+
+## Multiple # Title headings in challenges div
+
+::: {.challenges}
+# Title One
+# Title Two
+
+## 4D | Card
+* trait
 :::
 
 ## Valid syntax (no issues expected)
@@ -214,9 +232,11 @@ x fail state
 ![Alt text](path/to/image.png)
 :::
 
-### Challenges with title prop
+### Challenges with inner # title heading
 
-::: {.challenges title="Panel header text"}
+::: {.challenges}
+# Negotiating Peace in a Civil War
+
 ## 4D | First
 * trait
 - move
