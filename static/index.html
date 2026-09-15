@@ -34,7 +34,7 @@
 
     <p>Module files use standard markdown plus these custom fenced divs. The dice notation (<code>xD</code>, 1–8) inside headings is what tells the renderer what's a pool or challenge.</p>
 
-    <h3>Pressure pool</h3>
+    <h3>Pressure pools</h3>
     <p>One column per <code>## xD TITLE</code> heading inside a <code>.pressure-pools</code> div.</p>
     <div class="syntax-example">
       <pre><code>::: {.pressure-pools}
@@ -45,7 +45,7 @@
       <img class="rendered" src="/static/assets/syntax-pool.png" alt="Pressure pool">
     </div>
 
-    <h3>Pressure pool — repeat</h3>
+    <h4>Pressure pools — repeat</h4>
     <p>Add <code>[repeat]</code> to a column heading to mark the pool as restarting from 0 when filled.</p>
     <div class="syntax-example">
       <pre><code>::: {.pressure-pools}
@@ -56,18 +56,7 @@
       <img class="rendered" src="/static/assets/syntax-pool-repeat.png" alt="Pressure pool with [repeat] suffix">
     </div>
 
-    <h3>Pressure pool — end</h3>
-    <p>Add <code>[end]</code> to a column heading to mark the pool as stopping the scene when filled.</p>
-    <div class="syntax-example">
-      <pre><code>::: {.pressure-pools}
-## 4D Night Falls [end]
-- The sun sets
-- Stars appear
-:::</code></pre>
-      <img class="rendered" src="/static/assets/syntax-pool-end.png" alt="Pressure pool with [end] suffix">
-    </div>
-
-    <h3>Pressure pool — lock link</h3>
+    <h4>Pressure pools — lock link</h4>
     <p>A <code>&gt;&gt; TITLE</code> line draws a lock link to another pool's heading.</p>
     <div class="syntax-example">
       <pre><code>::: {.pressure-pools}
@@ -83,7 +72,7 @@
       <img class="rendered" src="/static/assets/syntax-pool-link.png" alt="Pressure pool with lock link">
     </div>
 
-    <h3>Pressure pool — trigger link</h3>
+    <h4>Pressure pools — trigger link</h4>
     <p>A <code>&gt;&gt;* TITLE</code> line draws a trigger (circle-arrow) link instead of a lock. The target heading must exist in the same pool.</p>
     <div class="syntax-example">
       <pre><code>::: {.pressure-pools}
@@ -99,50 +88,20 @@
       <img class="rendered" src="/static/assets/syntax-pool-trigger.png" alt="Pressure pool with trigger link">
     </div>
 
-    <h3>Pressure pool — column [repeat] suffix</h3>
-    <p>Multiple columns in one div. Each <code>## xD TITLE [prop]</code> heading carries its own prop instead of putting it on the div class. Useful when neighbouring columns need different icons.</p>
-    <div class="syntax-example">
-      <pre><code>::: {.pressure-pools}
-## 4D Night Falls [repeat]
-- The sun sets
-- Stars appear
-&gt;&gt; Dawn Breaks
-
-## 4D Dawn Breaks [repeat]
-- The sun rises
-- Birds sing
-&gt;&gt;* Townsfolk Snap
-
-## 4D Townsfolk Snap [end]
-- Mob forms
-- Shops close
-:::</code></pre>
-      <img class="rendered" src="/static/assets/syntax-pool-column-repeat.png" alt="Pressure pool with column [repeat] suffix">
-    </div>
-
-    <h3>Pressure pool — column [end] suffix</h3>
-    <p>The same idea, with <code>[end]</code> on every column heading.</p>
+    <h4>Pressure pools — end</h4>
+    <p>Add <code>[end]</code> to a column heading to mark the pool as stopping the scene when filled.</p>
     <div class="syntax-example">
       <pre><code>::: {.pressure-pools}
 ## 4D Night Falls [end]
 - The sun sets
 - Stars appear
-&gt;&gt; Dawn Breaks
-
-## 4D Dawn Breaks [end]
-- The sun rises
-- Birds sing
-&gt;&gt; Townsfolk Snap
-
-## 4D Townsfolk Snap [end]
-- Mob forms
-- Shops close
 :::</code></pre>
-      <img class="rendered" src="/static/assets/syntax-pool-column-end.png" alt="Pressure pool with column [end] suffix">
+      <img class="rendered" src="/static/assets/syntax-pool-end.png" alt="Pressure pool with [end] suffix">
     </div>
 
-    <h3>Challenge</h3>
-    <p>One card per <code>## xD | TITLE</code> heading inside a <code>.challenges</code> div (the pipe may be omitted). Items starting with <code>*</code> are traits, <code>-</code> are moves, and <code>x</code> is the fail state.</p>
+
+    <h3>Challenges</h3>
+    <p>One card per <code>## xD | TITLE</code> heading inside a <code>.challenges</code> div. Items starting with <code>*</code> are traits, <code>-</code> are moves, and <code>x</code> is the fail state.</p>
     <div class="syntax-example">
       <pre><code>::: {.challenges}
 ## 4D | Goblin Ambush
@@ -153,7 +112,7 @@ x You fall
       <img class="rendered" src="/static/assets/syntax-challenge.png" alt="Challenge card">
     </div>
 
-    <h3>Challenge — lock link</h3>
+    <h4>Challenges — lock link</h4>
     <p>A <code>&gt;&gt; TITLE</code> line inside a challenge draws a lock link to another challenge.</p>
     <div class="syntax-example">
       <pre><code>::: {.challenges}
@@ -162,6 +121,7 @@ x You fall
 - Steal food
 x You fall
 >> Goblin Panic
+
 ## 2D | Goblin Panic
 * Go crazy
 - Move everywhere
@@ -169,19 +129,25 @@ x You fall
       <img class="rendered" src="/static/assets/syntax-challenge-link.png" alt="Challenge with lock link">
     </div>
 
-    <h3>Linked Challenges with title</h3>
+    <h4>Linked Challenges with title</h4>
     <p>A <code>&gt; TITLE</code> line draws a plain line (no icon). Add a <code># Title</code> heading inside the div to draw a dark header bar above the cards; at most one <code># Title</code> is allowed and it must be the first content in the div.</p>
     <div class="syntax-example">
       <pre><code>::: {.challenges}
-# Negotiating Peace
+# A dry twig snaps
 
-## 4D | Duchess Lysandra
-* lineal heir
-- Show Strength
-> Baron Reynard
+## 4D | Goblin Ambush
+* Sneaky
+- Steal food
+x You fall
+>> Goblin Panic
 
-## 4D | Baron Reynard
-- Challenge Honor
+## 2D | Goblin Panic
+* Go crazy
+- Move everywhere
+## 4D | Third
+- Move
+## 4D | Fourth
+- Move
 :::</code></pre>
       <img class="rendered" src="/static/assets/syntax-challenge-plain.png" alt="Challenge with plain link and panel title">
     </div>

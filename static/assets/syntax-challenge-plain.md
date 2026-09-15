@@ -1,11 +1,17 @@
 ::: {.challenges}
-# Negotiating Peace
+# A dry twig snaps
 
-## 4D | Duchess Lysandra
-* lineal heir
-- Show Strength
-> Baron Reynard
+## 4D | Goblin Ambush
+* Sneaky
+- Steal food
+x You fall
+>> Goblin Panic
 
-## 4D | Baron Reynard
-- Challenge Honor
+## 2D | Goblin Panic
+* Go crazy
+- Move everywhere
+## 4D | Third
+- Move
+## 4D | Fourth
+- Move
 :::
