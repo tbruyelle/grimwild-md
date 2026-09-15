@@ -52,7 +52,7 @@ CHAL_LINK = re.compile(r"^(>>|>)\s+(.*)$")
 def parse_div_attr(attr):
     """Parse a fenced div attribute into (classes, props).
 
-    '.pressure-pool repeat' -> (['pressure-pool', 'repeat'], {})
+    '.pressure-pools repeat' -> (['pressure-pools', 'repeat'], {})
     '.challenges title="A title"' -> (['challenges'], {'title': 'A title'})
     """
     # Pull out key=value tokens first; the rest is class tokens.
@@ -154,9 +154,9 @@ def parse_div(attr, lines):
     classes, props = parse_div_attr(attr)
     if "module-icon" in classes:
         return {"kind": "icon", "svg": "\n".join(lines).strip()}
-    if "pressure-pool" in classes:
+    if "pressure-pools" in classes:
         pool = parse_pool(lines)
-        pool["props"] = [c for c in classes if c != "pressure-pool"]
+        pool["props"] = [c for c in classes if c != "pressure-pools"]
         return pool
     if "useful-pieces" in classes:
         return {"kind": "pieces", "groups": parse_groups(lines)}
@@ -368,7 +368,7 @@ def parse(text):
 
 # Order matters: parse_div() checks classes in this order, so the validator
 # picks the same primary class when several are listed on one fence.
-KNOWN_CLASSES = ["module-icon", "pressure-pool", "useful-pieces",
+KNOWN_CLASSES = ["module-icon", "pressure-pools", "useful-pieces",
                  "set-it-up", "challenges", "image", "page-break"]
 KNOWN_POOL_PROPS = {"repeat", "end"}
 KNOWN_CHALLENGE_PROPS = {"title"}
@@ -404,10 +404,10 @@ def validate(text):
             extras = [c for c in classes if c not in KNOWN_CLASSES]
             if not primary:
                 add(i, f"unknown div class: {', '.join(extras)!r}")
-            elif primary == "pressure-pool":
+            elif primary == "pressure-pools":
                 for bp in extras:
                     if bp not in KNOWN_POOL_PROPS:
-                        add(i, f"unknown pressure-pool property: {bp!r}")
+                        add(i, f"unknown pressure-pools property: {bp!r}")
             elif primary == "challenges":
                 for name in props:
                     if name not in KNOWN_CHALLENGE_PROPS:
@@ -440,7 +440,7 @@ def validate(text):
             continue
         if s.startswith("## "):
             text = s[3:]
-            if div["primary"] == "pressure-pool":
+            if div["primary"] == "pressure-pools":
                 mm = DICE_POOL.match(text)
             elif div["primary"] == "challenges":
                 mm = DICE_CHAL.match(text)
@@ -465,7 +465,7 @@ def validate(text):
                 form, target = lm.group(1), lm.group(2)
                 if div["primary"] == "challenges" and form == ">>*":
                     add(i, "trigger link '>>*' is not supported in challenges")
-                elif div["primary"] == "pressure-pool" and form == ">":
+                elif div["primary"] == "pressure-pools" and form == ">":
                     add(i, "plain link '>' is not supported in pressure pools")
                 div["links"].append((i, target))
 
@@ -473,16 +473,16 @@ def validate(text):
         add(div["line"], "unclosed fenced div")
 
     # Post-pass: check link targets now that every title is known.
-    pool_titles = {t for d in divs if d["primary"] == "pressure-pool"
+    pool_titles = {t for d in divs if d["primary"] == "pressure-pools"
                    for _, t in d["headings"]}
     for d in divs:
         primary = d["primary"]
-        if primary == "pressure-pool":
+        if primary == "pressure-pools":
             if not d["headings"]:
-                add(d["line"], "pressure-pool missing '## xD TITLE' heading")
+                add(d["line"], "pressure-pools missing '## xD TITLE' heading")
             for ln, target in d["links"]:
                 if target not in pool_titles:
-                    add(ln, f"pressure-pool link target not found: {target!r}")
+                    add(ln, f"pressure-pools link target not found: {target!r}")
         elif primary == "challenges":
             if not d["headings"]:
                 add(d["line"], "challenges div has no challenge cards")

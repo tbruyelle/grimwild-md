@@ -16,7 +16,7 @@ now they stay inside and refuse to speak on what happens at night. It
 keeps their sanity, and keeps self and neighbor alike safe from the
 goblin plague that transforms them all.
 
-::: {.pressure-pool repeat}
+::: {.pressure-pools repeat}
 ## 4D Night Falls
 
 - Someone locked outside.
@@ -26,7 +26,7 @@ goblin plague that transforms them all.
 >> Dawn Breaks
 :::
 
-::: {.pressure-pool repeat}
+::: {.pressure-pools repeat}
 ## 4D Dawn Breaks
 
 - Prominent villager lies dead.
@@ -36,7 +36,7 @@ goblin plague that transforms them all.
 >>* Townsfolk Snap
 :::
 
-::: {.pressure-pool end}
+::: {.pressure-pools end}
 ## 4D Townsfolk Snap
 
 - *Enraged* mob chases off PCs.

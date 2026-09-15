@@ -6,9 +6,9 @@ content inside `:::` fences, so a label can sit between blocks without
 confusing it. When you add a new case, pin its expected line in
 `tests/test_validate.py`.
 
-## Unknown pressure-pool property
+## Unknown pressure-pools property
 
-::: {.pressure-pool reload}
+::: {.pressure-pools reload}
 ## 4D Some Pool
 - item
 :::
@@ -22,7 +22,7 @@ confusing it. When you add a new case, pin its expected line in
 
 ## Pressure-pool missing heading
 
-::: {.pressure-pool}
+::: {.pressure-pools}
 - item
 - item
 :::
@@ -58,20 +58,20 @@ just some text, no image syntax here
 
 ## Plain link in pressure pool (not supported)
 
-::: {.pressure-pool}
+::: {.pressure-pools}
 ## 4D | Pool A
 - item
 > Pool B
 :::
 
-::: {.pressure-pool}
+::: {.pressure-pools}
 ## 4D Pool B
 - item
 :::
 
 ## Link to non-existent pool title
 
-::: {.pressure-pool}
+::: {.pressure-pools}
 ## 4D Only Pool
 - item
 >> Ghost Pool
@@ -133,7 +133,7 @@ extracts this section and runs it through `validate()` expecting `[]`.
 
 ### Pressure pool with lock link
 
-::: {.pressure-pool}
+::: {.pressure-pools}
 ## 4D Pool Alpha
 - item
 >> Pool Beta
@@ -141,7 +141,7 @@ extracts this section and runs it through `validate()` expecting `[]`.
 
 ### Pressure pool with trigger link and repeat prop
 
-::: {.pressure-pool repeat}
+::: {.pressure-pools repeat}
 ## 4D Pool Beta
 - item
 >>* Pool Gamma
@@ -149,7 +149,7 @@ extracts this section and runs it through `validate()` expecting `[]`.
 
 ### Pressure pool with end prop
 
-::: {.pressure-pool end}
+::: {.pressure-pools end}
 ## 4D Pool Gamma
 - item
 :::

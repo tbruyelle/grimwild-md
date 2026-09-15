@@ -10,9 +10,9 @@ Custom syntax built on fenced divs (`:::`) with these section types:
 | Section | Div Class | Rendered Prefix | Notes |
 |---------|-----------|-----------------|-------|
 | Module Icon | `.module-icon` | - | Optional SVG icon for the module header. Defaults to a goblin mask if omitted. Good source for icons: https://game-icons.net/ |
-| Pressure Pools | `.pressure-pool` | `◉` | Tables for columns; links: `>> B` (lock), `>>* B` (trigger) |
+| Pressure Pools | `.pressure-pools` | `◉` | Tables for columns; links: `>> B` (lock), `>>* B` (trigger) |
 | Challenge Links | inside `.challenges` | - | `>> B` (lock with icon), `> B` (plain line); placed inside the source challenge, points to another challenge title |
-| Pressure Pool properties | `repeat`, `end` | - | Add to div class: `{.pressure-pool repeat}` |
+| Pressure Pool properties | `repeat`, `end` | - | Add to div class: `{.pressure-pools repeat}` |
 | Challenges Panel Header | `title="..."` on `.challenges` | - | Dark full-width bar above the cards; text rendered in uppercase |
 | Useful Pieces | `.useful-pieces` | `▸` | Right-pointing triangle |
 | Set It Up | `.set-it-up` | `▢` | Square checkbox |
@@ -184,12 +184,12 @@ Checks include:
 - Fenced div balance: an unmatched opener (`::: {.x}` without `:::`) or a
   closer with no opener.
 - Unknown div classes (typos like `.pressure-pull`), unknown properties
-  on `.pressure-pool` (only `repeat` and `end` are recognised), and
+  on `.pressure-pools` (only `repeat` and `end` are recognised), and
   unknown properties on `.challenges` (only `title` is recognised).
-- Required content: `.pressure-pool` and `.challenges` need a `## xD
+- Required content: `.pressure-pools` and `.challenges` need a `## xD
   TITLE` heading; `.image` needs a markdown image.
 - Heading dice notation inside pools and challenges, with x in 1..8.
-- Cross-references: a pressure-pool link (`>>` or `>>*`) and a challenge
+- Cross-references: a pressure-pools link (`>>` or `>>*`) and a challenge
   link (`>>` or `>`) must point at a title that exists in the right scope.
   A `>>*` inside a challenges div, or a `>` inside a pressure pool, is
   rejected.

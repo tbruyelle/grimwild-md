@@ -29,8 +29,8 @@ class FixtureTest(unittest.TestCase):
 
     def test_unknown_pool_property(self):
         self.assertTrue(
-            at_line(self.issues, 11, "unknown pressure-pool property"),
-            "expected 'unknown pressure-pool property' error at line 11",
+            at_line(self.issues, 11, "unknown pressure-pools property"),
+            "expected 'unknown pressure-pools property' error at line 11",
         )
 
     def test_unknown_div_class(self):
@@ -41,8 +41,8 @@ class FixtureTest(unittest.TestCase):
 
     def test_pressure_pool_missing_heading(self):
         self.assertTrue(
-            at_line(self.issues, 25, "pressure-pool missing"),
-            "expected 'pressure-pool missing heading' error at line 25",
+            at_line(self.issues, 25, "pressure-pools missing"),
+            "expected 'pressure-pools missing heading' error at line 25",
         )
 
     def test_challenges_div_with_no_cards(self):
@@ -83,8 +83,8 @@ class FixtureTest(unittest.TestCase):
 
     def test_pool_link_to_nonexistent_target(self):
         self.assertTrue(
-            at_line(self.issues, 77, "pressure-pool link target not found"),
-            "expected 'pressure-pool link target not found' error at line 77",
+            at_line(self.issues, 77, "pressure-pools link target not found"),
+            "expected 'pressure-pools link target not found' error at line 77",
         )
 
     def test_duplicate_challenge_title(self):
@@ -144,16 +144,16 @@ class FixtureTest(unittest.TestCase):
         # substring. A new case added to the fixture below must also be
         # added here, and removing one fails this test.
         expected = [
-            (11, "unknown pressure-pool property: 'reload'"),
+            (11, "unknown pressure-pools property: 'reload'"),
             (18, "unknown div class: 'foo'"),
-            (25, "pressure-pool missing '## xD TITLE' heading"),
+            (25, "pressure-pools missing '## xD TITLE' heading"),
             (32, "challenges div has no challenge cards"),
             (37, "image div has no markdown image"),
             (43, "challenges div has no challenge cards"),
             (44, "heading missing dice notation: 'A Title Without Dice'"),
             (54, "trigger link '>>*' is not supported in challenges"),
             (64, "plain link '>' is not supported in pressure pools"),
-            (77, "pressure-pool link target not found: 'Ghost Pool'"),
+            (77, "pressure-pools link target not found: 'Ghost Pool'"),
             (86, "duplicate challenge title: 'Same Name'"),
             (95, "dice value 0 outside 1..8 range"),
             (98, "dice value 9 outside 1..8 range"),
@@ -202,7 +202,7 @@ class EdgeCaseTest(unittest.TestCase):
         self.assertIn("no matching opener", issues[0]["message"])
 
     def test_lone_unclosed_fence(self):
-        issues = grimwild.validate("::: {.pressure-pool}\n")
+        issues = grimwild.validate("::: {.pressure-pools}\n")
         # Both errors fire: the fence is unclosed AND the pool has no
         # heading. The user fixes the unclosed fence first and the
         # missing-heading check will rerun on the next build.

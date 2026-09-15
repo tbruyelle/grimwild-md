@@ -35,9 +35,9 @@
     <p>Module files use standard markdown plus these custom fenced divs. The dice notation (<code>xD</code>, 1–8) inside headings is what tells the renderer what's a pool or challenge.</p>
 
     <h3>Pressure pool</h3>
-    <p>One column per <code>## xD TITLE</code> heading inside a <code>.pressure-pool</code> div.</p>
+    <p>One column per <code>## xD TITLE</code> heading inside a <code>.pressure-pools</code> div.</p>
     <div class="syntax-example">
-      <pre><code>::: {.pressure-pool}
+      <pre><code>::: {.pressure-pools}
 ## 4D Night Falls
 - The sun sets
 - Stars appear
@@ -48,7 +48,7 @@
     <h3>Pressure pool — repeat</h3>
     <p>The <code>repeat</code> property adds an icon indicating the pool restarts from 0 when filled.</p>
     <div class="syntax-example">
-      <pre><code>::: {.pressure-pool repeat}
+      <pre><code>::: {.pressure-pools repeat}
 ## 4D Night Falls
 - The sun sets
 - Stars appear
@@ -59,7 +59,7 @@
     <h3>Pressure pool — end</h3>
     <p>The <code>end</code> property adds an icon indicating the pool stops the scene when filled.</p>
     <div class="syntax-example">
-      <pre><code>::: {.pressure-pool end}
+      <pre><code>::: {.pressure-pools end}
 ## 4D Night Falls
 - The sun sets
 - Stars appear
@@ -70,14 +70,14 @@
     <h3>Pressure pool — lock link</h3>
     <p>A <code>&gt;&gt; TITLE</code> line draws a lock link to another pool's heading.</p>
     <div class="syntax-example">
-      <pre><code>::: {.pressure-pool}
+      <pre><code>::: {.pressure-pools}
 ## 4D Night Falls
 - The sun sets
 - Stars appear
 &gt;&gt; Day Breaks
 :::
 
-::: {.pressure-pool}
+::: {.pressure-pools}
 ## 4D Day Breaks
 - The sun rises
 - Birds sing
@@ -88,14 +88,14 @@
     <h3>Pressure pool — trigger link</h3>
     <p>A <code>&gt;&gt;* TITLE</code> line draws a trigger (circle-arrow) link instead of a lock. The target heading must exist in the same pool.</p>
     <div class="syntax-example">
-      <pre><code>::: {.pressure-pool}
+      <pre><code>::: {.pressure-pools}
 ## 4D Night Falls
 - The sun sets
 - Stars appear
 &gt;&gt;* Day Breaks
 :::
 
-::: {.pressure-pool}
+::: {.pressure-pools}
 ## 4D Day Breaks
 - The sun rises
 - Birds sing
