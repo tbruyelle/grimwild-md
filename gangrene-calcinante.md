@@ -127,7 +127,9 @@ le chemin et sera utile pour empêcher les problèmes lors du voyage.
 
 Le jour du départ, **Panse-Mémé** donne 2 paquets de *Feuille-Givre*, une
 solution temporaire pour leur permettre de sortir de l'état de *Zombie
-Calcinée* si jamais cela arrive, une seule fois par paquet.
+Calcinée* si jamais cela arrive, une seule fois par paquet. Les PJ doivent
+décider où porter ces objets. Elle leur donne également une lettre de
+recommandation pour **Maître Corvus** (demander quel PJ la porte).
 
 ## Voyage vers Madoris
 
@@ -135,4 +137,153 @@ Calcinée* si jamais cela arrive, une seule fois par paquet.
 ![Carte](/home/tom/rpgs/grimwild/grimwild-md/map2.png)
 :::
 
+En supposant que les PJ ont eu la bonne idée de prendre des chevaux, le voyage
+dure 3 jours et 3 nuits, ce qui va constituer 3 story rolls, lancé à chaque
+étape. Sans chevaux il est peu probable que le PJ affectés survivent. 2d story
+roll si les PJ sont seuls, 3d si ils sont accompagnés de **Grand-Guy** car il
+connait la route.
 
+En plus du story roll, chaque étape devra comprendre un lancer sur la Pressure
+Pool de la *Gangrène Calcinante*, séparément pour chaque PJ.
+
+::: {.pressure-pools}
+## 4d Fièvre incandescante
+- Crise suffocante
+- Vision des enfers de **Tostadora**
+>>* Zombie Carbonisé
+## 2d Zombie Carbonisé
+- S'effondre
+:::
+
+Notes PP/PJ
+- Sybil:   FE ....  ZC ....
+- Gregory: FE ....  ZC ....
+
+L'état de base *Fièvere incandescante* ajoute +1t à tous les jets, tandis que
+*Zombie Carbonisé* ajoute +2t.
+
+> Rappel: en *Zombie Carbonisé*, on peut revenir à l'état précédent en mangeant une part de *Feuille-Givre*.
+
+### La Rivière Boueuse
+
+Les PJ longent la *Rivière Boueuse* à leur gauche et un bois assez dense à leur
+droite. Ce voyage dure normalement un jour à cheval, plus sinon. Pour chaque
+jour lancer un story roll:
+- **Critical**: l'un des PJ ne lance pas son pool de *Gangrène Calcinante*.
+- **Perfect**: tout se passe comme prévu
+- **Messy**:
+  - Un animal est surpris en train de dévorer une des rations de *Feuille-Givre* pendant la nuit.
+- **Grim**: 
+  - La route est barrée par une famille de **Crocodiles Géants**
+
+::: {.challenges}
+## 4d | Crocodiles Géants
+* Camouflage marécageux
+- Plongée fulgurante
+- Roulée de la mort
+- Noyer la proie (perte *Feuille-Givre* et/ou lettre de recommandation)
+:::
+
+Les PJ peuvent croiser un bande de pêcheurs qui peuvent les aider à bouger les
+crocodiles. Ils dorment à la belle étoile.
+
+> ⚂ Pressure pool
+
+### L'auberge du Père Chaudron
+
+Les PJ arrivent en fin de matinée à un pont en pierre puis arrive à l'auberge
+du Père Chaudron. Lancer un story roll:
+- **Critical**: l'un des PJ ne lance pas son pool de *Gangrène Calcinante*.
+- **Perfect**: tout se passe comme prévu
+- **Messy**:
+  - Sensation d'être suivi (-1d au prochain story roll)
+- **Grim**: 
+  - Un des PJs voit son cas s'aggraver et perds un dé de son pool
+
+Les PJ sont accueillis par le Père Chaudron qui, après s'être renseigné sur le
+but de leur voyage, les renseigne sur **Madoris** et notamment les conflits
+incessants entre le **Baron Osbern** et le **Baron Rakash**. Il demande au PJ
+si ils ont un laisser-passer, car c'est désormais chose obligatoire à cause de
+tensions et des risques d'espionnage entre les deux vallées.
+
+> ⚂ Pressure pool
+
+### Les collines de Madoris
+
+Les PJ utilisent un chemin plus chaotique qui traverse une série de collines
+parsemées de bois. Lancer un story roll:
+- **Critical**: l'un des PJ ne lance pas son pool de *Gangrène Calcinante*.
+- **Perfect**: tout se passe comme prévu
+- **Messy**:
+  - Un animal est surpris en train de dévorer une des rations de *Feuille-Givre* pendant la nuit.
+- **Grim**: 
+  - Embuscade par une bande de bandits qui en veulent à leur porte monnaie.
+
+::: {.challenges}
+## 6d | Bandits de Grand chemin
+* Rusés & expérimentés
+* N'aiment pas tuer
+- Se dispersent et attaquent avec leur frondes
+- Proposent d'arrêter le combat en contre partie d'argent
+- Encerclent une cible
+:::
+
+Les PJ peuvent rattraper un marchand et sa charette, qui en échange d'un paquet
+d'argent, va les cacher pour entrer dans **Madoris**.
+
+> ⚂ Pressure pool
+
+## Arrivée à Madoris
+
+Les gardes de la grande porte refuse les PJ si ils n'ont pas de
+*laisser-passer*. Relancer la Pressure pool si jamais les PJ mettent bcp de
+temps à rentrer.
+
+### Trouver Maître Corvus
+
+Encore un story roll, 2d sans **Grand-Guy**, 3d avec:
+- **Critical**: Trouve **Corvus** et 1d de fortune
+- **Perfect**: Trouve **Corvus**
+- **Messy**: Trouve **Corvus** mais lance PP
+- **Grim**: Lance PP
+
+### Maître Corvus
+
+**Grand-Guy** les laisse devant la maison de **Corvus** et leur dit à plus
+tard, il doit demander audience auprès du **Baron Osbern**.
+
+**Maitre Corvus** vis dans une grande et belle maison richement décorée. C'est
+un homme d'environ 70ans dans une élégante toge bleu claire. Il accueille les
+PJ et leur demande pourquoi ils sont là. À la lecture de la lettre de
+recommandation, il comprend et leur demande une fortune pour pouvoir les
+guérir.
+
+Pendant toute la conversation, des bruits sourds venant du sol vont vibrer les
+murs de la maison. Il s'agit de **Tape-Dur**, un combattant de l'arène que
+**Maître Corvus** a maladroitement expérimenté un remède de décuplement de
+force. Cela a mal tourné, l'homme a complètement perdu la tête et est désormais
+enfermé dans le laboratoire du maître, où se trouve justement les ingrédients
+pour concocter le sort qui va guérir les PJ de la *Gangrène Calcinante*.
+
+En échange de maîtriser **Tape-Dur** pour qu'il puisse renverser l'effet du
+sort de décuplément des muscles, **Corvus** accepte de soigner les PJ
+gratuitement. **Corvus** explique que c'est un ancien esclave venu des îles du
+sud de continent.
+
+**Corvus** leur montre la porte menant au laboratoire, et leur demande de
+l'appeler quand **Tape-Dur** est maitrisé. La cave semble être une grande pièce
+parsemée de colonnes carrées en pierre. On entend une respiration lourde et des
+coups de temps en temps. Toutes les lampes ont été brisées.
+
+::: {.challenges}
+## 6d | Tape-Dur
+* Hurle *"Noana aho!!"* dans sa langue 
+* Aveuglé par la lumière
+- Charge surprise
+- Étranglement
+- Détruit source lumineuse
+:::
+
+Maîtriser **Tape-Dur** sans le tuer requiert +1t aux attaques. Lui donner à
+manger permet de le maîtriser pour pas cher, il s'assoit et dévore son plat en
+ignorant tout ce qui se passe autour de lui.

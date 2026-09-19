@@ -986,7 +986,7 @@ li::before {
 .pool-card .dice {
   font-family: "Noto Sans", sans-serif; font-weight: 700; font-size: 8.8pt;
   background: var(--color-dice-bg); color: var(--color-heading); border-radius: 0.45mm;
-  padding: 0.2mm 1.1mm 0.5mm; letter-spacing: 0.02em; line-height: 1;
+  padding: 0.7mm 1.1mm 0.35mm; letter-spacing: 0.02em; line-height: 1;
   display: inline-flex; align-items: center; align-self: center;
 }
 .pool-card h2 {
