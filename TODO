@@ -1,1 +1,2 @@
--  why characters are cropped in the PDF? (broken font?)
+- remove image from webapp, its not going to work as it is
+- webapp: display verification errors
