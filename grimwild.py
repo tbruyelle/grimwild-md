@@ -944,7 +944,7 @@ td.foot { height: 7mm; }
 h1 {
   font-family: "Tiller", "Noto Sans", sans-serif; font-weight: 900; text-transform: uppercase;
   text-align: center; font-size: 22pt; letter-spacing: 0.01em;
-  margin: 0.2mm 0 2mm; padding-bottom: 1mm; color: var(--color-title);
+  margin: 0.2mm 0 2mm 15mm; padding-bottom: 1mm; color: var(--color-title);
   border-bottom: 0.25mm solid var(--color-border-challenge);
 }
 .hooks { display: flex; margin: 0 2mm 1.8mm; }
