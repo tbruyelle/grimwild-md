@@ -1205,6 +1205,11 @@ blockquote { font-size: 10.6pt; }
 .challenge ul { font-size: 10.8pt; }
 .challenge .fail { font-size: 10.6pt; }
 .mix-it-up em { font-size: 11pt; }
+/* The em-sized markers scale with the bigger font, but li padding-left is in
+   fixed mm, so the glyph crowds the text. Widen the indents to match. */
+li { padding-left: 4.4mm; }
+.challenge li { padding-left: 4.2mm; }
+.challenge .fail { padding-left: 4.2mm; }
 """
 
 # ---------------------------------------------------------------- template ---
