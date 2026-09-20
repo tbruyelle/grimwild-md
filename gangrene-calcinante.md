@@ -102,10 +102,14 @@ Après cela, il disparaît, tout comme **Skirk** qui a déjà disparu.
 
 Après quelques jours, alors que**Panse-Mémé** vient changer les pansements,
 l'un des PJ fait une crise de *Fièvre incandescante*, ses plaies se mettent à
-fumer et à noircir, une nécrose se développe autour de la plaie.
+fumer et à noircir, une nécrose se développe autour de la plaie. Il commence à
+se tranformer en *Zombie Carbonisé*.
 
 *"Par les tripes du Troll, c'est ce que je craignais, vous êtes atteint de
 Gangrène Calcinante..."*
+
+Elle demande au PJ de manger des *Feuilles-Givre* ce qui lui permet de faire
+passer cette fièvre.
 
 Elle explique alors que les PJ n'ont plus quelques jours à vivre et qu'elle n'a
 pas les pouvoirs de guérir ce genre d'afflication magique. Seul son mentor
@@ -125,7 +129,7 @@ plus que de 3 jours.
 **Grand-Guy** propose de les accompagner, à cheval uniquement. Il connaît bien
 le chemin et sera utile pour empêcher les problèmes lors du voyage.
 
-Le jour du départ, **Panse-Mémé** donne 2 paquets de *Feuille-Givre*, une
+Le jour du départ, **Panse-Mémé** donne 1 ou 2 paquets de *Feuille-Givre*, une
 solution temporaire pour leur permettre de sortir de l'état de *Zombie
 Calcinée* si jamais cela arrive, une seule fois par paquet. Les PJ doivent
 décider où porter ces objets. Elle leur donne également une lettre de
