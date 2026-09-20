@@ -8,7 +8,7 @@
 *Les blessures maudites de Tostadora*
 
 Après leur combat contre **Tostadora**, les blessés se retrouvent infectés par
-une infection magique: la *Grangrène incandescante*. Ils doivent rapidement se
+une pathologie magique: la *Grangrène incandescante*. Ils doivent rapidement se
 rendre à la capitale de la région, **Madoris**, pour y trouver **Maitre
 Corvus**, seul mage assez puissant pour les délivrer du sortilège maudit.
 
@@ -26,7 +26,7 @@ gémissement, il s'agit de **Grand-Guy**, le capitaine des paladins de la
 
 ### Soigner **Grand-Guy**
 
-Ce PNG pourra apporter une grande aide pour les PJs il est donc important
+Ce PNJ pourra apporter une grande aide pour les PJs il est donc important
 qu'ils réussissent à le soigner. Cependant son cas est grave, il a une jambe
 fracturée et un hématome gros comme un ballon de foot sur la tête.
 
@@ -56,8 +56,9 @@ origine, et entendant la réponse décrète que cela devra être surveillé de p
 
 Après quelques jours de repos dans la maison de **Panse-Mémé**, les PJ peuvent
 sortir prendre l'air dans le village. C'est alors qu'ils croisent un groupe
-d'enfant qui s'amuse à reproduire le combat entre le *Monstre de Feu* et *Sir
-Grosses-Fesses*, mimant le fait ce dernier a donné le coup fatal au monstre.
+d'enfants qui s'amusent à reproduire le combat entre le *Monstre de Feu* et
+*Sir Grosses-Fesses*, mimant le fait ce dernier a donné le coup fatal au
+monstre.
 
 C'est l'occasion pour les PJ de juger de leur nouvelle popularité. Quand les
 enfants les aperçoivent, ils se ruent vers eux et leur demande qui est *Sir
@@ -73,7 +74,7 @@ C'est peut-être le bon moment pour proposer de nouveaux talents aux PJ.
 ### La reconnaissance de Giezzyth
 
 Un soir, alors que les PJ arrivent dans l'auberge du village pour dîner,
-l'aubergiste leur dit que quelqu'un les cherche, et désigne une petit
+l'aubergiste leur dit que quelqu'un les cherche, et désigne une petite
 silhouette ecapuchonnée assis à une table au fond de la salle.
 
 Il s'agit d'un *Kobold* nommé **Sskirk** qui sert **Giezzyth**. *"Mon maître
@@ -160,8 +161,8 @@ Pool de la *Gangrène Calcinante*, séparément pour chaque PJ.
 :::
 
 Notes PP/PJ
-- Sybil:   FE ....  ZC ....
-- Gregory: FE ....  ZC ....
+- **Sybil**:   FE ....  ZC ....
+- **Gregory**: FE ....  ZC ....
 
 L'état de base *Fièvere incandescante* ajoute +1t à tous les jets, tandis que
 *Zombie Carbonisé* ajoute +2t.
@@ -175,10 +176,8 @@ droite. Ce voyage dure normalement un jour à cheval, plus sinon. Pour chaque
 jour lancer un story roll:
 - **Critical**: l'un des PJ ne lance pas son pool de *Gangrène Calcinante*.
 - **Perfect**: tout se passe comme prévu
-- **Messy**:
-  - Un animal est surpris en train de dévorer une des rations de *Feuille-Givre* pendant la nuit.
-- **Grim**: 
-  - La route est barrée par une famille de **Crocodiles Géants**
+- **Messy**: Un animal est surpris en train de dévorer une des rations de *Feuille-Givre* pendant la nuit.
+- **Grim**: La route est barrée par une famille de **Crocodiles Géants**.
 
 ::: {.challenges}
 ## 4d | Crocodiles Géants
@@ -188,8 +187,30 @@ jour lancer un story roll:
 - Noyer la proie (perte *Feuille-Givre* et/ou lettre de recommandation)
 :::
 
-Les PJ peuvent croiser un bande de pêcheurs qui peuvent les aider à bouger les
-crocodiles. Ils dorment à la belle étoile.
+Les PJ dépassent un bande de pêcheurs en leur parlant ces derniers vont leur
+dire de faire attention aux crocodiles, qui se sont installés récemment dans la
+rivière et qui sont très dangereux, un ami à eux s'est encore faire dévorer le
+mois dernier. Il faut leur balancer de la viande pour libérer le chemin, ou
+contourner par le bois.
+
+Les **Crocodiles Géants** sont cachés au bord de la route et attendent leur
+proie. Ce sont des créatures très dangereuses et il est important d'indiquer au
+PJ que l'enjeu est critique (risque de desesperate/drop).
+
+On va utiliser le système de *Vigilance*. Si les PJ ont été prevenu par les
+pêcheurs, ils ont plus vigilants et donc **Gregory** avec le vantage d'ancien
+espion remarque des motifs inhabituels dans les herbes. Si personne ne fait
+attention ou si les pêcheurs n'ont pas prévenu les PJ, un des chevaux se fait
+engloutir la patte, entrainant la chute de son cavalier. D'autres crocodiles
+sortent alors de leur cachette pour attaquer le cheval et le cavalier à terre. 
+
+Demandez aux PJ leur position sur la route, le premier qui passe où le plus
+proche de la rivière se fait attaquer. Ils peuvent décider de mettre
+**Grand-Guy** mais sans lui la suite du voyage sera plus difficile.
+
+Truc drôle: laisser passer les pêcheurs pour voir ce qu'ils leur arrivent.
+
+Le soir venu. les PJ dorment à la belle étoile.
 
 > ⚂ Pressure pool
 
@@ -199,16 +220,14 @@ Les PJ arrivent en fin de matinée à un pont en pierre puis arrive à l'auberge
 du Père Chaudron. Lancer un story roll:
 - **Critical**: l'un des PJ ne lance pas son pool de *Gangrène Calcinante*.
 - **Perfect**: tout se passe comme prévu
-- **Messy**:
-  - Sensation d'être suivi (-1d au prochain story roll)
-- **Grim**: 
-  - Un des PJs voit son cas s'aggraver et perds un dé de son pool
+- **Messy**: Sensation d'être suivi (-1d au prochain story roll)
+- **Grim**: Un des PJs voit son cas s'aggraver et perds un dé de son pool
 
-Les PJ sont accueillis par le Père Chaudron qui, après s'être renseigné sur le
-but de leur voyage, les renseigne sur **Madoris** et notamment les conflits
+Les PJ sont accueillis par le **Père Chaudron** qui, après s'être renseigné sur
+le but de leur voyage, les renseigne sur **Madoris** et notamment les conflits
 incessants entre le **Baron Osbern** et le **Baron Rakash**. Il demande au PJ
-si ils ont un laisser-passer, car c'est désormais chose obligatoire à cause de
-tensions et des risques d'espionnage entre les deux vallées.
+si ils ont un *laisser-passer*, car c'est désormais chose obligatoire à cause
+de tensions et des risques d'espionnage entre les deux vallées.
 
 > ⚂ Pressure pool
 
@@ -218,10 +237,8 @@ Les PJ utilisent un chemin plus chaotique qui traverse une série de collines
 parsemées de bois. Lancer un story roll:
 - **Critical**: l'un des PJ ne lance pas son pool de *Gangrène Calcinante*.
 - **Perfect**: tout se passe comme prévu
-- **Messy**:
-  - Un animal est surpris en train de dévorer une des rations de *Feuille-Givre* pendant la nuit.
-- **Grim**: 
-  - Embuscade par une bande de bandits qui en veulent à leur porte monnaie.
+- **Messy**: Les PJ remarquent que des bandits les suivent et tente de leur tendre une embasucade
+- **Grim**:  Embuscade par une bande de bandits qui en veulent à leur porte monnaie et à leur chevaux. **Abyss** reçoit une bille de fronde en plein face et tombe de son cheval: *Ensanglanté*.
 
 ::: {.challenges}
 ## 6d | Bandits de Grand chemin
@@ -236,6 +253,7 @@ Les PJ peuvent rattraper un marchand et sa charette, qui en échange d'un paquet
 d'argent, va les cacher pour entrer dans **Madoris**.
 
 > ⚂ Pressure pool
+> Si les PJ n'ont plus de chevaux, lancez 2 fois la Pressure pool
 
 ## Arrivée à Madoris
 
