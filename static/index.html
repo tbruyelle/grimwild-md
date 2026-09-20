@@ -60,7 +60,7 @@
     <p>A <code>&gt;&gt; TITLE</code> line draws a lock link to another pool's heading.</p>
     <div class="syntax-example">
       <pre><code>::: {.pressure-pools}
-## 4D Night Falls
+## 4D Night Falls [repeat]
 - The sun sets
 - Stars appear
 &gt;&gt; Day Breaks
@@ -76,7 +76,7 @@
     <p>A <code>&gt;&gt;* TITLE</code> line draws a trigger (circle-arrow) link instead of a lock. The target heading must exist in the same pool.</p>
     <div class="syntax-example">
       <pre><code>::: {.pressure-pools}
-## 4D Night Falls
+## 4D Night Falls [repeat]
 - The sun sets
 - Stars appear
 &gt;&gt;* Day Breaks
@@ -92,9 +92,14 @@
     <p>Add <code>[end]</code> to a column heading to mark the pool as stopping the scene when filled.</p>
     <div class="syntax-example">
       <pre><code>::: {.pressure-pools}
-## 4D Night Falls [end]
+## 4D Night Falls [repeat]
 - The sun sets
 - Stars appear
+&gt;&gt;* Day Breaks
+
+## 4D Day Breaks [end]
+- The sun rises
+- Birds sing
 :::</code></pre>
       <img class="rendered" src="/static/assets/syntax-pool-end.png" alt="Pressure pool with [end] suffix">
     </div>
@@ -144,16 +149,12 @@ x You fall
 ## 2D | Goblin Panic
 * Go crazy
 - Move everywhere
-## 4D | Third
-- Move
-## 4D | Fourth
-- Move
 :::</code></pre>
       <img class="rendered" src="/static/assets/syntax-challenge-plain.png" alt="Challenge with plain link and panel title">
     </div>
 
     <h3>Useful pieces</h3>
-    <p>Items the party can pick up. Renders as a right-pointing triangle list.</p>
+    <p>Items the GM can pick up. Renders as a right-pointing triangle list.</p>
     <div class="syntax-example">
       <pre><code>::: {.useful-pieces}
 **Villagers**: Honest, hard-working people
