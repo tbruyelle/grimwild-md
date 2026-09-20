@@ -1186,6 +1186,25 @@ PRINT_CSS = """
   --color-vignette: rgba(0,0,0,0);
 }
 .sheet-bg { background: #ffffff; }
+/* Print legibility: bump every font size by ~2pt over the colour version. */
+body { font-size: 10.6pt; }
+.pagenum { font-size: 10pt; }
+h1 { font-size: 26pt; }
+.hook { font-size: 10pt; }
+.intro { font-size: 10.6pt; }
+.pool-card .dice { font-size: 10.8pt; }
+.pool-card h2 { font-size: 12pt; }
+.banner { font-size: 11.5pt; }
+.simple-para h2 { font-size: 19pt; }
+.simple-para h3 { font-size: 11.5pt; }
+.simple-para p { font-size: 10.6pt; }
+blockquote { font-size: 10.6pt; }
+.challenges-title { font-size: 13.5pt; }
+.challenge .dice { font-size: 9.6pt; }
+.challenge h2 { font-size: 10.3pt; }
+.challenge ul { font-size: 10.8pt; }
+.challenge .fail { font-size: 10.6pt; }
+.mix-it-up em { font-size: 11pt; }
 """
 
 # ---------------------------------------------------------------- template ---
