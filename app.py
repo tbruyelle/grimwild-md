@@ -1,12 +1,55 @@
+import hashlib
+import os
+import secrets
+import sys
+import time
+import uuid
 from pathlib import Path
-from fastapi import FastAPI, File, Form, UploadFile
+
+from fastapi import FastAPI, File, Form, Request, UploadFile
 from fastapi.responses import HTMLResponse, Response
 from fastapi.staticfiles import StaticFiles
+
 from grimwild import validate, parse, build_pdf
+
+SALT = os.environ.get("TRACKING_SALT") or ""
+if not SALT:
+    SALT = secrets.token_hex(16)
+    print(
+        "warning: TRACKING_SALT not set; using a random per-process salt "
+        "(hashes won't correlate across restarts)",
+        file=sys.stderr,
+    )
+
+
+def _hash_ip(ip: str) -> str:
+    return hashlib.sha256(f"{SALT}:{ip}".encode()).hexdigest()[:16]
+
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/fonts", StaticFiles(directory="fonts"), name="fonts")
+
+
+@app.middleware("http")
+async def track(request: Request, call_next):
+    rid = uuid.uuid4().hex[:12]
+    start = time.perf_counter()
+    response = await call_next(request)
+    duration_ms = int((time.perf_counter() - start) * 1000)
+    fwd = request.headers.get("x-forwarded-for", "")
+    ip = (fwd.split(",")[0].strip() if fwd else "") or (
+        request.client.host if request.client else ""
+    )
+    ua = (request.headers.get("user-agent") or "")[:80].replace('"', "'")
+    print(
+        f'ts={time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())} '
+        f'rid={rid} method={request.method} path={request.url.path} '
+        f'status={response.status_code} dur_ms={duration_ms} '
+        f'ip_hash={_hash_ip(ip)} ua="{ua}"',
+        file=sys.stderr,
+    )
+    return response
 
 
 @app.get("/", response_class=HTMLResponse)

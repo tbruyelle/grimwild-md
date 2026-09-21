@@ -1,6 +1,7 @@
 <!doctype html>
 <meta charset="utf-8">
 <title>Grimwild Module Renderer</title>
+<script data-goatcounter="https://tbruyelle.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <link rel="stylesheet" href="/static/styles.css">
 <main>
   <h1>Grimwild Module Renderer</h1>
@@ -285,6 +286,7 @@ const setLoading = (loading) => {
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
+  window.goatcounter?.count({ path: '/convert', title: 'Convert', event: true });
   const data = new FormData(form);
   setLoading(true);
   try {
