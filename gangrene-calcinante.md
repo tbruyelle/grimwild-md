@@ -152,7 +152,7 @@ En plus du story roll, chaque étape devra comprendre un lancer sur la Pressure
 Pool de la *Gangrène Calcinante*, séparément pour chaque PJ.
 
 ::: {.pressure-pools}
-## 4d Fièvre incandescante
+## 2d Fièvre incandescante
 - Crise suffocante
 - Vision des enfers de **Tostadora**
 >>* Zombie Carbonisé
