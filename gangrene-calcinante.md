@@ -221,7 +221,9 @@ du Père Chaudron. Lancer un story roll:
 - **Critical**: l'un des PJ ne lance pas son pool de *Gangrène Calcinante*.
 - **Perfect**: tout se passe comme prévu
 - **Messy**: Sensation d'être suivi (-1d au prochain story roll)
-- **Grim**: Un des PJs voit son cas s'aggraver et perds un dé de son pool
+- **Grim**:
+  - Un des PJs voit son cas s'aggraver et perds un dé de son pool
+  - Se trompent de route et perdent une journée. Entraine nouvelle nuit à la belle étoile.
 
 Les PJ sont accueillis par le **Père Chaudron** qui, après s'être renseigné sur
 le but de leur voyage, les renseigne sur **Madoris** et notamment les conflits
