@@ -143,16 +143,21 @@ recommandation pour **Maître Corvus** (demander quel PJ la porte).
 :::
 
 En supposant que les PJ ont eu la bonne idée de prendre des chevaux, le voyage
-dure 3 jours et 3 nuits, ce qui va constituer 3 story rolls, lancé à chaque
-étape. Sans chevaux il est peu probable que le PJ affectés survivent. 2d story
-roll si les PJ sont seuls, 3d si ils sont accompagnés de **Grand-Guy** car il
-connait la route.
+dure 3 jours et 2 nuits, ce qui va constituer plusieurs story rolls, lancé à
+chaque jour. *2d* story roll si les PJ sont seuls, *3d* si ils sont accompagnés
+de **Grand-Guy** car il connait la route. 
+
+Sans chevaux il est peu probable que le PJ affectés survivent. Les chevaux
+seront d'ailleurs un élément critique du voyage et la perte d'un ou plusieurs
+chevaux devraient faire monter rapidement la pression. Si jamais ils n'ont plus
+que 2 chevaux les story rolls passent à *2d*. En dessous d'un cheval, les
+choses se compliquent car le délai se rallonge.
 
 En plus du story roll, chaque étape devra comprendre un lancer sur la Pressure
 Pool de la *Gangrène Calcinante*, séparément pour chaque PJ.
 
 ::: {.pressure-pools}
-## 2d Fièvre incandescante
+## 3d Fièvre incandescante
 - Crise suffocante
 - Vision des enfers de **Tostadora**
 >>* Zombie Carbonisé
@@ -172,12 +177,24 @@ L'état de base *Fièvere incandescante* ajoute +1t à tous les jets, tandis que
 ### La Rivière Boueuse
 
 Les PJ longent la *Rivière Boueuse* à leur gauche et un bois assez dense à leur
-droite. Ce voyage dure normalement un jour à cheval, plus sinon. Pour chaque
-jour lancer un story roll:
-- **Critical**: l'un des PJ ne lance pas son pool de *Gangrène Calcinante*.
-- **Perfect**: tout se passe comme prévu
-- **Messy**: Un animal est surpris en train de dévorer une des rations de *Feuille-Givre* pendant la nuit.
-- **Grim**: La route est barrée par une famille de **Crocodiles Géants**.
+droite. Le chemin de terre est jonchée de haute herbes. Les PJ vont croiser une
+bande pêcheurs qui, si les PJ bavardent un peu avec eux, leur disent de faire
+attention aux crocodiles de la rivière. Ils se sont installés récemment  et
+sont très dangereux, un ami à eux s'est encore faire dévorer le mois dernier.
+Il faut leur balancer de la viande pour libérer le chemin, ou contourner par le
+bois.
+
+> Lancer des conversations entre les PJ
+> **Grand-Guy** demande à **Sybil** d'où elle vient et où elle a appris à guérir de ces mains
+
+Un peu plus loin sur la route, une famille de **Crocodiles Géants** attendent
+leur proies, dissimulés dans les hautes herbes.
+
+Story roll:
+- **Perfect**: Les PJ passent à côté des crocos qui dorment.
+- **Critical**: Perfect + l'un des PJ ne lance pas son pool de *Gangrène Calcinante*.
+- **Messy**: **Grégory**, avec son vantage d'espion, remarque des motifs changeant dans les hautes herbes.
+- **Grim**: Pris par surprise, un **Crocodile Géant** englouti la patte d'un des chevaux, son cavalier tombe et se retrouve nez à nez avec un autre croco.
 
 ::: {.challenges}
 ## 4d | Crocodiles Géants
@@ -187,22 +204,8 @@ jour lancer un story roll:
 - Noyer la proie (perte *Feuille-Givre* et/ou lettre de recommandation)
 :::
 
-Les PJ dépassent un bande de pêcheurs en leur parlant ces derniers vont leur
-dire de faire attention aux crocodiles, qui se sont installés récemment dans la
-rivière et qui sont très dangereux, un ami à eux s'est encore faire dévorer le
-mois dernier. Il faut leur balancer de la viande pour libérer le chemin, ou
-contourner par le bois.
-
-Les **Crocodiles Géants** sont cachés au bord de la route et attendent leur
-proie. Ce sont des créatures très dangereuses et il est important d'indiquer au
-PJ que l'enjeu est critique (risque de desesperate/drop).
-
-On va utiliser le système de *Vigilance*. Si les PJ ont été prevenu par les
-pêcheurs, ils ont plus vigilants et donc **Gregory** avec le vantage d'ancien
-espion remarque des motifs inhabituels dans les herbes. Si personne ne fait
-attention ou si les pêcheurs n'ont pas prévenu les PJ, un des chevaux se fait
-engloutir la patte, entrainant la chute de son cavalier. D'autres crocodiles
-sortent alors de leur cachette pour attaquer le cheval et le cavalier à terre. 
+Ce sont des créatures très dangereuses et il est important d'indiquer au PJ que
+l'enjeu est critique (risque de desesperate/drop).
 
 Demandez aux PJ leur position sur la route, le premier qui passe où le plus
 proche de la rivière se fait attaquer. Ils peuvent décider de mettre
@@ -210,33 +213,104 @@ proche de la rivière se fait attaquer. Ils peuvent décider de mettre
 
 Truc drôle: laisser passer les pêcheurs pour voir ce qu'ils leur arrivent.
 
-Le soir venu. les PJ dorment à la belle étoile.
+Le soir venu. les PJ dorment à la belle étoile, forete heuseuement dans une
+maison abandonné sans toit mais avec des murs et suffisamment de bois pour
+faire office de porte, afin de se protéger des crocos.
+
+Nécessite un autre story roll, cette fois *2d* avec ou sans **Grand-Guy**:
+- **Perfect**: Celui qui veille remarque des petits mamifères qui cherchent à grignoter leur vivres et les fait fuire.
+- **Critical**: Perfect + Spark
+- **Messy**: Un petit mamifère est surpris en train de dévorer une des rations de *Feuille-Givre* pendant la nuit.
+- **Grim**: Pris de panique, un cheval s'enfuit par la fenêtre, et se fait dévorer par les crocos qui tournent autour de la maison.
 
 > ⚂ Pressure pool
 
 ### L'auberge du Père Chaudron
 
 Les PJ arrivent en fin de matinée à un pont en pierre puis arrive à l'auberge
-du Père Chaudron. Lancer un story roll:
-- **Critical**: l'un des PJ ne lance pas son pool de *Gangrène Calcinante*.
-- **Perfect**: tout se passe comme prévu
+du Père Chaudron.
+
+> Lancer des conversations entre les PJ
+> **Grand-Guy** demande à **Abyss** si il sait à quoi pense Groot. Que fait-il pendant qu'il n'est pas là avec nous ?
+
+Story roll:
+- **Perfect**: Vous remarquez une bande de brigands à chevaux qui vous suivent de loin, mais vous arrivez à les semer.
+- **Critical**: Perfect + l'un des PJ ne lance pas son pool de *Gangrène Calcinante*.
 - **Messy**: Sensation d'être suivi (-1d au prochain story roll)
 - **Grim**:
   - Un des PJs voit son cas s'aggraver et perds un dé de son pool
   - Se trompent de route et perdent une journée. Entraine nouvelle nuit à la belle étoile.
 
+En cas de nouvelle nuit à la belle étoile:
+- **Perfect**: ça ronfle
+- **Critical**: Perfect + Spark
+- **Messy**: Prendre suspense ou mamifere qui mange un *Feuille-Givre*.
+- **Grim**: Aggravation du cas d'un des PJ: *-1d* sur son pool
+
+
+L'auberge est un grand batiment avec un étage. Le RAZ est consacré à la salle
+princpale, qui sent la fumée, la transpiration et le graillon. Au milieu d'un
+bar central un gros chaudron émet une fumée épaisse. Une petite arène se trouve
+à une extremité, et un stand de fléchette. L'endroit est très agité avec bcp de
+monde.
+
+Le jeu de fléchette permet de gagner *1d de fortune* si jamais le PJ réussi son
+tir contre un villageois (*2d Agilité*). L'arène est fermée pour l'instant et
+attend l'arrivée de  **Gras-Double** pour ouvrir. Ce dernier est un gentil gros
+qui s'amuse à jeter ses adversaires hors du ring sans jamais les blesser, c'est
+un peu comme du catch et ça fait rire tout le monde.
+
 Les PJ sont accueillis par le **Père Chaudron** qui, après s'être renseigné sur
 le but de leur voyage, les renseigne sur **Madoris** et notamment les conflits
-incessants entre le **Baron Osbern** et le **Baron Rakash**. Il demande au PJ
-si ils ont un *laisser-passer*, car c'est désormais chose obligatoire à cause
-de tensions et des risques d'espionnage entre les deux vallées.
+incessants entre le **Baron Osbern** et le **Baron Rakash**. Il raconte comment
+tout cela est arrivé depuis que **Dame Cindy** a choisit **Osbern** plutôt que
+**Rakash** et la dernière complication avec la disparition d'une grosse
+Émeraude, mais tout le monde se doute que c'est le **Baron Rakash** qui est
+derrière tout ça. C'est à ce moment qu'un voix grave et autoritaire se fait
+entendre:
+
+*"C'est FAUX! Faîtes attention à ce que vous dîtes aubergiste, le Seigneur
+Rakash n'a rien à voir avec cela, je peux vous le dire. Avez-vous au moins la
+moindre preuve de ce que vous avancez ?"*
+
+Le **Père Chaudron** est surpris et confus et ne sait que répondre.
+
+*"Veuillez tenir votre langue à l'avenir, plutôt que de propager des rumeurs
+qui pourrait vous la faire perdre..."*
+
+**Père Chaudron** chuchote alors aux PJ à qui ils ont affaire, **Lance-Os**, le
+bras droit du **Baron Rakash**, il se demande bien ce qu'il fait là. Pour en
+revenir à **Madoris**, il demande au PJ si ils ont un *laisser-passer*, car
+c'est désormais chose obligatoire à cause de tensions et des risques
+d'espionnage entre les deux vallées.
+
+Un peu plus tard, l'arène s'ouvre et **Gras-Double** demande à qui veut bien
+faire un combat contre lui, plusieurs villageaois se retrouve catapulté de
+l'arène sous les rires enjoués des spectateurs. **Lance-Os** décide alors de
+participer, et enlève lentement son armure de plate. Il arrivent devant
+**Gras-Double** et ce dernier semble avoir perdu toute assurance, tandis que
+**Lance-Os** garde un air impassible et inquiétant. S'en suit une attaque sans
+conviction de **GD**, suivi par un massacre en règle, **LC** finit recouvert du
+sang de sa victime et continue de frapper, plus personne ne rit ni n'ose dire
+un mot dans la salle. Quand il s'arrête, la tête de **GD** n'est plus qu'un
+hématome. **LC** ramasse alors lentement et calmement les dents sautés et les
+met dans une petit boîte métallique qui semble en contenir beaucoup d'autres.
+Un sourire sadique se peint alors sur son visage alors qu'il demande à
+l'assemblée:
+
+*"Quelqu'un veut s'amuser avec moi ?"*
 
 > ⚂ Pressure pool
 
 ### Les collines de Madoris
 
 Les PJ utilisent un chemin plus chaotique qui traverse une série de collines
-parsemées de bois. Lancer un story roll:
+parsemées de bois. 
+
+> Lancer des conversations entre les PJ
+> **Grand-Guy** demande à **Gregory** ce qu'il faisait avant, et comment il se voit dans 10 ans.
+
+Lancer un story roll:
 - **Critical**: l'un des PJ ne lance pas son pool de *Gangrène Calcinante*.
 - **Perfect**: tout se passe comme prévu
 - **Messy**: Les PJ remarquent que des bandits les suivent et tente de leur tendre une embasucade
