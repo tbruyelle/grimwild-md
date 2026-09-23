@@ -310,7 +310,7 @@ demande à l'assemblée:
 
 *"Quelqu'un veut s'amuser avec moi ?"*
 
-Personne ne répond, si jamais un PJ souhaite se lever, **Grand-Guy** l'attrape
+Personne ne réponds, si jamais un PJ souhaite se lever, **Grand-Guy** l'attrape
 par le poignée et lui fait les gros yeux. Il n'est clairement pas raisonnable vu
 la situation de se confronter à **Lance-Os**. Ce dernier retourne alors à sa
 place.
