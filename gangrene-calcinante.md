@@ -71,6 +71,8 @@ nom de la confrérie et que son action ne restera pas sans retour ni honneur.
 
 C'est peut-être le bon moment pour proposer de nouveaux talents aux PJ.
 
+> Pendant leur convalescance, proposez au PJ de décrire un scène où ils utilisent leur nouvelle compétence.
+
 ### La reconnaissance de Giezzyth
 
 Un soir, alors que les PJ arrivent dans l'auberge du village pour dîner,
@@ -99,9 +101,11 @@ leur permettre de comprendre comment s'en servir.
 
 Après cela, il disparaît, tout comme **Skirk** qui a déjà disparu.
 
+> Pendant leur convalescence, proposez au PJ de décrire une situation où ils vont tester leur object magique.
+
 ### Pathologie élémentaire
 
-Après quelques jours, alors que**Panse-Mémé** vient changer les pansements,
+Après quelques jours, alors que **Panse-Mémé** vient changer les pansements,
 l'un des PJ fait une crise de *Fièvre incandescante*, ses plaies se mettent à
 fumer et à noircir, une nécrose se développe autour de la plaie. Il commence à
 se tranformer en *Zombie Carbonisé*.
@@ -125,7 +129,7 @@ Les PJ doivent se préparer au voyage, en se renseignant ils apprennent qu'il
 faut 4 à 6 jours de marche pour aller à **Madoris**. Ils peuvent cependant
 acheter des chevaux (-1d/cheval sur leur pool de richesse), ils peuvent
 négocier une monture gratuite pour le service rendu. À cheval le trajet n'est
-plus que de 3 jours.
+plus que de 3 jours et 2 nuits.
 
 **Grand-Guy** propose de les accompagner, à cheval uniquement. Il connaît bien
 le chemin et sera utile pour empêcher les problèmes lors du voyage.
@@ -165,9 +169,9 @@ Pool de la *Gangrène Calcinante*, séparément pour chaque PJ.
 - S'effondre
 :::
 
-Notes PP/PJ
-- **Sybil**:   FE ....  ZC ....
-- **Gregory**: FE ....  ZC ....
+- Notes PP/PJ
+  - **Sybil**:   FE ....  ZC ....
+  - **Gregory**: FE ....  ZC ....
 
 L'état de base *Fièvere incandescante* ajoute +1t à tous les jets, tandis que
 *Zombie Carbonisé* ajoute +2t.
@@ -178,10 +182,10 @@ L'état de base *Fièvere incandescante* ajoute +1t à tous les jets, tandis que
 
 Les PJ longent la *Rivière Boueuse* à leur gauche et un bois assez dense à leur
 droite. Le chemin de terre est jonchée de haute herbes. Les PJ vont croiser une
-bande pêcheurs qui, si les PJ bavardent un peu avec eux, leur disent de faire
-attention aux crocodiles de la rivière. Ils se sont installés récemment  et
-sont très dangereux, un ami à eux s'est encore faire dévorer le mois dernier.
-Il faut leur balancer de la viande pour libérer le chemin, ou contourner par le
+bande pêcheurs qui, si ils bavardent un peu avec eux, leur disent de faire
+attention aux crocodiles de la rivière. Ils se sont installés récemment et sont
+très dangereux, un ami à eux s'est encore faire dévorer le mois dernier. Il faut
+leur balancer de la viande pour libérer le chemin, ou contourner par le
 bois.
 
 > Lancer des conversations entre les PJ
@@ -198,7 +202,8 @@ Story roll:
 
 ::: {.challenges}
 ## 4d | Crocodiles Géants
-* Camouflage marécageux
+* Camouflé dans les herbes
+* Disparaît avec morceau de viande
 - Plongée fulgurante
 - Roulée de la mort
 - Noyer la proie (perte *Feuille-Givre* et/ou lettre de recommandation)
@@ -213,7 +218,7 @@ proche de la rivière se fait attaquer. Ils peuvent décider de mettre
 
 Truc drôle: laisser passer les pêcheurs pour voir ce qu'ils leur arrivent.
 
-Le soir venu. les PJ dorment à la belle étoile, forete heuseuement dans une
+Le soir venu. les PJ dorment à la belle étoile, forte heuseuement dans une
 maison abandonné sans toit mais avec des murs et suffisamment de bois pour
 faire office de porte, afin de se protéger des crocos.
 
@@ -228,7 +233,7 @@ Nécessite un autre story roll, cette fois *2d* avec ou sans **Grand-Guy**:
 ### L'auberge du Père Chaudron
 
 Les PJ arrivent en fin de matinée à un pont en pierre puis arrive à l'auberge
-du Père Chaudron.
+du **Père Chaudron** le soir.
 
 > Lancer des conversations entre les PJ
 > **Grand-Guy** demande à **Abyss** si il sait à quoi pense Groot. Que fait-il pendant qu'il n'est pas là avec nous ?
@@ -247,6 +252,7 @@ En cas de nouvelle nuit à la belle étoile:
 - **Messy**: Prendre suspense ou mamifere qui mange un *Feuille-Givre*.
 - **Grim**: Aggravation du cas d'un des PJ: *-1d* sur son pool
 
+> ⚂ Pressure pool avant de rentrer dans l'auberge le soir.
 
 L'auberge est un grand batiment avec un étage. Le RAZ est consacré à la salle
 princpale, qui sent la fumée, la transpiration et le graillon. Au milieu d'un
@@ -261,12 +267,15 @@ qui s'amuse à jeter ses adversaires hors du ring sans jamais les blesser, c'est
 un peu comme du catch et ça fait rire tout le monde.
 
 Les PJ sont accueillis par le **Père Chaudron** qui, après s'être renseigné sur
-le but de leur voyage, les renseigne sur **Madoris** et notamment les conflits
-incessants entre le **Baron Osbern** et le **Baron Rakash**. Il raconte comment
-tout cela est arrivé depuis que **Dame Cindy** a choisit **Osbern** plutôt que
-**Rakash** et la dernière complication avec la disparition d'une grosse
-Émeraude, mais tout le monde se doute que c'est le **Baron Rakash** qui est
-derrière tout ça. C'est à ce moment qu'un voix grave et autoritaire se fait
+le but de leur voyage, les renseigne sur **Madoris** et notamment le fait qu'il
+faut désormais un _laisser-passer_ pour entrer dans la ville, car le **Baron
+Osbern** craint les tentatives d'esptionage. Les conflits incessants entre le
+**Baron Osbern** et le **Baron Rakash** ont finit par aboutir à cette situation.
+
+Il raconte comment tout cela est arrivé depuis que **Dame Cindy** a choisit
+**Osbern** plutôt que **Rakash** et la dernière complication avec la disparition
+d'un gros Rubis, mais tout le monde se doute que c'est le **Baron Rakash** qui
+est derrière tout ça. C'est à ce moment qu'un voix grave et autoritaire se fait
 entendre:
 
 *"C'est FAUX! Faîtes attention à ce que vous dîtes aubergiste, le Seigneur
@@ -279,28 +288,38 @@ Le **Père Chaudron** est surpris et confus et ne sait que répondre.
 qui pourrait vous la faire perdre..."*
 
 **Père Chaudron** chuchote alors aux PJ à qui ils ont affaire, **Lance-Os**, le
-bras droit du **Baron Rakash**, il se demande bien ce qu'il fait là. Pour en
-revenir à **Madoris**, il demande au PJ si ils ont un *laisser-passer*, car
-c'est désormais chose obligatoire à cause de tensions et des risques
-d'espionnage entre les deux vallées.
+bras droit du **Baron Rakash**, il se demande bien ce qu'il fait là, puis
+disparaît derrière son comptoire.
 
 Un peu plus tard, l'arène s'ouvre et **Gras-Double** demande à qui veut bien
 faire un combat contre lui, plusieurs villageaois se retrouve catapulté de
-l'arène sous les rires enjoués des spectateurs. **Lance-Os** décide alors de
-participer, et enlève lentement son armure de plate. Il arrivent devant
-**Gras-Double** et ce dernier semble avoir perdu toute assurance, tandis que
-**Lance-Os** garde un air impassible et inquiétant. S'en suit une attaque sans
-conviction de **GD**, suivi par un massacre en règle, **LC** finit recouvert du
-sang de sa victime et continue de frapper, plus personne ne rit ni n'ose dire
-un mot dans la salle. Quand il s'arrête, la tête de **GD** n'est plus qu'un
-hématome. **LC** ramasse alors lentement et calmement les dents sautés et les
-met dans une petit boîte métallique qui semble en contenir beaucoup d'autres.
-Un sourire sadique se peint alors sur son visage alors qu'il demande à
-l'assemblée:
+l'arène sous les rires enjoués des spectateurs. Ce personnage est
+particulièrement gros et moche.
+
+**Lance-Os** décide alors de participer, et enlève lentement son armure de
+plate. Il arrivent devant **Gras-Double** et ce dernier semble avoir perdu toute
+assurance, tandis que **Lance-Os** garde un air impassible et inquiétant. S'en
+suit une attaque sans conviction de **GD**, contré et suivi par un massacre en
+règle, **LC** finit recouvert du sang de sa victime et continue de frapper, plus
+personne ne rit ni n'ose dire un mot dans la salle. Même les soldats qui
+l'accompagne le regarder avec dégoût. Quand il s'arrête, la tête de **GD** n'est
+plus qu'un hématome. **LC** ramasse alors lentement et calmement les dents
+sautées et les met dans une petit boîte métallique qui semble en contenir
+beaucoup d'autres. Un sourire sadique se peint alors sur son visage alors qu'il
+demande à l'assemblée:
 
 *"Quelqu'un veut s'amuser avec moi ?"*
 
-> ⚂ Pressure pool
+Personne ne répond, si jamais un PJ souhaite se lever, **Grand-Guy** l'attrape
+par le poignée et lui fait les gros yeux. Il n'est clairement pas raisonnable vu
+la situation de se confronter à **Lance-Os**. Ce dernier retourne alors à sa
+place.
+
+Un peu plus tard, **Père Chaudron** a sorti **Gras-Double** de l'arène et
+demande à l'assemblée si quelqu'un a des notions de premier secours. Si les PJ
+aident il vont se retrouver face à la requête lancinant de **Gras-Double** qui
+demande de récupérer ses dents, sinon il ne pourra plus jamais plaire aux
+femmes.
 
 ### Les collines de Madoris
 
