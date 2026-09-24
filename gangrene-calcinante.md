@@ -252,6 +252,8 @@ En cas de nouvelle nuit à la belle étoile:
 - **Messy**: Prendre suspense ou mamifere qui mange un *Feuille-Givre*.
 - **Grim**: Aggravation du cas d'un des PJ: *-1d* sur son pool
 
+Le soir les PJ arrivent à l'auberge du **Père Chaudron**.
+
 > ⚂ Pressure pool avant de rentrer dans l'auberge le soir.
 
 L'auberge est un grand batiment avec un étage. Le RAZ est consacré à la salle
@@ -323,7 +325,7 @@ femmes. En échange, **Gras-Double** leur dit qu'il a un *laisser-passer* et
 qu'il pourra les faire entrer dans **Madoris** en les emmenant dans sa
 charette.
 
-Voler la *boîte à dents* de **Lance-Os** n'est pas chose aisée, tant qu'il est
+Voler la *boîte à dents* de **Lance-Os** n'est pas chose aisée, temps qu'il est
 attablé. Elle est accrochée à sa ceinture, car il aime entendre le bruit des
 dents qui s'entrechoquent lorsqu'il se déplace. Il dort par contre dans une
 chambre seul, avec ses soldats dans la chambre d'à côté. **Père Chaudron** est
@@ -370,8 +372,8 @@ temps à rentrer.
 ### Trouver Maître Corvus
 
 Encore un story roll, 2d sans **Grand-Guy**, 3d avec:
-- **Critical**: Trouve **Corvus** et 1d de fortune
 - **Perfect**: Trouve **Corvus**
+- **Critical**: **Perfect** + spark
 - **Messy**: Trouve **Corvus** mais lance PP
 - **Grim**: Lance PP
 
