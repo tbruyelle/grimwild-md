@@ -308,7 +308,7 @@ sautées et les met dans une petit boîte métallique qui semble en contenir
 beaucoup d'autres. Un sourire sadique se peint alors sur son visage alors qu'il
 demande à l'assemblée:
 
-*"Quelqu'un veut s'amuser avec moi ?"*
+*"Quelqu'un d'autre veut s'amuser avec moi ?"*
 
 Personne ne réponds, si jamais un PJ souhaite se lever, **Grand-Guy** l'attrape
 par le poignée et lui fait les gros yeux. Il n'est clairement pas raisonnable vu
@@ -317,9 +317,20 @@ place.
 
 Un peu plus tard, **Père Chaudron** a sorti **Gras-Double** de l'arène et
 demande à l'assemblée si quelqu'un a des notions de premier secours. Si les PJ
-aident il vont se retrouver face à la requête lancinant de **Gras-Double** qui
+aident il vont se retrouver face à la requête lancinante de **Gras-Double** qui
 demande de récupérer ses dents, sinon il ne pourra plus jamais plaire aux
-femmes.
+femmes. En échange, **Gras-Double** leur dit qu'il a un *laisser-passer* et
+qu'il pourra les faire entrer dans **Madoris** en les emmenant dans sa
+charette.
+
+Voler la *boîte à dents* de **Lance-Os** n'est pas chose aisée, tant qu'il est
+attablé. Elle est accrochée à sa ceinture, car il aime entendre le bruit des
+dents qui s'entrechoquent lorsqu'il se déplace. Il dort par contre dans une
+chambre seul, avec ses soldats dans la chambre d'à côté. **Père Chaudron** est
+prêt à les renseigner sur le sujet sans insister. Il a posé sa *boîte à dents*
+sur sa table de nuit, cependant il a fermé sa porte à clé. **Père Chaudron** a
+les double mais la serrure est rouillé et fera du bruit alarme-t-il. Il est
+possible de passer par le toit et les fenêtres cependant.
 
 ### Les collines de Madoris
 
@@ -330,9 +341,9 @@ parsemées de bois.
 > **Grand-Guy** demande à **Gregory** ce qu'il faisait avant, et comment il se voit dans 10 ans.
 
 Lancer un story roll:
-- **Critical**: l'un des PJ ne lance pas son pool de *Gangrène Calcinante*.
-- **Perfect**: tout se passe comme prévu
-- **Messy**: Les PJ remarquent que des bandits les suivent et tente de leur tendre une embasucade
+- **Perfect**: Les PJ arrivent à semer une bande de bandits qui le suivent.
+- **Critical**: Perfect + les PJ trouvent un marchand prêt à les faire entrer dans **Madoris**.
+- **Messy**: Les PJ remarquent que des bandits les suivent et tente de leur tendre une embuscade.
 - **Grim**:  Embuscade par une bande de bandits qui en veulent à leur porte monnaie et à leur chevaux. **Abyss** reçoit une bille de fronde en plein face et tombe de son cheval: *Ensanglanté*.
 
 ::: {.challenges}
@@ -352,7 +363,7 @@ d'argent, va les cacher pour entrer dans **Madoris**.
 
 ## Arrivée à Madoris
 
-Les gardes de la grande porte refuse les PJ si ils n'ont pas de
+Les gardes de la grande porte refusent les PJ si ils n'ont pas de
 *laisser-passer*. Relancer la Pressure pool si jamais les PJ mettent bcp de
 temps à rentrer.
 
