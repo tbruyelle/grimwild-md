@@ -260,6 +260,18 @@ x fail state
   - sub item C
 - top item three
 
+### Simple paragraph with h4 subtitles
+
+## Pick a Side
+
+Intro paragraph.
+
+#### Steel Faction
+Body text for steel.
+
+#### Glass Faction
+Body text for glass.
+
 ### Pressure pool with column [repeat] suffix
 
 ::: {.pressure-pools}

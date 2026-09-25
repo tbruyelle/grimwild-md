@@ -127,6 +127,27 @@ A level-3 heading at the top level starts a new simple paragraph section with a
 subheading-style title (no underline). Omitting the heading produces a plain
 body paragraph.
 
+Level-4 headings are subtitles, rendered as italic body-size text below a
+`###` subheading. They read as a true tertiary heading rather than another
+title, so they don't start their own section:
+
+```markdown
+## Action Rolls
+
+Intro paragraph.
+
+### Pick a Stat
+
+The GM picks which stat the action uses.
+
+#### Ties and rerolls
+
+What happens when two stats match.
+```
+
+A level-4 heading at the top level starts its own simple paragraph section
+with an italic body-size title.
+
 ### Blockquotes
 
 Lines starting with `>` become a quote block: italic text with a rule down the
@@ -214,6 +235,16 @@ When the source has been changed and a build suddenly stops, the first
 - `grimwild.py` - Converter (module md → PDF)
 - `example-golden.pdf` - Example page with actual text for syntax reference
 - `*.pdf` - Generated module pages
+
+## Commit Hygiene
+
+`plague-of-goblins.md` (and its PDF) are the reference module and ship with
+code changes; `example-golden.pdf` is the syntax reference and ships with the
+code too. Every other module source (e.g. `gangrene-calcinante.md`,
+`pas-de-fumee-sans-feu.md`) and its PDF is the author's own work and must NOT
+be included in a code commit. Stage only `grimwild.py`, `AGENTS.md`,
+`tests/`, `example-golden.pdf`, and `plague-of-goblins.{md,pdf}`. The author
+commits their own module changes separately.
 
 ## Building
 

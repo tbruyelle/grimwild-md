@@ -208,7 +208,7 @@ def parse_div(attr, lines):
 
 QUOTE_MARKER = re.compile(r"^\s*>\s?")
 HEADING_MARKER = re.compile(r"^#{1,6}\s+")
-HEADING_LINE = re.compile(r"^#{1,3} ")
+HEADING_LINE = re.compile(r"^#{1,6} ")
 
 # Page geometry: the colour PDF uses the original trim, the print version
 # widens to A4. Sentinels in BASE_CSS and the values below must agree.
@@ -295,6 +295,9 @@ def _buffer_items(buf):
         elif stripped.startswith("### "):
             flush()
             items.append({"type": "h3", "title": stripped[4:].strip()})
+        elif stripped.startswith("#### "):
+            flush()
+            items.append({"type": "h4", "title": stripped[5:].strip()})
         else:
             m = LIST_RE.match(ln)
             if m:
@@ -349,8 +352,13 @@ def parse(text):
             mod["title"] = line[2:].strip()
             i += 1
             continue
-        if line.startswith("## ") or line.startswith("### "):
-            level = 2 if line.startswith("## ") else 3
+        if line.startswith("## ") or line.startswith("### ") or line.startswith("#### "):
+            if line.startswith("## "):
+                level = 2
+            elif line.startswith("### "):
+                level = 3
+            else:
+                level = 4
             title = line.lstrip("#").strip()
             content = []
             i += 1
@@ -360,7 +368,7 @@ def parse(text):
                     content.append(ln)
                     i += 1
                     continue
-                head_m = re.match(r"^(#{1,3}) ", ln)
+                head_m = re.match(r"^(#{1,6}) ", ln)
                 if head_m:
                     head_level = len(head_m.group(1))
                     if head_level <= level:
@@ -385,6 +393,10 @@ def parse(text):
             if item["type"] == "h3":
                 mod["blocks"].append(
                     {"kind": "simple-para", "level": 3, "title": item["title"], "items": []}
+                )
+            elif item["type"] == "h4":
+                mod["blocks"].append(
+                    {"kind": "simple-para", "level": 4, "title": item["title"], "items": []}
                 )
             elif item["type"] == "list":
                 mod["blocks"].append({"kind": "list", "items": item["items"]})
@@ -729,11 +741,14 @@ def render_list(items):
 
 
 def render_simple_para(b):
-    tag = "h2" if b.get("level", 2) == 2 else "h3"
+    level = b.get("level", 2)
+    tag = {2: "h2", 3: "h3", 4: "h4"}[level]
     parts = [f"<section class='simple-para'><{tag}>{inline(b['title'])}</{tag}>"]
     for item in b["items"]:
         if item["type"] == "h3":
             parts.append(f"<h3>{inline(item['title'])}</h3>")
+        elif item["type"] == "h4":
+            parts.append(f"<h4>{inline(item['title'])}</h4>")
         elif item["type"] == "list":
             parts.append(render_list(item["items"]))
         elif item.get("quote"):
@@ -1039,6 +1054,10 @@ li::before {
   margin: 2.5mm 0 1mm; font-size: 9.5pt; font-weight: 800;
   text-transform: uppercase; letter-spacing: 0.02em; color: var(--color-title);
 }
+.simple-para h4 {
+  margin: 2mm 0 0.6mm; font-variant: small-caps; font-size: 9.2pt; font-weight: 700;
+  color: var(--color-title);
+}
 .simple-para p { margin: 0 0 1.5mm; text-align: justify; font-size: 8.6pt; }
 .simple-para p:last-child { margin-bottom: 0; }
 blockquote {
@@ -1197,6 +1216,7 @@ h1 { font-size: 26pt; }
 .banner { font-size: 11.5pt; }
 .simple-para h2 { font-size: 19pt; }
 .simple-para h3 { font-size: 11.5pt; }
+.simple-para h4 { font-size: 11.2pt; }
 .simple-para p { font-size: 10.6pt; }
 blockquote { font-size: 10.6pt; }
 .challenges-title { font-size: 13.5pt; }
