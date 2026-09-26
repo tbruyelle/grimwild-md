@@ -315,32 +315,32 @@ feu à l'extérieur ce qui devrait entrainer le réveil de l'Élémentaire,
 **Tostadora**.
 
 ::: {.challenges}
-# Tostadora l'Élémentaire de Feu
+# Tostadora the Fire Elemental
 
-## 6d | Forme Éthérée
-* Intangibilité totale: insensible aux attaques physique.
-* Sensible à l'eau, aux fortes bourrasques et au manque d'oxygène.
-* Chaleur Rayonnante: dégats thermiques à quiconque s'approche à moins de 5m.
-- Fouet d'Éther
-- Implosion Pyro-asphixiante
+## 6d | Ethereal Form
+* Total Intangibility
+* Vulnerable to Water
+* Radiant Heat
+- Ether Whip
+- Asphyxiating Pyro-Implosion
 
->> Forme Magmatique
+>> Magma Form
 
-## 8d | Forme Magmatique
-* Carapase de basalte
-* Sensible à l'eau, rend sa carapace cassante
-- Balayage Magmatique
-- Projection de scories
-- Ancrage terreux
+## 8d | Magma Form
+* Basalt Carapace
+* Vulnerable to Water
+- Magma Sweep
+- Slag Projectile
+- Earthy Anchoring
 
->> Forme Calcifiée
+>> Calcified Form
 
-## 4d | Forme Calcifiée
-* Structure friable: sensible aux armes contendantes
-* Invisibilité dans la fumée
-- Griffe d'escarre
-- Nuage de suie aveuglant
-- Bouquet final: à la limite de l'anéantissement, explose dans une gerbe d'étincelles.
+## 4d | Calcified Form
+* Friable Structure
+* Invisibility in Smoke
+- Scab Claw
+- Blinding Soot Cloud
+- Final Explosion
 :::
 
 Les PJ peuvent se faire aider par les Naldeths ou par des paladins si ils en
