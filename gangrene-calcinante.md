@@ -108,7 +108,7 @@ Après cela, il disparaît, tout comme **Skirk** qui a déjà disparu.
 Après quelques jours, alors que **Panse-Mémé** vient changer les pansements,
 l'un des PJ fait une crise de *Fièvre incandescante*, ses plaies se mettent à
 fumer et à noircir, une nécrose se développe autour de la plaie. Il commence à
-se tranformer en *Zombie Carbonisé*.
+se tranformer en *Zombie Fumant*.
 
 *"Par les tripes du Troll, c'est ce que je craignais, vous êtes atteint de
 Gangrène Calcinante..."*
@@ -120,21 +120,41 @@ Elle explique alors que les PJ n'ont plus quelques jours à vivre et qu'elle n'a
 pas les pouvoirs de guérir ce genre d'afflication magique. Seul son mentor
 **Maître Corvus** à **Madoris** peut le faire. Elle leur décrit également les
 différentes étapes de leur mal, après plusieurs *Fièvres Incandescantes*, ils
-deviendront des *Zombies Carbonisés*, où il ne leur restera que peu de temps à
+deviendront des *Zombies Fumant*, où il ne leur restera que peu de temps à
 vivre.
+
+::: {.pressure-pools}
+## 3d Fièvre incandescante
+- Crise suffocante
+- Vision des enfers de **Tostadora**
+>>* Zombie Fumant
+## 2d Zombie Fumant
+- S'effondre
+:::
+
+- Notes PP/PJ
+  - **Sybil**:   FE ....  ZC ....
+  - **Gregory**: FE ....  ZC ....
+
+L'état de base *Fièvere incandescante* ajoute +1t à tous les jets, tandis que
+*Zombie Fumant* ajoute +2t.
+
+> Rappel: en *Zombie Fumant*, on peut revenir à l'état précédent en mangeant une part de *Feuille-Givre*.
+> Cependant l'effet s'estompe avec le temps, la prochaine *Feuille-Givre* reset le pool à 2d, puis les prochaine à 1d seulement.
+
 
 ### Sur le départ
 
 Les PJ doivent se préparer au voyage, en se renseignant ils apprennent qu'il
-faut 4 à 6 jours de marche pour aller à **Madoris**. Ils peuvent cependant
-acheter des chevaux (-1d/cheval sur leur pool de richesse), ils peuvent
-négocier une monture gratuite pour le service rendu. À cheval le trajet n'est
-plus que de 3 jours et 2 nuits.
+faut 5 à 6 jours de marche pour aller à **Madoris**. Ils peuvent cependant
+acheter des chevaux (_1d Fortune_/cheval), ils peuvent négocier une monture
+gratuite pour le service rendu. À cheval le trajet n'est plus que de 3 jours et
+2 nuits.
 
 **Grand-Guy** propose de les accompagner, à cheval uniquement. Il connaît bien
 le chemin et sera utile pour empêcher les problèmes lors du voyage.
 
-Le jour du départ, **Panse-Mémé** donne 1 ou 2 paquets de *Feuille-Givre*, une
+Le jour du départ, **Panse-Mémé** donne 2 paquets de *Feuille-Givre*, une
 solution temporaire pour leur permettre de sortir de l'état de *Zombie
 Calcinée* si jamais cela arrive, une seule fois par paquet. Les PJ doivent
 décider où porter ces objets. Elle leur donne également une lettre de
@@ -160,45 +180,26 @@ choses se compliquent car le délai se rallonge.
 En plus du story roll, chaque étape devra comprendre un lancer sur la Pressure
 Pool de la *Gangrène Calcinante*, séparément pour chaque PJ.
 
-::: {.pressure-pools}
-## 3d Fièvre incandescante
-- Crise suffocante
-- Vision des enfers de **Tostadora**
->>* Zombie Carbonisé
-## 2d Zombie Carbonisé
-- S'effondre
-:::
-
-- Notes PP/PJ
-  - **Sybil**:   FE ....  ZC ....
-  - **Gregory**: FE ....  ZC ....
-
-L'état de base *Fièvere incandescante* ajoute +1t à tous les jets, tandis que
-*Zombie Carbonisé* ajoute +2t.
-
-> Rappel: en *Zombie Carbonisé*, on peut revenir à l'état précédent en mangeant une part de *Feuille-Givre*.
-
 ### La Rivière Boueuse
 
 Les PJ longent la *Rivière Boueuse* à leur gauche et un bois assez dense à leur
-droite. Le chemin de terre est jonchée de haute herbes. Les PJ vont croiser une
+droite. Le chemin de terre est jonchée de hautes herbes. Les PJ croisent une
 bande pêcheurs qui, si ils bavardent un peu avec eux, leur disent de faire
 attention aux crocodiles de la rivière. Ils se sont installés récemment et sont
 très dangereux, un ami à eux s'est encore faire dévorer le mois dernier. Il faut
-leur balancer de la viande pour libérer le chemin, ou contourner par le
-bois.
+leur balancer de la viande pour libérer le chemin, ou contourner par le bois.
 
-> Lancer des conversations entre les PJ
-> **Grand-Guy** demande à **Sybil** d'où elle vient et où elle a appris à guérir de ces mains
+#### Gros Crocos
 
 Un peu plus loin sur la route, une famille de **Crocodiles Géants** attendent
-leur proies, dissimulés dans les hautes herbes.
+leur proies, dissimulés dans les hautes herbes. Truc drôle: laisser passer les
+pêcheurs pour voir ce qu'ils leur arrivent.
 
 Story roll:
-- **Perfect**: Les PJ passent à côté des crocos qui dorment.
+- **Perfect**: Les PJ passent à côté des crocos qui dorment. Ceux-ci se réveillent à leur passage mais ils ont le temps d'accélerer le pas pour leur échapper.
 - **Critical**: Perfect + l'un des PJ ne lance pas son pool de *Gangrène Calcinante*.
 - **Messy**: **Grégory**, avec son vantage d'espion, remarque des motifs changeant dans les hautes herbes.
-- **Grim**: Pris par surprise, un **Crocodile Géant** englouti la patte d'un des chevaux, son cavalier tombe et se retrouve nez à nez avec un autre croco.
+- **Grim**: Pris par surprise, un **Crocodile Géant** englouti la patte d'un des chevaux, son cavalier tombe et se retrouve nez à nez avec un autre croco. Inflige *Mark* + *Vex*.
 
 ::: {.challenges}
 ## 4d | Crocodiles Géants
@@ -212,61 +213,107 @@ Story roll:
 Ce sont des créatures très dangereuses et il est important d'indiquer au PJ que
 l'enjeu est critique (risque de desesperate/drop).
 
-Demandez aux PJ leur position sur la route, le premier qui passe où le plus
-proche de la rivière se fait attaquer. Ils peuvent décider de mettre
-**Grand-Guy** mais sans lui la suite du voyage sera plus difficile.
 
-Truc drôle: laisser passer les pêcheurs pour voir ce qu'ils leur arrivent.
+#### Belle étoile
 
-Le soir venu. les PJ dorment à la belle étoile, forte heuseuement dans une
-maison abandonné sans toit mais avec des murs et suffisamment de bois pour
+Le soir venu. les PJ dorment à la belle étoile, forte heuseusement dans une
+maison abandonnée sans toit mais avec des murs et suffisamment de bois pour
 faire office de porte, afin de se protéger des crocos.
 
-Nécessite un autre story roll, cette fois *2d* avec ou sans **Grand-Guy**:
+> Lancer des conversations entre les PJ au coin du feu (+1 Spark)
+> **Grand-Guy** demande à **Sybil** d'où elle vient et où elle a appris à guérir de ces mains
+
+> ⚂ Pressure pool avant de dormir
+
+La nuit nécessite un autre story roll, cette fois *2d* avec ou sans **Grand-Guy**:
 - **Perfect**: Celui qui veille remarque des petits mamifères qui cherchent à grignoter leur vivres et les fait fuire.
 - **Critical**: Perfect + Spark
 - **Messy**: Un petit mamifère est surpris en train de dévorer une des rations de *Feuille-Givre* pendant la nuit.
-- **Grim**: Pris de panique, un cheval s'enfuit par la fenêtre, et se fait dévorer par les crocos qui tournent autour de la maison.
+- **Grim**: Hard Choice:
+  - Aggravation du cas d'un des PJ: *-1d* sur son pool
+  - Pris de panique, un cheval s'enfuit par la fenêtre, et se fait dévorer par les crocos qui tournent autour de la maison.
 
-> ⚂ Pressure pool
 
-### L'auberge du Père Chaudron
+### Le pont de pierre
 
-Les PJ arrivent en fin de matinée à un pont en pierre puis arrive à l'auberge
-du **Père Chaudron** le soir.
+Les PJ continuent leur route le long de la rivière.
 
-> Lancer des conversations entre les PJ
-> **Grand-Guy** demande à **Abyss** si il sait à quoi pense Groot. Que fait-il pendant qu'il n'est pas là avec nous ?
+#### Gastion Glaviaux, Maître apothicaire
+
+Les PJ arrivent en fin de matinée à un pont en pierre qui traverse la _Rivière
+Boueuse_. Le pont ne peut être passé à cheval à cause d'une roulotte tirée par
+une mule et dont la roue droite s'est brisée sur les pavés du pont. Le
+propriétaire, un petit homme rondelet et crasseux, **Gastion Glavieaux** demande
+de l'aide aux PJ pour faire traverser le pont, il pourra ensuite réparer sa
+roue. Il bave et postillone beaucoup, et prétend les récompenser si ils arrivent
+à faire passer la roulotte de l'autre côté.
+
+La roulotte est particulièrement lourde (+2t) donc il faut s'y mettre à
+plusieurs pour réussir avec un test de *Force*, pendant que les PJ soulève,
+**Gaston** demande à sa mule **Marguerite** de tirer.
+
+- **Perfect**: OK
+- **Critical**: Perfect + un des PJ sent l'odeur de *Feuille-Givre* venant de la roulotte.
+- **Messy**: tous les PJ participants ont leur *Force* marquée
+- **Grim**: Hard Choice:
+  - un de leur chevaux s'est enfui
+  - toute la roulotte et la mule **Marguerite** tombe à l'eau
+- **Disaster**: Hard Choice:
+  - deux chevaux se sont enfuis
+  - toute la roulotte et la mule **Marguerite** tombe à l'eau, avec les PJ.
+
+Si les PJ ont réussi à faire passer la roulotte, **Gaston** leur propose les
+récompenses suivantes:
+
+- Un bon d'achat moisi pour la suite royale de l'auberge du **Père Chaudron** (+1d sur le pool de GG)
+- Une vieille carte de **Madoris** avec des tâches de gras (permet de trouver **Maître Corvus** immédiatement)
+- Une os de patte de rongeur fétiche puant (soit disant porte-chance mais ne sert à rien)
+
+Evidement l'apthicaire ne sait pas que les PJ ont un besoin urgent en
+*Feuille-Givres*, si ces derniers lui demande il est prêt à leur en céder 1 ou
+2 paquet (varier en fonction de la criticité de la situation). Si jamais il
+vient à l'idée aux PJ de braquer toutes les *Feuille-Givres*, **Gastion** en a
+6. Cependant il y aura des conséquences plus tard pour ce vol.
+
+Une fois le pont passé, les PJ continuent leur chemin, **Gaston** prend une
+route différente.
+
+#### Après le pont
 
 Story roll:
 - **Perfect**: Vous remarquez une bande de brigands à chevaux qui vous suivent de loin, mais vous arrivez à les semer.
 - **Critical**: Perfect + l'un des PJ ne lance pas son pool de *Gangrène Calcinante*.
-- **Messy**: Sensation d'être suivi (-1d au prochain story roll)
-- **Grim**:
-  - Un des PJs voit son cas s'aggraver et perds un dé de son pool
+- **Messy**: Sensation d'être suivi (+1t au prochain story roll)
+- **Grim**: Hard choice:
+  - Aggravation du cas d'un des PJ: *-1d* sur son pool
   - Se trompent de route et perdent une journée. Entraine nouvelle nuit à la belle étoile.
 
 En cas de nouvelle nuit à la belle étoile:
 - **Perfect**: ça ronfle
 - **Critical**: Perfect + Spark
 - **Messy**: Prendre suspense ou mamifere qui mange un *Feuille-Givre*.
-- **Grim**: Aggravation du cas d'un des PJ: *-1d* sur son pool
+- **Grim**: Hard choice:
+  - Aggravation du cas d'un des PJ: *-1d* sur son pool
+  - Un cheval manquant au petit matin
 
 Le soir les PJ arrivent à l'auberge du **Père Chaudron**.
 
 > ⚂ Pressure pool avant de rentrer dans l'auberge le soir.
 
+### L'auberge du Père Chaudron
+
 L'auberge est un grand batiment avec un étage. Le RAZ est consacré à la salle
-princpale, qui sent la fumée, la transpiration et le graillon. Au milieu d'un
+principale, qui sent la fumée, la transpiration et le graillon. Au milieu d'un
 bar central un gros chaudron émet une fumée épaisse. Une petite arène se trouve
 à une extremité, et un stand de fléchette. L'endroit est très agité avec bcp de
 monde.
 
-Le jeu de fléchette permet de gagner *1d de fortune* si jamais le PJ réussi son
-tir contre un villageois (*2d Agilité*). L'arène est fermée pour l'instant et
-attend l'arrivée de  **Gras-Double** pour ouvrir. Ce dernier est un gentil gros
-qui s'amuse à jeter ses adversaires hors du ring sans jamais les blesser, c'est
-un peu comme du catch et ça fait rire tout le monde.
+L'arène est fermée pour l'instant et attend l'arrivée de **Gras-Double** pour
+ouvrir. Ce dernier est un gentil gros qui s'amuse à jeter ses adversaires hors
+du ring sans jamais les blesser, c'est un peu comme du catch et ça fait rire
+tout le monde.
+
+#### Accueil du Père Chaudron
 
 Les PJ sont accueillis par le **Père Chaudron** qui, après s'être renseigné sur
 le but de leur voyage, les renseigne sur **Madoris** et notamment le fait qu'il
@@ -284,19 +331,34 @@ entendre:
 Rakash n'a rien à voir avec cela, je peux vous le dire. Avez-vous au moins la
 moindre preuve de ce que vous avancez ?"*
 
-Le **Père Chaudron** est surpris et confus et ne sait que répondre.
+Le **Père Chaudron** est surpris et confus et ne sait que répondre. Il retourne
+alors à son bar et fait semblant de s'occuper.
 
 *"Veuillez tenir votre langue à l'avenir, plutôt que de propager des rumeurs
 qui pourrait vous la faire perdre..."*
 
-**Père Chaudron** chuchote alors aux PJ à qui ils ont affaire, **Lance-Os**, le
-bras droit du **Baron Rakash**, il se demande bien ce qu'il fait là, puis
-disparaît derrière son comptoire.
+**Grand-Guy** chuchote alors aux PJ à qui ils ont affaire, **Lance-Os**, le
+bras droit du **Baron Rakash**, il se demande bien ce qu'il fait là.
+
+> Lancer des conversations entre les PJ pendant le repas (+1 Spark)
+> **Grand-Guy** demande à **Abyss** si il sait à quoi pense Groot. Que fait-il pendant qu'il n'est pas là avec nous ?
+
+#### Dédé La-Touche
+
+Le jeu de fléchettes permet de gagner *1d Fortune* si jamais le PJ gagne un
+match contre le champion **Dédé La-Touche**, un jeune homme maigrelet fier comme
+un coq avec de grosses lunettes (_3d Agilité_). Le match consiste à 3 lancers,
+celui qui en remporte au moins 2 gagne. 
+
+#### Gras-Double
 
 Un peu plus tard, l'arène s'ouvre et **Gras-Double** demande à qui veut bien
-faire un combat contre lui, plusieurs villageaois se retrouve catapulté de
-l'arène sous les rires enjoués des spectateurs. Ce personnage est
-particulièrement gros et moche.
+faire un combat contre lui, celui qui arrivera à le faire sortir de l'arène
+gagne *1d Fortune*. Ce personnage est particulièrement gros et a une tête comme
+un citrouille.
+
+Plusieurs villageaois se retrouve catapulté de l'arène sous les rires enjoués
+des spectateurs. Si un PJ tente le coup, il doit lancer un jet de *Force* +1t.
 
 **Lance-Os** décide alors de participer, et enlève lentement son armure de
 plate. Il arrivent devant **Gras-Double** et ce dernier semble avoir perdu toute
@@ -304,11 +366,15 @@ assurance, tandis que **Lance-Os** garde un air impassible et inquiétant. S'en
 suit une attaque sans conviction de **GD**, contré et suivi par un massacre en
 règle, **LC** finit recouvert du sang de sa victime et continue de frapper, plus
 personne ne rit ni n'ose dire un mot dans la salle. Même les soldats qui
-l'accompagne le regarder avec dégoût. Quand il s'arrête, la tête de **GD** n'est
-plus qu'un hématome. **LC** ramasse alors lentement et calmement les dents
-sautées et les met dans une petit boîte métallique qui semble en contenir
-beaucoup d'autres. Un sourire sadique se peint alors sur son visage alors qu'il
-demande à l'assemblée:
+l'accompagne le regarder avec dégoût.
+
+Quand il s'arrête, la tête de **GD** n'est plus qu'un hématome. **LC** ramasse
+alors lentement et calmement les 3 dents qui ont sautées et les met dans une
+petit boîte métallique qui semble en contenir beaucoup d'autres. Il fait
+ensuite sonner la boite à son oreille, et semble être satisfait par le son,
+comme si l'ajout des dents l'avait rendu plus agréable.
+
+Un sourire sadique se peint alors sur son visage alors qu'il demande à l'assemblée:
 
 *"Quelqu'un d'autre veut s'amuser avec moi ?"*
 
@@ -316,6 +382,8 @@ Personne ne réponds, si jamais un PJ souhaite se lever, **Grand-Guy** l'attrape
 par le poignée et lui fait les gros yeux. Il n'est clairement pas raisonnable vu
 la situation de se confronter à **Lance-Os**. Ce dernier retourne alors à sa
 place.
+
+#### Les dents de Gras-Double
 
 Un peu plus tard, **Père Chaudron** a sorti **Gras-Double** de l'arène et
 demande à l'assemblée si quelqu'un a des notions de premier secours. Si les PJ
@@ -331,22 +399,44 @@ dents qui s'entrechoquent lorsqu'il se déplace. Il dort par contre dans une
 chambre seul, avec ses soldats dans la chambre d'à côté. **Père Chaudron** est
 prêt à les renseigner sur le sujet sans insister. Il a posé sa *boîte à dents*
 sur sa table de nuit, cependant il a fermé sa porte à clé. **Père Chaudron** a
-les double mais la serrure est rouillé et fera du bruit alarme-t-il. Il est
-possible de passer par le toit et les fenêtres cependant.
+les doubles mais il flippe à mort, il faut le convaincre (jet de *Présence).
+
+Il est possible de passer par le toit et les fenêtres cependant.
+
+La boîte contient une vingtaine de dents, toute humaines. Il est possible de
+distinguer celles de **Gras-Double** car elles sont encore humides et un peu
+ensanglantées.
+
+> Demandez au PJ ce qu'ils font de la boîte et ce qu'ils font du reste de la nuit jusqu'au matin.
+
+#### Réveil brutal
+
+Si les PJ ont subtilisé les dents dans la boîte sans les remplacer par autre
+chose, **Lance-Os** se rend compte au petit main que des dents manquent, juste
+au bruit que fait la boîte. Si il n'a plus sa boîte c'est pire il devient
+enragé.
+
+En faisant un boucan du tonnerre il va rentrer dans toutes les chambres
+accompagnés de ces soldats pour fouiller les autres clients. Si jamais les PJ
+se font prendre, **Lance-Os** prétend ne pas avoir le pouvoir de les tuer ici
+mais qu'ils n'ont pas intérêt à trainer du côté de la vallée du **Baron
+Rakash**.
 
 ### Les collines de Madoris
 
 Les PJ utilisent un chemin plus chaotique qui traverse une série de collines
 parsemées de bois. 
 
-> Lancer des conversations entre les PJ
+> Lancer des conversations entre les PJ (+1 Spark)
 > **Grand-Guy** demande à **Gregory** ce qu'il faisait avant, et comment il se voit dans 10 ans.
 
 Lancer un story roll:
 - **Perfect**: Les PJ arrivent à semer une bande de bandits qui le suivent.
 - **Critical**: Perfect + les PJ trouvent un marchand prêt à les faire entrer dans **Madoris**.
 - **Messy**: Les PJ remarquent que des bandits les suivent et tente de leur tendre une embuscade.
-- **Grim**:  Embuscade par une bande de bandits qui en veulent à leur porte monnaie et à leur chevaux. **Abyss** reçoit une bille de fronde en plein face et tombe de son cheval: *Ensanglanté*.
+- **Grim**: Hard choice:
+  - Aggravation du cas d'un des PJ: *-1d* sur son pool
+  - Embuscade par une bande de bandits qui en veulent à leur porte monnaie et à leur chevaux. **Abyss** reçoit une bille de fronde en plein face et tombe de son cheval: *Ensanglanté*.
 
 ::: {.challenges}
 ## 6d | Bandits de Grand chemin
@@ -412,6 +502,7 @@ coups de temps en temps. Toutes les lampes ont été brisées.
 - Charge surprise
 - Étranglement
 - Détruit source lumineuse
+- Hurle sur sa proie (*Mark* + *Vex*)
 :::
 
 Maîtriser **Tape-Dur** sans le tuer requiert +1t aux attaques. Lui donner à
