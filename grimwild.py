@@ -973,7 +973,7 @@ h1 {
 
 /* ---- generic lists with Unicode markers ---- */
 strong { font-weight: 700; }
-ul { margin: 0; padding: 0; list-style: none; }
+ul { margin: 0 0 1.5mm; padding: 0; list-style: none; }
 ul ul { margin-top: 0.35mm; }
 li { position: relative; padding-left: 3.4mm; margin: 0.35mm 0; }
 li::before {
@@ -1010,7 +1010,7 @@ li::before {
 }
 .pool-card .prop { margin-left: auto; width: 2.8mm; height: 2.8mm; }
 .pool-card .prop svg { width: 100%; height: 100%; display: block; }
-.pool-card ul { padding: 1.1mm 1.5mm 1.3mm; }
+.pool-card ul { margin: 0; padding: 1.1mm 1.5mm 1.3mm; }
 .pool-link {
   position: relative; flex: none; align-self: flex-start;
   width: 6.5mm; height: 6mm; margin: 0 -6.5mm;  /* exactly bridges the flex gap */
@@ -1060,6 +1060,8 @@ li::before {
 }
 .simple-para p { margin: 0 0 1.5mm; text-align: justify; font-size: 8.6pt; }
 .simple-para p:last-child { margin-bottom: 0; }
+.simple-para ul { margin: 0 0 1.5mm; }
+.simple-para ul:last-child { margin-bottom: 0; }
 blockquote {
   margin: 0 0 1.5mm; padding: 0.3mm 0 0.3mm 3mm;
   border-left: 0.5mm solid var(--color-title);
