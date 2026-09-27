@@ -142,6 +142,18 @@ L'état de base *Fièvere incandescante* ajoute +1t à tous les jets, tandis que
 > Rappel: en *Zombie Fumant*, on peut revenir à l'état précédent en mangeant une part de *Feuille-Givre*.
 > Cependant l'effet s'estompe avec le temps, la prochaine *Feuille-Givre* reset le pool à 2d, puis les prochaine à 1d seulement.
 
+#### Gestion du drop
+
+Cette maladie peut rapidement tourner par l'effondrement d'un des PJ sur
+quelques mauvais lancer de dés, il faut donc bien veuiller à utiliser toutes
+les resources possibles lors du story roll du drop (lucky dice, assist, etc...)
+
+- **Perfect**: le PJ tombe dans les pomme jusqu'à la fin de la scène, regagne 1d sur *Zombie Fumant*.
+- **Critical**: **Perfect**  mais gagne 2d sur *Zombie Fumant*.
+- **Messy**: Jambe paralysée / Bras atrophié / visage tuméfié jusqu'à
+  guérison
+- **Grim**: aveugle / perte d'un bras ou d'une jambe / consumation lente (4d mort)
+
 
 ### Sur le départ
 
@@ -506,5 +518,5 @@ coups de temps en temps. Toutes les lampes ont été brisées.
 :::
 
 Maîtriser **Tape-Dur** sans le tuer requiert +1t aux attaques. Lui donner à
-manger permet de le maîtriser pour pas cher, il s'assoit et dévore son plat en
-ignorant tout ce qui se passe autour de lui.
+manger permet se faciliter la tâche, il utilise un bras pour dévorer son plat et
+donc le malus +1t displaraît.
